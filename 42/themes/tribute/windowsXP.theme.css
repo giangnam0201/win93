@@ -1,0 +1,1006 @@
+/**
+ * Name: Windows XP
+ * Author: Zombectro
+ *
+ * Based on XP.css by Adam Hammad <adamham.dev>
+ * https://github.com/botoxparty/XP.css
+ */
+
+@import url("./assets/pixel-font-fix.css");
+
+@font-face {
+  font-family: Tomo;
+  src:
+    url("./windows9x/fonts/tomo/Tomo.woff2") format("woff2"),
+    url("./windows9x/fonts/tomo/Tomo.woff") format("woff"),
+    url("./windows9x/fonts/tomo/Tomo.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  /* size-adjust: 120%; */
+}
+
+@font-face {
+  font-family: sserife;
+  src:
+    url("./windows9x/fonts/sserife/sserife.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: sserife;
+  src:
+    url("./windows9x/fonts/sserife/sserife-bold.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife-bold.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife-bold.ttf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  /* fallback for missing glyphs in sserife-bold */
+  font-family: sserife-fallback;
+  src:
+    url("./windows9x/fonts/sserife/sserife.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife.ttf") format("opentype");
+  font-display: block;
+}
+
+.theme--windowsXP,
+:root:not(.themed) {
+  --theme: "windowsXP";
+
+  --Sound-Default: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Ding.wav";
+  --Sound-CriticalBatteryAlarm: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Battery Critical.wav";
+  --Sound-DeviceConnect: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Hardware Insert.wav";
+  --Sound-DeviceDisconnect: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Hardware Remove.wav";
+  --Sound-DeviceFail: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Hardware Fail.wav";
+  --Sound-LowBatteryAlarm: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Battery Low.wav";
+  --Sound-MailBeep: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Notify.wav";
+  --Sound-SystemAsterisk: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Error.wav";
+  --Sound-SystemExclamation: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Exclamation.wav";
+  --Sound-SystemExit: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Shutdown.wav";
+  --Sound-SystemHand: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Critical Stop.wav";
+  --Sound-SystemNotification: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Balloon.wav";
+  --Sound-SystemStart: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Startup.wav";
+  --Sound-WindowsLogoff: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Logoff Sound.wav";
+  --Sound-WindowsLogon: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Logon Sound.wav";
+  --Sound-EmptyRecycleBin: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Recycle.wav";
+  --Sound-Navigating: "/c/users/windows93/interface/sounds/Windows XP/Windows XP Start.wav";
+
+  --theme-light: true;
+  --theme-dark: false;
+
+  --xxxs: 0.125;
+  --xxs: 0.25;
+  --xs: 0.5;
+  --sm: 0.75;
+  --md: 1;
+  --lg: 1.5;
+  --xl: 2;
+  --xxl: 3.25;
+  --xxxl: 5;
+
+  --px: 1px;
+  --main-unit: 8px;
+
+  --group-border-collpase: 0;
+
+  /* MARK: fonts
+  -------------- */
+
+  font-synthesis: style small-caps;
+
+  --font-sans: sserife, sserife-fallback, Tomo, var(--font-emoji-ff);
+  --font-sans-fs: 12px;
+  --font-sans-lh: calc(16 / 12);
+
+  --font-mono: Tomo;
+  --font-mono-fs: 12px;
+  --font-mono-lh: calc(14 / 12);
+
+  --heading-lh: 1;
+
+  /* MARK: palette
+  ---------------- */
+
+  --ActiveTitleText: rgb(255 255 255);
+  --InactiveTitleText: #d8e4f8;
+
+  /* Window frame colors (XP Luna blue) */
+
+  /* Window 3D colors */
+  --ButtonFace: rgb(242 242 237);
+  --ButtonLight: rgb(241 239 226);
+  --ButtonHilight: rgb(255 255 255);
+  --ButtonShadow: rgb(172 168 153);
+  --ButtonDkShadow: rgb(113 111 100);
+
+  /* Other window colors */
+  --Window: rgb(255 255 255);
+  --WindowText: rgb(34 34 34);
+  --WindowFrame: rgb(0 0 0);
+  --Scrollbar: rgb(223 223 223);
+
+  /* Background */
+  --Background: rgb(58 110 165);
+  --AppWorkspace: rgb(128 128 128);
+
+  /* Selection */
+  --Hilight: rgb(34 103 203);
+  --HilightText: rgb(255 255 255);
+  /* --MenuHilight: rgb(34 103 203); */
+  /* --MenuHilight: rgb(49 106 197); */
+  --MenuHilight: rgb(22 101 203);
+
+  /* Text colors */
+  /* --GrayText: rgb(128 128 128); */
+  --GrayText: #a1a192;
+  --HotTrackingColor: rgb(0 0 255);
+
+  /* Field border (XP blue-gray) */
+  --FieldBorder: rgb(127 157 185);
+
+  /* Tooltip */
+  --InfoWindow: rgb(255 255 225);
+  --InfoText: rgb(0 0 0);
+
+  /* MARK: colors
+  --------------- */
+
+  --disabled-opacity: 1;
+
+  --main-accent-bg: var(--Hilight);
+
+  --main-bdc: #aca899;
+
+  --placeholder-fg: var(--GrayText);
+
+  --highlight-bg: var(--Hilight);
+  --highlight-fg: var(--HilightText);
+
+  --ground-bg: var(--AppWorkspace);
+  --ground-fg: #fff;
+
+  --desktop-bg: var(--Background) url("/c/users/windows93/interface/wallpapers/bliss/bliss.jpg") no-repeat center / cover;
+  --desktop-fg: #fff;
+  --desktop-tsh:
+    1px -1px 1px #0002,
+    0px -1px 1px #0002,
+    -1px -1px 1px #0002,
+    1px 0px 1px #0002,
+    0px 0px 1px #0005,
+    0px 0px 2px #0005,
+    1px 1px 1px #0003,
+    1px 2px 1px #0003,
+    0px 2px 1px #0002,
+    -1px 2px 2px #0002,
+    -1px 3px 2px #0002,
+    0px 3px 2px #0002,
+    1px 3px 2px #0002;
+
+  --document-bg: var(--Window);
+  --document-fg: var(--WindowText);
+
+  /* --panel-bg: #eeead7; */
+  /* --panel-bg: #efeee2; */
+  /* --panel-bg: #ece9d8; */
+  /* --panel-bg: #f0eedf; */
+  --panel-bg: #eeead6;
+  --panel-fg: var(--WindowText);
+
+  --screentone-image: repeating-conic-gradient(var(--ButtonFace) 0% 25%, var(--ButtonHilight) 0% 50%) 0 0 / 2px 2px;
+
+  /* MARK: borders
+  ---------------- */
+
+  --inset-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(172 168 153)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(113 111 100)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(241 239 226)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(255 255 255)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --outset-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(241 239 226)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(255 255 255)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(172 168 153)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(113 111 100)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --outset-shallow-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(255 255 255)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(172 168 153)" d="M6 0h1v7H0V6h6z"/></svg>');
+
+  --inset-bdw: 2px;
+  --outset-bdw: 2px;
+  --inset-shallow-bdw: 1px;
+  --outset-shallow-bdw: 1px;
+
+  --inset-bdi: var(--inset-bdi-url) 2 / 2px;
+  --inset-shallow-bdi: var(--inset-bdi-url) 1 / 1px;
+  --outset-bdi: var(--outset-bdi-url) 2 / 2px;
+  --outset-shallow-bdi: var(--outset-shallow-bdi-url) 1 / 1px;
+
+  --button-bdi: none;
+  --button-bdw: 1px;
+  --field-bdi: none;
+  --field-bdw: 1px;
+  --menu-bdi: none;
+  --menu-bdw: 1px;
+  --tabs__panel-bdi: none;
+  --tabs__panel-bdw: 1px;
+  --dialog-bdi: none;
+  --dialog-bdw: 0px;
+
+  /* MARK: controls
+  ----------------- */
+
+  --control-focus-ol: 1px dotted #000;
+  --control-focus-olo: -3px;
+  --button-clear-focus-olo: -2px;
+  --field-focus-olo: -3px;
+  --checkbox-focus-olo: 2px;
+  --range-focus-olo: 2px;
+
+  --control-h: 21px;
+  --control-pa-y: 2px 1px;
+  --control-pa-x: 4px;
+  --button-pa-x: var(--unit);
+  --button-gap: 4px;
+  --button__picto-ma-l: -6px;
+  --button__picto-ma-r: -6px;
+
+  --field-bg: var(--Window);
+  --field-fg: var(--WindowText);
+  --field-bdc: var(--FieldBorder);
+
+  --field-disabled-bg: var(--ButtonFace);
+  --field-disabled-fg: #aca899;
+
+  --button-disabled-fg: var(--GrayText);
+  --button-disabled-bg: #f5f4ea;
+  --button-disabled-bdc: #c9c7ba;
+  --button-disabled-bsh: none;
+
+  --field-disabled-bdc: #c9c7ba;
+  --menuitem-disabled-fg: #8c8a7e;
+
+  --button-bg:
+    linear-gradient(
+      180deg,
+      rgb(255 255 255) 0%,
+      rgb(236 235 229) 86%,
+      rgb(216 208 196) 100%
+    );
+  --button-fg: var(--WindowText);
+  --button-bdc: #003c74;
+  --button-bdr: 3px;
+  --button-bsh:
+    -1px -1px 1px #dcd6c2,
+    1px 1px 1px #fff;
+
+  --button-hover-bsh:
+    inset -1px 1px #fff0cf,
+    inset 1px 2px #fdd889,
+    inset -2px 2px #fbc761,
+    inset 2px -2px #e5a01a,
+    var(--button-bsh);
+
+  --button-focus-bsh:
+    inset -1px 1px #cee7ff,
+    inset 1px 2px #98b8ea,
+    inset -2px 2px #bcd4f6,
+    inset 1px -1px #89ade4,
+    inset 2px -2px #89ade4,
+    var(--button-bsh);
+
+  --button-active-bg:
+    linear-gradient(
+      180deg,
+      rgb(205 202 195) 0%,
+      rgb(227 227 219) 8%,
+      rgb(229 229 222) 94%,
+      rgb(242 242 241) 100%
+    );
+
+  --button-toggled-bg: linear-gradient(180deg, #cdcac3, #e3e3db 8%, #e5e5de 94%, #f2f2f1);
+  --button-toggled-bsh: none;
+
+  .button,
+  input:is(
+    [type="button"],
+    [type="reset"],
+    [type="submit"]),
+  button {
+    &:is(.disabled,[disabled],:disabled) ui-picto img {
+      opacity: 0.5;
+    }
+  }
+
+  --fieldset-bdw: 1px;
+  --fieldset-bdc: #d0d0bf;
+  --fieldset-bdr: 5px;
+
+  --separator-bsh: 0 1px 0 0 var(--ButtonHilight);
+
+  --meter-bdc: #686868;
+  --meter-bdr: 4px;
+
+  --progress-pa: 1px 2px 1px 0;
+  --progress-bdr: 4px;
+  --progress-bdc: #686868;
+  --progress__value-bg: repeating-linear-gradient(90deg, #fff 0, #fff 2px, transparent 0, transparent 10px), linear-gradient(180deg, #acedad 0, #7be47d 14%, #4cda50 28%, #2ed330 42%, #42d845 57%, #76e275 71%, #8fe791 85%, #fff);
+  --progress__value-top: 2px;
+
+  select:not([size],[multiple]) {
+    --select__arrow-image: url("./windowsXP/dropdown.png");
+    background-image: var(--select__arrow-image);
+    background-size: 15px;
+    background-position: top 1px right 1px;
+    &:hover { --select__arrow-image: url("./windowsXP/dropdown-hover.png"); }
+    &:active { --select__arrow-image: url("./windowsXP/dropdown-active.png"); }
+    &:disabled { --select__arrow-image: url("./windowsXP/dropdown-disabled.png"); }
+  }
+
+  legend {
+    font-weight: normal;
+    color: #0046d5;
+  }
+
+  /* MARK: checkbox
+  ----------------- */
+
+  --checkbox-bdc: #1c5180;
+  --checkbox-bg: linear-gradient(-45deg, #fff, #e2e2dd);
+
+  --radio-picto: url("../../assets/img/pictos.svg#picto-bullet");
+  --menutiemradio-picto: url("../../assets/img/pictos.svg#picto-bullet");
+  --checkbox-picto: url("../../assets/img/pictos.svg#picto-check");
+  --checkbox--indeterminate-picto: url("../../assets/img/pictos.svg#picto-bullet-grid");
+
+  input[type="checkbox"], input[type="radio"] {
+    --size: 11px;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      border: none;
+      mask-repeat: no-repeat;
+    }
+
+    &::before {
+      background: #21a121;
+    }
+
+    &:checked::before,
+    &:checked::after {
+      clip-path: none !important;
+      mask-image: var(--checkbox-picto);
+      mask-position: -2px -3px;
+    }
+
+    &:where(.disabled,[disabled],:disabled)::before {
+      background-color: #cac8bb;
+    }
+  }
+
+  input[type="radio"]:not([role="menuitemradio"]) {
+    &:checked::before {
+      background: transparent;
+      mask-image: none;
+    }
+
+    &:checked::after {
+      clip-path: inset(0%) !important;
+      mask-image: none;
+      background: url("./windowsXP/radio-dot.png");
+      background-repeat: no-repeat;
+      background-position: 3px 3px;
+    }
+
+    &:where(.disabled,[disabled],:disabled):checked::after {
+      background-image: url("./windowsXP/radio-dot-disabled.png");
+    }
+  }
+
+  input[type="checkbox"] {
+    &:indeterminate::before,
+    &:indeterminate::after {
+      clip-path: none !important;
+      mask-image: var(--checkbox--indeterminate-picto);
+      mask-position: -2px -3px;
+    }
+  }
+
+  input[type="checkbox"][role="menuitemcheckbox"] {
+    &::before,
+    &::after {
+      background: currentcolor;
+      mask-position: -1px 0;
+    }
+
+    &:indeterminate::before,
+    &:indeterminate::after {
+      mask-position: -1px 0;
+    }
+  }
+
+  input[type="radio"][role="menuitemradio"] {
+    &::before,
+    &::after {
+      background: currentcolor;
+      mask-image: var(--radio-picto);
+      mask-position: -1px 0;
+    }
+  }
+
+  /* MARK: rubberband
+  ------------------- */
+
+  .rubberband {
+    stroke: #fff;
+    fill: hsl(from var(--highlight-bg) h s l / 0.5);
+    stroke-width: 0;
+  }
+
+  /* MARK: tabs
+  ------------- */
+
+  --tabs__tab-pa-x: 5px;
+  --tabs__tab-pa-y: 1px;
+  --tabs__tab-bsh: none;
+  --tabs__tab-bdr: 4px;
+
+  --tabs__tab-bg: linear-gradient(to bottom, #fff, #f0f0ea);
+  --tabs__tab-bdc: #91a7b4;
+  --tabs__tab-toggled-bg: #fff;
+  --tabs__tab-toggled-bdc: #919b9c;
+
+  --tabs-gap: 1px;
+  --tabs-active-overlap: -3px;
+  --tabs-active-grow-y: 3px;
+  --tabs-active-grow-x: 3px;
+
+  --tabs__panel-bdc: #919b9c;
+  /* --tabs__panel-bdr: 5px; */
+  --tabs__panel-bg: linear-gradient(to bottom, #fff, #f9f6f3);
+  --tabs__panel-bsh: inset 1px 0 #fff, inset -1px 0 #fff, inset 0 1px #fff, inset 0 -1px #fff, 1px 1px 1px #c6c5c9;
+
+  .ui-tabs__tab[aria-selected="true"] {
+    &::after {
+      content: "";
+      position: absolute;
+      background: #ffc83c;
+      border: 1px solid #e68b2c;
+      border-radius: inherit;
+    }
+
+    ui-tabs:is(:not([side]), [side="top"]) &::after {
+      height: 3px;
+      border-bottom: none;
+      top: -1px;
+      inset-inline: -1px;
+    }
+
+    ui-tabs[side="bottom"] &::after {
+      height: 3px;
+      border-top: none;
+      bottom: -1px;
+      inset-inline: -1px;
+    }
+
+    ui-tabs[side="right"] &::after {
+      width: 3px;
+      border-inline-start: none;
+      inset-inline-end: -1px;
+      inset-block: -1px;
+    }
+
+    ui-tabs[side="left"] &::after {
+      width: 3px;
+      border-inline-end: none;
+      inset-inline-start: -1px;
+      inset-block: -1px;
+    }
+  }
+
+  /* MARK: menu
+  ------------- */
+
+  --menu-bg: #fff;
+  --menu-pa: 3px;
+  --menu-bdc: #aca899;
+  --menu-bsh: 2px 2px 2px #0008;
+  --menu__separator-ma: 3px 0;
+  --menu-highlight-fg: var(--HilightText);
+  --menu-highlight-bg: var(--MenuHilight);
+
+  /* MARK: tooltip
+  ---------------- */
+
+  --balloon-fg: var(--InfoText);
+  --balloon-bg: var(--InfoWindow);
+  --balloon-bdc: var(--InfoText);
+  --balloon-br: 6px;
+  --balloon-bsh: 3px 3px 2px #0009;
+
+  /* MARK: dialog
+  --------------- */
+
+  --dialog-bsh:
+    inset -1px -1px #00138c,
+    inset 1px 1px #0831d9,
+    inset -2px -2px #001ea0,
+    inset 2px 2px #166aee,
+    inset -3px -3px #003bda,
+    inset 3px 3px #0855dd;
+  --dialog-pa: 0 3px 3px 3px;
+  --dialog-gap: 0;
+  --dialog-bdr: 8px 8px 0 0;
+
+  /* ui-dialog {
+    border: 1px solid;
+    border-color: #0059e8 #00138c #00138c #0019cf;
+    /~ background-color: #0021a9; ~/
+  } */
+
+  ui-dialog[active] {
+    --dialog-bsh:
+      inset -1px -1px #00138c,
+      inset 1px 1px #0831d9,
+      inset -2px -2px #001ea0,
+      inset 2px 2px #166aee,
+      inset -3px -3px #003bda,
+      inset 3px 3px #0855dd;
+  }
+
+  .ui-dialog__body,
+  .ui-dialog__footer {
+    padding: 4px;
+    /* padding-top: 0; */
+  }
+
+  .ui-dialog__header {
+    /* opacity: 0; */
+    /* font-family: "Trebuchet MS", var(--font-sans);
+    font-size: 13px; */
+    /* background: var(--InactiveTitle); */
+    background:
+      radial-gradient(
+        circle at 0 25%,
+        #7276d1 0,
+        #7276d1aa 1%,
+        #7276d100 2%,
+        #7276d100 100%
+      ),
+      radial-gradient(
+        circle at 100% 25%,
+        #7276d1 0,
+        #7276d1aa 1%,
+        #7276d100 2%,
+        #7276d100 100%
+      ),
+      linear-gradient(
+        to bottom,
+        #9ab4e9 0,
+        #9db9eb 7%,
+        #8bb0e9 9%,
+        #7b9de1 18%,
+        #7996de 19%,
+        #7a96e0 50%,
+        #7fa2e6 80%,
+        #80a5e6 90%,
+        #7fa2e5 91%,
+        #7b99e1 94%,
+        #778edb 100%
+      );
+
+    box-shadow: inset 2px 0 0 #747cd566, inset 1px 0 0 #747cd5, inset -2px 0 0 #6e6dc566, inset -1px 0 0 #6e6dc5;
+    color: #d8e4f8;
+    border-top: 1px solid #688de0;
+    border-left: 1px solid #5b68cd;
+    border-right: 1px solid #5b5ec5;
+
+    margin-right: -3px;
+    margin-left: -3px;
+    /* margin-bottom: 0; */
+
+    ui-dialog[active] & {
+      color: #fff;
+      text-shadow: 1px 1px #0a1883;
+      border-top: 1px solid #0831d9;
+      border-left: 1px solid #0831d9;
+      border-right: 1px solid #001ea0;
+      background:
+        radial-gradient(
+          circle at 0 20%,
+          #0032c1 0,
+          #0032c188 1%,
+          #0032c100 2%,
+          #0032c100 100%
+        ),
+        radial-gradient(
+          circle at 100% 20%,
+          #0032c1 0,
+          #0032c188 1%,
+          #0032c100 2%,
+          #0032c100 100%
+        ),
+        linear-gradient(
+          to bottom,
+          #3d95ff 0,
+          #2b90ff 7%,
+          #0372ff 9%,
+          #0054e3 18%,
+          #0054e3 19%,
+          #0058ee 50%,
+          #026afe 80%,
+          #026afe 90%,
+          #0065fd 93%,
+          #71aaff 96%,
+          #c4d6ff 100%
+        );
+      box-shadow:
+        inset -1px -1px 1px #0026acaa,
+        inset -2px -1px 1px #0020c8aa,
+        inset -3px -1px 1px #003be0aa,
+        inset 1px -1px 1px #0020c8aa,
+        inset 2px -1px 1px #0038d8aa,
+        inset 3px -1px 1px #0046e4aa,
+        inset 0 -1px red;
+    }
+
+    padding: 4px 5px 3px 3px;
+    /* border-top: 1px solid rgb(8 49 217);
+    border-left: 1px solid rgb(8 49 217);
+    border-right: 1px solid rgb(0 30 160); */
+
+    border-radius: 8px 8px 0 0;
+    /* height: 28px; */
+    gap: 0;
+  }
+
+  /* Dialog buttons */
+  :is(ui-dialog, ui-dialog:not([active])) .ui-dialog__button {
+    padding: 1px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+    margin-left: 2px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 3px;
+
+    background: radial-gradient(at 10% 10%, #9ab7faff 0, #9ab7fa44 30%, #9ab7fa00 60%), radial-gradient(at 85% 40%, #2766f5ff 0, #2766f555 40%, #2766f500 50%), #4778f6;
+    box-shadow:
+      inset 0 0 1px 1px #0d3fb699,
+      inset 2px 2px 3px #7099f8,
+      inset -1px -1px 2px #196df4;
+
+    &:hover {
+      background: radial-gradient(at 10% 10%, #a4c2ffff 0, #a4c2ff44 30%, #a4c2ff00 60%), radial-gradient(at 70% 70%, #3eb4ffff 0, #3eb4ff55 40%, #3eb4ff00 50%), #317aff;
+      box-shadow:
+        inset 0 0 1px 1px #0d3fb699,
+        inset 2px 2px 3px #81aaff,
+        inset -1px -1px 2px #3578ff;
+    }
+
+    &:is(.ui-dialog__button--close) {
+      background: radial-gradient(at 10% 10%, #f1ac9aff 0, #f1ac9a44 30%, #f1ac9a00 60%), radial-gradient(at 85% 40%, #e34d22ff 0, #e34d2222 40%, #e34d2200 50%), #e66a4d;
+      box-shadow:
+        inset 0 0 1px 1px #a62b0d99,
+        inset 2px 2px 3px #ec937c,
+        inset 1px 1px 2px #e34d22;
+
+      &:hover {
+        background: radial-gradient(at 10% 10%, #ffb8b0ff 0, #ffb8b044 30%, #ffb8b000 60%), radial-gradient(at 70% 70%, #ffa27dff 0, #ffa27d22 40%, #ffa27d00 50%), #ff6452;
+        box-shadow:
+          inset 0 0 1px 1px #a62b0d99,
+          inset 2px 2px 3px #ffa59b,
+          inset 1px 1px 2px #ff6857;
+      }
+    }
+  }
+
+  ui-dialog:not([active]) .ui-dialog__button {
+    background: radial-gradient(at 10% 10%, #88a2eaff 0, #88a2ea44 30%, #88a2ea00 60%), radial-gradient(at 85% 40%, #4f75e8ff 0, #4f75e855 40%, #4f75e800 50%), #5f80e9;
+    box-shadow:
+      inset 0 0 1px 1px #0d3fb699,
+      inset 2px 2px 3px #7a96ea,
+      inset -1px -1px 2px #4479eb;
+
+    &:is(.ui-dialog__button--close) {
+      background: radial-gradient(at 10% 10%, #b49cbaff 0, #b49cba66 30%, #b49cba00 60%), radial-gradient(at 85% 40%, #ad687eff 0, #ad687e22 40%, #ad687e00 50%), #ae7891;
+      box-shadow: inset 2px 2px 3px #b396b3, inset -1px -1px 2px #b16775;
+    }
+  }
+
+  .ui-dialog__button > ui-picto {
+    > * { translate: 1px 1px; }
+  }
+
+  .ui-dialog__button--close > ui-picto {
+    > * { opacity: 0; }
+    background-image: url("./windowsXP/close.png");
+    background-size: 19px;
+    background-position: -1px -1px;
+  }
+
+  .ui-dialog__button--minimize > ui-picto {
+    > * { opacity: 0; }
+    background-image: url("./windowsXP/minimize.png");
+    background-size: 19px;
+    background-position: -1px -1px;
+  }
+
+  .ui-dialog__button--maximize > ui-picto {
+    > * { opacity: 0; }
+    background-image: url("./windowsXP/maximize.png");
+    background-size: 19px;
+    background-position: -1px -1px;
+  }
+
+  /* MARK: dialog footer
+  ---------------------- */
+
+  .ui-dialog__footer:not(.ui-explorer__footer) {
+    --gap: 4px;
+
+    ui-dialog[role="alertdialog"] & {
+      justify-content: start;
+      padding: var(--unit);
+      padding-block-start: 4px;
+      position: relative;
+
+      > .ui-dialog__footer__content {
+        flex: 0 0 min-content;
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px)) 0;
+      }
+    }
+  }
+
+  .ui-dialog__footer button {
+    flex: 0 0 auto;
+    min-width: 75px;
+
+    &:has(span:only-child) {
+      justify-content: start;
+
+      > span {
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px) + var(--active-offset, 0px)) var(--active-offset, 0) !important;
+        /* width: calc-size(min-content, round(up, size, 7px)); */
+      }
+    }
+  }
+
+  /* MARK: demand
+  --------------- */
+
+  .ui-dialog-demand:not(.ui-dialog-form) {
+    inline-size: 300px;
+
+    .ui-dialog-demand__content {
+      padding: 8px;
+      padding-block-end: 4px;
+    }
+  }
+
+  .ui-dialog-about {
+    inline-size: auto;
+    max-inline-size: calc(60ch + 16px + 48px);
+  }
+
+  .ui-dialog-demand__image + .ui-dialog-demand__content {
+    padding-inline-start: 0;
+  }
+
+  /* MARK: range
+  -------------- */
+
+  --meter-pa: 1px;
+
+  --range__track-h: 4px;
+  --range__track-bdw: var(--inset-shallow-bdw);
+  --range__track-bdi: var(--inset-shallow-bdi);
+  --range__thumb-bdr: 0;
+  --range__track-bg: var(--panel-bg);
+
+  --range__thumb-w: 11px;
+  --range__thumb-h: 22px;
+
+  --range__thumb-bg: url("../../themes/tribute/windowsXP/range-thumb-arrow.png");
+  --range__thumb-disabled-bg: var(--range__thumb-bg);
+  --range__thumb-bdw: 0px;
+  --range__thumb-bsh: none;
+  --range__thumb-focus-bsh: none;
+
+  --_range__thumb-filter: grayscale(1) sepia(0.3) saturate(1.2) hue-rotate(10deg) contrast(0.5) brightness(1.3);
+
+  input[type="range"] { opacity: 0.6; }
+
+  input[type="range"]:is(.disabled,[disabled],:disabled)::-webkit-slider-thumb {
+    filter: var(--_range__thumb-filter);
+  }
+
+  input[type="range"]:is(.disabled,[disabled],:disabled)::-moz-range-thumb {
+    filter: var(--_range__thumb-filter);
+  }
+
+  /* MARK: scrollbars
+  ------------------- */
+
+  --scrollbar-bg: #c8d6fb;
+  --scrollbar-sprites-url: url("./windowsXP/scrollbar-sprites.svg");
+
+  --scrollbar-up-bg: var(--scrollbar-sprites-url) 0 0 no-repeat;
+  --scrollbar-down-bg: var(--scrollbar-sprites-url) -16px 0 no-repeat;
+  --scrollbar-left-bg: var(--scrollbar-sprites-url) -32px 0 no-repeat;
+  --scrollbar-right-bg: var(--scrollbar-sprites-url) -48px 0 no-repeat;
+
+  :not(.scrollbar-overlay) {
+    --sb-size: 17px;
+    --sb-corner-bg: #efece0;
+
+    /* Track Colors & Gradients */
+    --sb-track-border: #eeede5;
+    --sb-track-border-active: #d7d5c2;
+    --sb-track-v: linear-gradient(to right, #f3f1ec, #fefefb);
+    --sb-track-v-active: linear-gradient(to right, #e3ded3, #fdfdf6);
+    --sb-track-h: linear-gradient(to bottom, #f3f1ec, #fefefb);
+    --sb-track-h-active: linear-gradient(to bottom, #e3ded3, #fdfdf6);
+
+    /* Thumb Gradients (Colors Only) */
+    --sb-thumb-grad: #c9d8fc 0, #c2d3fc 69%, #bad1fc 70%, #b9cdfb 100%;
+    --sb-thumb-grad-hover: #d8e8ff 0, #d6e7ff 69%, #d0e3ff 70%, #cae0ff 100%;
+    --sb-thumb-grad-active: #a9bef6 0, #a1bdfa 69%, #99b9fa 70%, #92b2f6 100%;
+
+    /* Button Gradients (Shared Base) */
+    --sb-btn-radial: radial-gradient(circle at 0 0, #e1eafe 0, #e1eafe00 20%, #e1eafe00 100%);
+    --sb-btn-radial-hover: radial-gradient(circle at 0 0, #fdffff 0, #fdffff00 20%, #fdffff00 100%);
+    --sb-btn-radial-active: radial-gradient(circle at 0 0, #6e8ef1 0, #6e8ef100 20%, #6e8ef100 100%);
+    --sb-btn-radial-disabled: radial-gradient(circle at 0 0, #fcfcfc 0, #fcfcfc00 20%, #fcfcfc00 100%);
+
+    --sb-btn-linear: linear-gradient(to right, #c9d8fc 0, #c1d3fb 69%, #b6cefb 70%, #b6cdfb 100%);
+    --sb-btn-linear-hover: linear-gradient(to right, #ddf0fe 0, #ceeafd 69%, #c5e3fc 70%, #c2e2fc 100%);
+    --sb-btn-linear-active: linear-gradient(to right, #7d9df1 0, #93acf2 69%, #9eaef2 70%, #a4b7ed 100%);
+    --sb-btn-linear-disabled: linear-gradient(to right, #f2f2f2 0, #ebebeb 69%, #e0e0e0 70%, #e0e0e0 100%);
+
+    &::-webkit-scrollbar {
+      box-sizing: border-box;
+      width: var(--sb-size);
+      height: var(--sb-size);
+    }
+
+    /* Tracks */
+    &::-webkit-scrollbar-track:vertical {
+      background: var(--sb-track-v);
+      box-shadow: inset 1px 0 var(--sb-track-border), inset -1px 0 var(--sb-track-border);
+    }
+
+    &::-webkit-scrollbar-track:vertical:active {
+      background: var(--sb-track-v-active);
+      box-shadow: inset 1px 0 var(--sb-track-border-active), inset -1px 0 var(--sb-track-border-active);
+    }
+
+    &::-webkit-scrollbar-track:horizontal {
+      background: var(--sb-track-h);
+      box-shadow: inset 0 1px var(--sb-track-border), inset 0 -1px var(--sb-track-border);
+    }
+
+    &::-webkit-scrollbar-track:horizontal:active {
+      background: var(--sb-track-h-active);
+      box-shadow: inset 0 1px var(--sb-track-border-active), inset 0 -1px var(--sb-track-border-active);
+    }
+
+    /* Thumbs */
+    &::-webkit-scrollbar-thumb {
+      box-sizing: border-box;
+      border: 1px solid #fff;
+      border-radius: 3px;
+      height: 16px;
+      width: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical {
+      background: url("./windowsXP/scrollgrip-vertical-active.png") no-repeat center, linear-gradient(to right, var(--sb-thumb-grad));
+      box-shadow: inset 1px 0 #b8cbf6, inset 0 -1px #b9c9f3, inset 0 1px #b4c8f6, inset -1px 0 #fff, inset -2px 0 #bacbf4, inset 0 2px #e1eafeaa, 0 1px #7c9fd3;
+      border-right: 1px solid #9fb5d2;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical:hover {
+      background: url("./windowsXP/scrollgrip-vertical-hover.png") no-repeat center, linear-gradient(to right, var(--sb-thumb-grad-hover));
+      box-shadow: inset 1px 0 #acceff, inset 0 -1px #acceff, inset 0 1px #acceff, inset -1px 0 #fff, inset -2px 0 #acceff, inset 0 2px #eaf3ffaa, 0 1px #7c9fd3;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical:active {
+      background: url("./windowsXP/scrollgrip-vertical-active.png") no-repeat center, linear-gradient(to right, var(--sb-thumb-grad-active));
+      box-shadow: inset 1px 0 1px #839bd4, inset 0 -1px 1px #96adec, inset 0 1px 1px #7f95cb, inset -1px 0 #fff, inset -2px 0 1px #96adec, 0 1px #7c9fd3;
+    }
+
+    &::-webkit-scrollbar-thumb:horizontal {
+      background: url("./windowsXP/scrollgrip-horizontal.png") no-repeat center, linear-gradient(to bottom, var(--sb-thumb-grad));
+      box-shadow: inset 1px 0 #b8cbf6, inset -1px 0 #b9c9f3, inset 0 1px #b4c8f6, inset 0 -1px #fff, inset 0 -2px #bacbf4, inset 2px 0 #e1eafeaa, 1px 0 #7c9fd3;
+      border-bottom: 1px solid #9fb5d2;
+    }
+
+    &::-webkit-scrollbar-thumb:horizontal:hover {
+      background: url("./windowsXP/scrollgrip-horizontal-hover.png") no-repeat center, linear-gradient(to bottom, var(--sb-thumb-grad-hover));
+      box-shadow: inset 1px 0 #b2d1ff, inset -1px 0 #acceff, inset 0 1px #acceff, inset 0 -1px #fff, inset 0 -2px #acceff, inset 2px 0 #eaf3ffaa, 1px 0 #7c9fd3;
+    }
+
+    &::-webkit-scrollbar-thumb:horizontal:active {
+      background: url("./windowsXP/scrollgrip-horizontal-active.png") no-repeat center, linear-gradient(to bottom, var(--sb-thumb-grad-active));
+      box-shadow: inset 1px 0 1px #7f95ca, inset -1px 0 1px #96adec, inset 0 1px 1px #839bd4, inset 0 -1px #fff, inset 0 -2px 1px #91adec, 1px 0 #7c9fd3;
+    }
+
+    /* --- Buttons --- */
+    &::-webkit-scrollbar-button {
+      display: block;
+      height: var(--sb-size);
+      width: var(--sb-size);
+      border: 1px solid #fff;
+      border-radius: 3px;
+      background: var(--sb-icon), var(--sb-btn-radial), var(--sb-btn-linear);
+    }
+
+    &::-webkit-scrollbar-button:hover { background: var(--sb-icon), var(--sb-btn-radial-hover), var(--sb-btn-linear-hover); }
+    &::-webkit-scrollbar-button:active { background: var(--sb-icon), var(--sb-btn-radial-active), var(--sb-btn-linear-active); }
+    &::-webkit-scrollbar-button:disabled { background: var(--sb-icon), var(--sb-btn-radial-disabled), var(--sb-btn-linear-disabled); }
+
+    &::-webkit-scrollbar-button:vertical {
+      border-right: 1px solid #7e9fd2;
+      border-bottom: 1px solid #9fb5d2;
+      box-shadow: inset -1px 0 #fff, inset -2px 0 #b8c9f2, inset 1px 0 #b7caf5, inset 0 -1px #fff, inset 0 -2px #b9cbf3, inset 0 1px #bbcdf5;
+    }
+
+    &::-webkit-scrollbar-button:vertical:hover {
+      box-shadow: inset -1px 0 #fff, inset -2px 0 #97aee0, inset 1px 0 #95ade5, inset 0 -1px #fff, inset 0 -2px #97aee3, inset 0 1px #91abe1;
+    }
+
+    &::-webkit-scrollbar-button:vertical:active {
+      box-shadow: inset -1px 0 #fff, inset -2px 0 #bacbf4, inset 1px 0 #7c89db, inset 0 -1px #fff, inset 0 -2px #b3c8f5, inset 0 1px #828dd9;
+    }
+
+    &::-webkit-scrollbar-button:vertical:disabled {
+      background-position-y: -16px;
+      border-right-color: #aaa;
+      border-bottom-color: #ccc;
+      box-shadow: inset -1px 0 #fff, inset -2px 0 #dcdcdc, inset 1px 0 #dfdfdf, inset 0 -1px #fff, inset 0 -2px #ddd, inset 0 1px #dfdfdf;
+    }
+
+    &::-webkit-scrollbar-button:horizontal {
+      border-bottom: 1px solid #7e9fd2;
+      border-right: 1px solid #9fb5d2;
+      box-shadow: inset 0 -1px #fff, inset 0 -2px #b8c9f2, inset -1px 0 #fff, inset -2px 0 #b9cbf3, inset 1px 0 #b7caf5, inset 0 1px #bbcdf5;
+    }
+
+    &::-webkit-scrollbar-button:horizontal:hover {
+      box-shadow: inset 0 -1px #fff, inset 0 -2px #96abdf, inset -1px 0 #fff, inset -2px 0 #97aee3, inset 1px 0 #97aee3, inset 0 1px #98b1e4;
+    }
+
+    &::-webkit-scrollbar-button:horizontal:active {
+      box-shadow: inset 0 -1px #fff, inset 0 -2px #b8c9f2, inset -1px 0 #fff, inset -2px 0 #b5c9f3, inset 1px 0 #7c89db, inset 0 1px #838fda;
+    }
+
+    &::-webkit-scrollbar-button:horizontal:disabled {
+      background-position-y: -16px;
+      border-bottom-color: #aaa;
+      border-right-color: #ccc;
+      box-shadow: inset 0 -1px #fff, inset 0 -2px #dcdcdc, inset -1px 0 #fff, inset -2px 0 #ddd, inset 1px 0 #dfdfdf, inset 0 1px #dfdfdf;
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement { --sb-icon: var(--scrollbar-up-bg); }
+    &::-webkit-scrollbar-button:vertical:increment { --sb-icon: var(--scrollbar-down-bg); }
+    &::-webkit-scrollbar-button:horizontal:decrement { --sb-icon: var(--scrollbar-left-bg); }
+    &::-webkit-scrollbar-button:horizontal:increment { --sb-icon: var(--scrollbar-right-bg); }
+
+    &::-webkit-scrollbar-corner {
+      background: var(--sb-corner-bg);
+    }
+
+    &::-webkit-scrollbar-button:end:decrement,
+    &::-webkit-scrollbar-button:start:increment {
+      display: none;
+    }
+  }
+}
