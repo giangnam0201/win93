@@ -1,0 +1,13 @@
+{
+  name: "Reverb",
+  command: "reverb",
+  categories: ["Audio", "Effect", "Reverb"],
+
+  hasAudioInput: true,
+
+  // resizable: false,
+  maximizable: false,
+
+  about: "./about.md",
+  module: "./index.js",
+}

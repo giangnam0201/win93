@@ -1,0 +1,12 @@
+{
+  name: "Distortion",
+  command: "distortion",
+  categories: ["Audio", "Effect", "Distortion"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

@@ -1,0 +1,12 @@
+{
+  name: "Compressor",
+  command: "compressor",
+  categories: ["Audio", "Effect", "Compressor"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

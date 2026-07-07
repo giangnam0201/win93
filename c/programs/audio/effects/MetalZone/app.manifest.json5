@@ -1,0 +1,12 @@
+{
+  name: "Metal Zone",
+  command: "metalzone",
+  categories: ["Audio", "Effect"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}
