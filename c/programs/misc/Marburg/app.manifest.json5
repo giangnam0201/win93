@@ -1,0 +1,8 @@
+{
+  name: "Marburg",
+  categories: ["Amusement", "Malware"],
+
+  solo: true,
+
+  module: "./Marburg.js",
+}
