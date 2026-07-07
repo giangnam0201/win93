@@ -1,0 +1,11 @@
+{
+  name: "Crossfader",
+  command: "crossfader",
+  categories: ["Audio", "Mixer"],
+
+  width: 234,
+
+  solo: true,
+
+  module: "./Crossfader.js",
+}
