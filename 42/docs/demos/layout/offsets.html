@@ -1,0 +1,47 @@
+<div class="demo demo-layout" id="demo-cols-w">
+  <script type="module">
+    import { create } from "/42/api/gui/create.js"
+    {
+      const frag = document.createDocumentFragment()
+
+      for (let i = 1; i <= 12; i++) {
+        const div = create(".cols")
+        div.append("\n  ")
+        div.append(create(`.w-${i}`, `w-${i}`))
+
+        for (let j = 0; j < 12 - i; j++) {
+          div.append("\n  ")
+          div.append(create("div", "1"))
+        }
+
+        div.append("\n")
+        frag.append(div)
+        frag.append("\n")
+      }
+
+      document.querySelector("#demo-cols-w").append(frag)
+    }
+  </script>
+</div>
+
+<div class="demo demo-layout" id="demo-cols-offset">
+  <script type="module">
+    import { create } from "/42/api/gui/create.js"
+    {
+      const frag = document.createDocumentFragment()
+
+      for (let i = 0; i <= 11; i++) {
+        const div = create(".cols")
+
+        div.append("\n  ")
+        div.append(create(`.offset-${i}`, `offset-${i}`))
+
+        div.append("\n")
+        frag.append(div)
+        frag.append("\n")
+      }
+
+      document.querySelector("#demo-cols-offset").append(frag)
+    }
+  </script>
+</div>

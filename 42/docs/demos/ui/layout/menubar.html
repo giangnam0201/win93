@@ -1,0 +1,70 @@
+<div class="demo demo-layout | pa" id="demo-menubar">
+  <script type="module">
+    import "/42/ui/layout/menu.js"
+    import { gui } from "/42/api/gui.js"
+    gui("#demo-menubar", [
+      {
+        tag: "ui-menubar",
+        // displayPicto: false,
+        content: [
+          { label: "Item 1" },
+          "---",
+          { label: "Item 2", picto: "save" },
+          { label: "Item 2", picto: "folder", disabled: true },
+          "---",
+          { label: "Item checkbox", tag: "checkbox", value: true },
+          {
+            label: "Item checkbox",
+            tag: "checkbox",
+            value: true,
+            disabled: true,
+          },
+          "---",
+          {
+            label: "Item radio 1",
+            tag: "radio",
+            name: "rrr",
+            checked: true,
+            disabled: true,
+          },
+          { label: "Item radio 2", tag: "radio", name: "rrr" },
+          { label: "Item radio 3", tag: "radio", name: "rrr" },
+          {
+            label: "Item 3",
+            content: [
+              { label: "Subitem 3.1", action: () => console.log(3.1) },
+              { label: "Subitem 3.2", action: () => console.log(3.2) },
+            ],
+          },
+          {
+            label: "Item 4",
+            content: [
+              { label: "Subitem 4.1", action: () => console.log(4.1) },
+              {
+                label: "Subitem 4.2",
+                content: [
+                  {
+                    label: "Subitem 4.2 1",
+                    action: () => console.log(4.2, 1),
+                  },
+                  {
+                    label: "Subitem 4.2 2",
+                    action: () => console.log(4.2, 2),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            label: "Item 6",
+            disabled: true,
+            content: [
+              { label: "Subitem 6.1", action: () => console.log(6.1) },
+              { label: "Subitem 6.2", action: () => console.log(6.2) },
+            ],
+          },
+        ],
+      },
+    ])
+  </script>
+</div>
