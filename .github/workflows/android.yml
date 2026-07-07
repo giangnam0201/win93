@@ -1,0 +1,101 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Create Cordova project
+        run: |
+          cordova create cordova_build com.offline.win93 WIN93
+          cd cordova_build
+          cordova platform add android
+
+      - name: Copy web assets into Cordova www/
+        run: |
+          rm -rf cordova_build/www/*
+          # Copy everything except build artifacts and Cordova folder itself
+          rsync -av --exclude='cordova_build' \
+                    --exclude='node_modules' \
+                    --exclude='.git' \
+                    --exclude='.github' \
+                    --exclude='dist' \
+                    --exclude='main.js' \
+                    --exclude='package.json' \
+                    --exclude='package-lock.json' \
+                    --exclude='server.py' \
+                    --exclude='start.bat' \
+                    ./ cordova_build/www/
+
+      - name: Patch Cordova config.xml for security
+        run: |
+          cat > cordova_build/config.xml << 'EOF'
+          <?xml version='1.0' encoding='utf-8'?>
+          <widget id="com.offline.win93" version="1.0.0"
+                  xmlns="http://www.w3.org/ns/widgets"
+                  xmlns:cdv="http://cordova.apache.org/ns/1.0">
+            <name>WINDOWS93</name>
+            <description>Windows 93 Offline</description>
+            <author email="noreply@windows93.net" href="https://windows93.net">giangnam0201</author>
+            <content src="index.html" />
+            <allow-navigation href="*" />
+            <allow-intent href="*" />
+            <access origin="*" />
+            <preference name="AndroidInsecureFileModeEnabled" value="true" />
+            <preference name="AllowFileAccess" value="true" />
+            <preference name="AllowFileAccessFromFileURLs" value="true" />
+            <preference name="AllowUniversalAccessFromFileURLs" value="true" />
+            <preference name="MixedContentMode" value="0" />
+            <platform name="android">
+              <edit-config file="AndroidManifest.xml" target="/manifest/application"
+                           mode="merge">
+                <application android:usesCleartextTraffic="true" />
+              </edit-config>
+            </platform>
+          </widget>
+          EOF
+
+      - name: Build debug APK
+        run: |
+          cd cordova_build
+          cordova build android --debug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: win93-android-apk
+          path: cordova_build/platforms/android/app/build/outputs/apk/debug/*.apk
+          retention-days: 30
+
+      - name: Release APK (on tag push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: cordova_build/platforms/android/app/build/outputs/apk/debug/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

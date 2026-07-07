@@ -1,0 +1,14 @@
+node_modules/
+dist/
+cordova_build/
+deploy/
+.system_generated/
+*.log
+*.sb3
+*.zip
+*.exe
+*.apk
+analyze_cbor_categories.py
+analyze_users_subfolders.py
+patch_sw_offline.py
+patch_bundle_offline.py
