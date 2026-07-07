@@ -1,0 +1,11 @@
+{
+  name: "OBXD",
+  categories: ["Audio", "Music", "Voice", "Synth"],
+
+  width: 816,
+  height: 413,
+  maximizable: false,
+  resizable: false,
+
+  document: "./index.html",
+}

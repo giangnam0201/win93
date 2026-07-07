@@ -1,0 +1,14 @@
+{
+  name: "Iconodio",
+  command: "iconodio",
+  categories: ["Design", "Audio"],
+
+  inset: true,
+  maximizable: true,
+  resizable: true,
+  width: 800,
+  height: 600,
+
+  about: "./about.md",
+  document: "./index.html",
+}
