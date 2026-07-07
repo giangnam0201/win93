@@ -233,7 +233,7 @@ if (window.NO_DYNAMIC_MODULES !== true) {
 
   if (window.sys42.env.USER === undefined) {
     if (isReloaded) window.sys42.bios.el.className = "reload"
-    const { client } = await import("../42/api/os/network/client.js")
+    const { client } = await import("../42/api/os/network/client.js?original")
     await client.connect()
     const { usersManager } = await import(
       "../42/api/os/managers/usersManager.js"
@@ -242,7 +242,7 @@ if (window.NO_DYNAMIC_MODULES !== true) {
     usersManager.chooseUserDialog()
   } else if (isReloaded) {
     window.sys42.bios.el.className = "reload"
-    const { client } = await import("../42/api/os/network/client.js")
+    const { client } = await import("../42/api/os/network/client.js?original")
     await client.connect()
     import("../desktop.js")
   } else {

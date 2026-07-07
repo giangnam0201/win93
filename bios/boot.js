@@ -1,4 +1,4 @@
-import { client } from "../42/api/os/network/client.js"
+import { client } from "../42/api/os/network/client.js?original"
 
 // @ts-ignore
 const { bios, desktop } = window.sys42
