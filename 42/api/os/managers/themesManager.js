@@ -274,11 +274,12 @@ ${this.manager.suffix}`
 
 class ThemesManager extends ConfigFile {
   async setup() {
+    const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
     let [originalCSS, userCSS, styleEl] = await Promise.all([
-      loadText("/style.css?original"),
-      isSWControlled ? loadText("/style.css") : undefined,
+      loadText(base + "style.css?original"),
+      isSWControlled ? loadText(base + "style.css") : undefined,
       /** @type {HTMLLinkElement} */ (
-        /** @type {unknown} */ (untilConnected(`link[href^='/style.css']`))
+        /** @type {unknown} */ (untilConnected(`link[href^='${base}style.css']`))
       ),
     ])
 

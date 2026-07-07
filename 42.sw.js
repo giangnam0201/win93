@@ -103,7 +103,14 @@ async function fromCacheOrNetwork(req, pathname, forcePathname) {
   let res = await caches.match(pathname)
   if (res) return res
 
-  if (forcePathname) req = await cloneRequest(pathname, req)
+  const scopePath = new URL(self.registration.scope).pathname
+  let targetUrl = req.url
+  if (scopePath !== "/" && !pathname.startsWith(scopePath)) {
+    targetUrl = location.origin + scopePath + pathname.slice(1)
+    forcePathname = true
+  }
+
+  if (forcePathname) req = await cloneRequest(targetUrl, req)
   res =
     req.destination === "iframe"
       ? await fetch(req, {

@@ -35,12 +35,13 @@ class Client {
   async register(options) {
     if (skipServiceWorker || inAutomated) return
 
+    const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
     const moduleURL = new URL(
-      options?.url ?? "/42.sw.js", //
+      options?.url ?? (base + "42.sw.js"), //
       location.origin,
     ).href
     const bundleURL = new URL(
-      options?.bundleURL ?? "/42.sw.bundle.js",
+      options?.bundleURL ?? (base + "42.sw.bundle.js"),
       location.origin,
     ).href
 
