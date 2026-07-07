@@ -1,0 +1,115 @@
+/**
+ * Name: Routine
+ * Author: Zombectro
+ *
+ * Inspired by:
+ * https://semantic-ui.com/
+ * https://getbootstrap.com/docs/5.3/forms/overview/
+ * https://getbootstrap.com/1.4.0/
+ */
+
+.theme--routine,
+:root:not(.themed) {
+  --theme: "routine";
+
+  /* filter: invert(1) hue-rotate(180deg); */
+
+  --theme-light: true;
+  --theme-dark: true;
+
+  --group-border-collpase: 1;
+
+  --font-sans-fs: 12px;
+  --icon-fs: 10px;
+  --px: 1px;
+
+  --main-bdc: #ccc;
+  --main-accent-bg: var(--color-blue);
+
+  --desktop-bg: var(--color-blue);
+  --desktop-fg: #fff;
+  --desktop__icon-bg: var(--color-blue);
+
+  --highlight-bg: color-mix(in srgb, var(--main-accent-bg), #fff 70%);
+  --highlight-fg: rgb(0 0 0 / 0.87);
+
+  --panel-bg: #f5f5f5;
+
+  --main-bdr: 0.375rem;
+
+  --inset-bsh: inset 0 1px 3px rgb(0 0 0 / 0.1);
+
+  --outset-bdc: var(--main-bdc);
+  --outset-shallow-bdc: var(--main-bdc);
+  --outset-bsh:
+    inset 0 1px 0 rgb(255 255 255 / 0.15),
+    0 1px 1px rgb(0 0 0 / 0.075),
+    0 0 0 0 #0000;
+
+  /* fields
+  ========= */
+
+  --field-transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  --field-fg: #808080;
+
+  --field-focus-ol: none;
+  --field-focus-bdc: color-mix(in srgb, var(--main-accent-bg), #fff 30%);
+  --field-focus-bsh:
+    inset 0 1px 3px rgb(0 0 0 / 0.1),
+    0 0 0 0.25rem color-mix(in srgb, var(--main-accent-bg), #0000 75%);
+
+  /* buttons
+  ========== */
+
+  --button-transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  --button-bg: linear-gradient(#fff, #fff 25%, #e6e6e6);
+  --button-fg: #333;
+  --button-bdc: #ccc;
+  --button-tsh: 0 1px 1px rgb(255 255 255 / 0.75);
+
+  --button-focus-ol: none;
+  --button-focus-bsh:
+    inset 0 1px 0 rgb(255 255 255 / 0.15),
+    0 1px 1px rgb(0 0 0 / 0.075),
+    0 0 0 0.25rem color-mix(in srgb, var(--main-accent-bg), #0000 60%);
+
+  --button-toggled-bg: linear-gradient(#e6e6e6, #e6e6e6 25%, #fff);
+  --button-toggled-bsh:
+    inset 0 1px 3px rgb(0 0 0 / 0.1),
+    0 1px 1px rgb(0 0 0 / 0.075),
+    0 0 0 0 #0000;
+  --button-toggled-focus-bsh:
+    inset 0 1px 3px rgb(0 0 0 / 0.1),
+    0 1px 1px rgb(0 0 0 / 0.075),
+    0 0 0 0 #0000,
+    0 0 0 0.25rem color-mix(in srgb, var(--main-accent-bg), #0000 60%);
+
+  --color-pa: 1px;
+  --swatch-bdw: 1px;
+  --swatch-bdc: #0004;
+  --swatch-bsh: inset 1px 1px 1px 0px #fff9, inset -1px -1px 1px 0px #0002;
+
+  .primary {
+    --button-fg: #fff;
+    --button-bg:
+      linear-gradient(
+        hsl(from var(--main-accent-bg) h s calc(l * 1.3)),
+        var(--main-accent-bg)
+      );
+    --button-toggled-bg:
+      linear-gradient(
+        var(--main-accent-bg),
+        hsl(from var(--main-accent-bg) h s calc(l * 1.3))
+      );
+    --button-bdc: hsl(from var(--main-accent-bg) h s calc(l / 1.1));
+    --button-tsh: 0 -1px 0 rgb(0 0 0 / 0.25);
+  }
+}

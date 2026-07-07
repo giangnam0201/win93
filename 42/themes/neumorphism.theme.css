@@ -1,0 +1,128 @@
+/*
+
+https://webflow.com/blog/neumorphism
+https://webflow.com/made-in-webflow/website/Neumorphism-UI-Day-and-Night-interaction?ref=showcase-search&searchValue=neumorphism
+https://webflow.com/made-in-webflow/website/neumorphic-ui
+
+https://demo.themesberg.com/neumorphism-ui-pro/html/components/all.html
+
+TODO: glass ui https://codepen.io/Petr-Knoll/pen/QwWLZdx
+
+*/
+
+.theme--neumorphism,
+:root:not(.themed) {
+  --theme: "neumorphism";
+
+  --theme-light: true;
+  --theme-dark: true;
+
+  --font-sans-fs: 13px;
+  --unit: 0.7rem;
+  --disabled-opacity: 1;
+
+  --main-bg: #f1f1f1;
+  --main-fg: grey;
+  --main-bdr: 0.4em;
+
+  --main-accent-bg: #bebebe83;
+  --main-accent-fg: var(--main-fg);
+
+  --button-bdw: 0px;
+  --field-bdw: 0px;
+
+  --toaster-pa: var(--unit);
+  --toaster-gap: var(--unit-lg);
+
+  --main-bdc: rgb(0 0 0 / 0.15);
+  --main-bsh:
+    inset 1px 1px 2px 0 #fff,
+    inset -1px -1px 4px 0 #fff,
+    -1px -1px 4px 0 #fff,
+    1px 1px 2px 0 rgb(0 0 0 / 0.1);
+
+  --separator-bsh: 0px 1px 1px 0px #fff;
+  --separator-ma-y: 1rem;
+
+  --outset-bdc: rgb(0 0 0 / 0.01);
+  --outset-bsh:
+    -0.05em -0.05em 0.1em 0 #fff0,
+    -0.2em -0.15em 0.5em 0 #fff,
+    0.15em 0.2em 0.5em 0 rgb(0 0 0 / 0.15);
+
+  --inset-bdc: rgb(0 0 0 / 0.01);
+  --inset-bsh:
+    inset 0.15em 0.15em 0.4rem rgb(0 0 0 / 0.15),
+    inset -0.3rem -0.3rem 0.7rem #fff,
+    inset 0.05em 0.05em 0.1em rgb(0 0 0 / 0.1);
+
+  /* buttons
+  ========== */
+
+  --button-transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  --button-bg: #f1f1f1;
+  --button-fg: grey;
+  --button-tsh: 0px 2px 1px #fff9;
+
+  --button-disabled-bsh: none;
+  --button-disabled-bg: #dfdfdf;
+  --button-disabled-fg: #acacac;
+
+  --button-toggled-bg: #e9e9e9;
+  --button-toggled-bsh:
+    inset 0.15em 0.15em 0.5rem rgb(0 0 0 / 0.15),
+    inset -0.3rem -0.3rem 0.5rem #f5f5f5,
+    inset -0.05em -0.05em 0.1em rgb(0 0 0 / 0.1);
+
+  --button-active-bsh:
+    -0.05em -0.05em 0.1em 0 #fff5,
+    -0.15em -0.1em 0.6em 0 #fff,
+    0.1em 0.15em 0.6em 0 rgb(0 0 0 / 0.15);
+
+  /* fields
+  ========= */
+
+  --field-transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+
+  --field-disabled-bsh: inset 0.15em 0.15em 0.4rem rgb(0 0 0 / 0.15);
+  --field-disabled-bg: #ececec;
+  --field-disabled-fg: #acacac;
+  --field-disabled-tsh: 0px 2px 1px #fff9;
+
+  --fieldset-bdr: 5px;
+
+  --range__track-h: 2px;
+  --range__track-inactive-bg: #f1f1f1;
+  --range__track-active-bg: #fff;
+  --range__track-bsh:
+    inset 0px 0px 1px 0 rgb(0 0 0 / 0.5),
+    -1px -1px 1px 0 #fff,
+    0 -10px 10px 0 #fff,
+    0 9px 13px 0 rgb(0 0 0 / 0.1),
+    1px 1px 2px 0 rgb(0 0 0 / 0.1);
+
+  --color-pa: 0rem;
+  --addon-size: 1.5rem;
+  --checkbox-size: 1.25rem;
+  --checkbox-pa: 0.2rem;
+
+  --swatch-bdw: 1px;
+  --swatch-bdc: #0002;
+  --swatch-bsh: inset 1px 1px 0 1px #fff7, inset -1px -1px 0 1px #0001;
+
+  .button,
+  input:is(
+    [type="button"],
+    [type="reset"],
+    [type="submit"]),
+  button {
+    :not(.cols,.rows) > & { margin-inline-end: 0.2rem; }
+  }
+}

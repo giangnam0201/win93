@@ -1,0 +1,46 @@
+/**
+ * Try removing anti-aliasing for pixel fonts
+ */
+
+.theme--windows9x,
+.theme--windowsXP,
+.theme--macos6,
+:root:not(.themed) {
+  --pixel-font-fix: true;
+
+  /* fix subpixel cropped text */
+  --pixel-font-indent-fix: 1px;
+
+  --p-1: round(down, calc(100% / 12), 1px);
+  --p-2: round(down, calc(100% / (12 / 2)), 1px);
+  --p-3: round(down, 25%, 1px);
+  --p-4: round(down, calc(100% / (12 / 4)), 1px);
+  --p-5: round(down, calc(100% / (12 / 5)), 1px);
+  --p-6: round(down, 50%, 1px);
+  --p-7: round(down, calc(100% / (12 / 7)), 1px);
+  --p-8: round(down, calc(100% / (12 / 8)), 1px);
+  --p-9: round(down, 75%, 1px);
+  --p-10: round(down, calc(100% / (12 / 10)), 1px);
+  --p-11: round(down, calc(100% / (12 / 11)), 1px);
+
+  /* https://stackoverflow.com/a/65132846/1289275 */
+  /* https://medium.com/design-bootcamp/addressing-sub-pixel-rendering-and-pixel-alignment-issues-in-web-development-cf4adb6ea6ac */
+  &:is(:root) {
+    /* transform: translateZ(0); */ /* Forces hardware acceleration */
+    will-change: transform; /* Optimizes rendering */
+    font-smooth: never;
+    -webkit-font-smoothing: none;
+  }
+
+  .button > span,
+  button > span {
+    will-change: transform;
+  }
+
+  @layer reset {
+    :where(h1, .h1) { font-size: 300%; }
+    :where(h2, .h2) { font-size: 200%; }
+    :where(h3, .h3) { font-size: 200%; font-weight: normal; }
+    :where(h4, h5, h6, .h4, .h5, .h6) { font-size: 100%; font-weight: bold; }
+  }
+}
