@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>desktop</title>
+
+<link rel="modulepreload" href="./desktop.js" />
+<link rel="modulepreload" href="./42/api/os.js" />
+<link rel="modulepreload" href="./42/api/trap.js" />
+
+<style>
+  body {
+    background: #000;
+  }
+</style>
+
+<script src="/42/core.js" data-options="{autoResume:false}"></script>
+<link rel="stylesheet" href="./c/libs/animate-css/4.1/animate.css" />
+
+<body></body>
+
+<script type="module">
+  if (location.search.includes("reset-data")) {
+    const { resetAllData } = await import("./42/lib/browser/resetAllData.js")
+    await resetAllData()
+  }
+  await import("./desktop.js")
+</script>

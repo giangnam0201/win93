@@ -1,0 +1,32 @@
+{
+  "name": "win93-offline",
+  "version": "1.0.0",
+  "description": "Windows 93 Offline Version",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.0"
+  },
+  "build": {
+    "appId": "com.offline.win93",
+    "productName": "WINDOWS93",
+    "win": {
+      "target": "portable",
+      "icon": "favicon.ico"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!.github/**/*",
+      "!server.py",
+      "!start.bat",
+      "!cordova_build/**/*",
+      "!dist/**/*",
+      "!deploy/**/*"
+    ]
+  }
+}

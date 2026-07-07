@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WINDOWS93</title>
+
+<!--
+         ▄▄████▄▄
+  █ ▄ ▄▄██▀▄  ▄▀██
+  ▄ ▀▀▀▀██ ▀  ▀ ██
+  ▀ █▄████ ▄  ▄ ██
+  █ ▄ ▄▄██  ▀▀  ██
+  ▄ ▀▀▀▀██▄████▄██
+  ▀ █▄███▀▀    ▀▀█
+-->
+
+<link rel="preload" href="./42/themes/tribute/windows9x/fonts/tomo/Tomo.woff2" as="font" crossorigin />
+<link rel="preconnect" href="./42.tar.gz" />
+<link rel="modulepreload" href="./bios/bios.js?original" />
+<link rel="modulepreload" href="./bios/boot.js?original" />
+<link rel="modulepreload" href="./42/api/trap.js?original" />
+<link rel="modulepreload" href="./42/api/os/network/client.js" />
+
+<style id="bootStyles">
+  @font-face {
+    font-family: TomoBios;
+    src:
+      url("./42/themes/tribute/windows9x/fonts/tomo/Tomo.woff2") format("woff2"),
+      url("./42/themes/tribute/windows9x/fonts/tomo/Tomo.woff") format("woff"),
+      url("./42/themes/tribute/windows9x/fonts/tomo/Tomo.ttf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    size-adjust: 120%;
+  }
+  :root > * { will-change: transform; }
+  body {
+    background: #000;
+    color: #c3ff00;
+    margin: 0;
+    height: 100dvh;
+  }
+  #os {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #boot {
+    position: fixed;
+    z-index: 1;
+    background: #000;
+    padding: 2ex 2ch;
+    inset: 0;
+    border: none;
+    font-family: TomoBios, monospace;
+    font-size: 10px;
+    line-height: 13.3333px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+  #boot > * { white-space: pre-wrap; }
+  #boot:not(.reload)::after {
+    content: "_";
+    display: block;
+    animation: blink 1s step-start infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .ansi-black {color: #232634 }
+  .ansi-blackBright, .ansi-grey {color: #616673 }
+  .ansi-red {color: #ff5c57 }
+  .ansi-redBright {color: #f0562c }
+  .ansi-green {color: #5af78e }
+  .ansi-greenBright {color: #00ff9a }
+  .ansi-yellow {color: #f3f99d }
+  .ansi-yellowBright {color: #ffd751 }
+  .ansi-blue {color: #57c7ff }
+  .ansi-blueBright {color: #2a9bff }
+  .ansi-magenta {color: #ff6ac1 }
+  .ansi-magentaBright {color: #b280f6 }
+  .ansi-cyan {color: #9aedfe }
+  .ansi-cyanBright {color: #0ff }
+  .ansi-white {color: #f1f1f0 }
+  .ansi-whiteBright {color: #c3ff00 }
+  .ansi-dim { opacity: 0.7 }
+  .ansi-reset { color: #c3ff00 }
+  .ansi--link { color: inherit; text-decoration: none; }
+  .ansi--link:hover > span { text-decoration: underline; text-decoration-skip-ink: auto; }
+</style>
+
+<script src="./42/core.js" data-options="{autoResume:false,skipCommon:true}"></script>
+
+<output id="boot" aria-label="Loading">
+  <div id="boot-header" aria-hidden="true"></div>
+  <noscript class="ansi-red">--- FATAL ERROR ---
+JavaScript is disabled.
+PLEASE ENABLE JAVASCRIPT FOR OPTIMAL EXPERIENCE.
+  </noscript>
+</output>
+
+<script nomodule src="./bios/fail.js?original"></script>
+
+<script>
+  void (function () {
+    try {
+      new Function(
+        "try { import('data:text/javascript;base64,Cg==').catch(function() {}); } catch (e) {}",
+      )()
+    } catch {
+      window.NO_DYNAMIC_MODULES = true
+      const script = document.createElement("script")
+      script.src = "./bios/fail.js?dynamic=true"
+      document.head.append(script)
+    }
+  })()
+</script>
+
+<script type="module" src="./bios/bios.js?original"></script>

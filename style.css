@@ -1,0 +1,61 @@
+/* ----------------------------------------------------
+Start of system generated zone. Edits here will be lost
+---------------------------------------------------- */
+
+@import url("/42/assets/css/base.css");
+@import url("/42/assets/css/controls.css");
+@import url("/42/assets/css/tabs.css");
+@import url("/42/assets/css/knob.css");
+@import url("/42/assets/css/volume.css");
+
+/* <theme> */
+
+/* @import url("/42/themes/test.theme.css"); */
+/* @import url("/42/themes/cyberpunk.theme.css"); */
+/* @import url("/42/themes/neumorphism.theme.css"); */
+/* @import url("/42/themes/routine.theme.css"); */
+@import url("/42/themes/tribute/windows9x.theme.css");
+
+:root:not(.themed) {
+  --Sound-SystemStart: "/c/users/windows93/interface/themes/windows9x/schemes/Windows 93/BOOT.ogg";
+  --Sound-SystemExclamation: "/c/users/windows93/interface/themes/windows9x/schemes/Windows 93/QUACK.ogg";
+  --Sound-SystemHand: "/c/users/windows93/interface/themes/windows9x/schemes/Windows 93/QUACK.ogg";
+
+  --ActiveTitle: rgb(255 0 255);
+  --GradientActiveTitle: rgb(0 255 255);
+
+  --InactiveTitle: rgb(112 0 112);
+  --GradientInactiveTitle: rgb(0 112 112);
+  --InactiveTitleText: rgb(255 255 255);
+
+  --MenuHilight: rgb(0 128 203);
+  --Hilight: rgb(0 128 203);
+
+  --Background: rgb(131 125 255);
+
+  --desktop-bg: var(--Background) radial-gradient(circle at 0% 100%, #f0f, #0ff 100%);
+  --desktop__icon-bg: #0000;
+  --desktop__icon-fg: #fff;
+  --desktop__icon-tsh: 1px 1px 0 #0008;
+
+  --highlight-bg: #c3ff00;
+  --highlight-fg: #000;
+
+  --screen-fg: #c3ff00;
+  --volume__warm-color: #c3ff00;
+}
+
+/* </theme> */
+
+/* --------------------------------------------
+End of system generated zone. You can tweak now
+-------------------------------------------- */
+
+:root {
+  /* --volume__cold-color: #506800; */
+  /* --accent-color: #0080cb; */
+
+  /* --dialog-bsh:
+    1px 1px 3px #0004,
+    0 0 50px 1px rgb(255 0 255 / 0.5); */
+}
