@@ -274,7 +274,13 @@ ${this.manager.suffix}`
 
 class ThemesManager extends ConfigFile {
   async setup() {
-    const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
+    const base = (() => {
+      let p = location.pathname;
+      if (!p.endsWith("/")) {
+        p = p.substring(p.lastIndexOf("/") + 1).includes(".") ? p.substring(0, p.lastIndexOf("/") + 1) : p + "/";
+      }
+      return p;
+    })();
     let [originalCSS, userCSS, styleEl] = await Promise.all([
       loadText(base + "style.css?original"),
       isSWControlled ? loadText(base + "style.css") : undefined,

@@ -42,7 +42,13 @@ function getSortableDateTime(date = new Date()) {
 }
 
 async function installCache(revision, hasCaches, options) {
-  const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
+  const base = (() => {
+    let p = location.pathname;
+    if (!p.endsWith("/")) {
+      p = p.substring(p.lastIndexOf("/") + 1).includes(".") ? p.substring(0, p.lastIndexOf("/") + 1) : p + "/";
+    }
+    return p;
+  })();
   const [
     cache,
     tarball,
@@ -141,7 +147,13 @@ async function ensureCache(res, options) {
 }
 
 async function fetchCache(options) {
-  const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
+  const base = (() => {
+    let p = location.pathname;
+    if (!p.endsWith("/")) {
+      p = p.substring(p.lastIndexOf("/") + 1).includes(".") ? p.substring(0, p.lastIndexOf("/") + 1) : p + "/";
+    }
+    return p;
+  })();
   return fetch(`${base}42.tar.gz?v=${Date.now()}`, { method: "HEAD" }).then((res) => {
     if (!res.ok) throw new Error("Missing cache tarball")
     return ensureCache(res, options)
