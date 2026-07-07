@@ -1,0 +1,11 @@
+{
+  name: "CastleGafa",
+  categories: ["Game", "Shooter", "FPS"],
+
+  about: "ABOUT.md",
+
+  width: 640,
+  height: 400,
+
+  document: "./index.html",
+}
