@@ -115,6 +115,11 @@ async function fromCacheOrNetwork(req, pathname, forcePathname) {
         })
       : await fetch(req, { credentials: "same-origin" })
 
+  if (res.status === 404 && (pathname.includes("/retroarch/") || pathname.includes("/roms/"))) {
+    // Fallback directly to windows93.net
+    res = await fetch("https://www.windows93.net" + pathname)
+  }
+
   if (
     res.status < 400 &&
     pathname !== "/42.tar.gz" &&
