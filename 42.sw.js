@@ -239,6 +239,13 @@ self.addEventListener("fetch", (e) => {
         return new Response(blob, { headers })
       } catch (err) {
         const status = err.errno === 2 ? 404 : 500
+        if (status === 404 && (pathname.includes("/retroarch/") || pathname.includes("/roms/"))) {
+          try {
+            return await fetch("https://www.windows93.net" + pathname)
+          } catch (fetchErr) {
+            d(`🛰️ Fallback fetch failed:`, fetchErr)
+          }
+        }
         return new Response(err, { headers, status })
       }
     })(),
