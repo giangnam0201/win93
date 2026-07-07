@@ -1,0 +1,12 @@
+{
+  // name: "Space Cadet Pinball",
+  name: "Pinball",
+
+  width: 604,
+  height: 444,
+  maximizable: true,
+  minimizable: true,
+  resizable: true,
+
+  document: "./index.html",
+}
