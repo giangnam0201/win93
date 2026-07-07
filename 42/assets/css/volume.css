@@ -1,0 +1,285 @@
+/* MARK: ui-volume
+------------------ */
+
+@layer theme {
+  :root {
+    --volume__indicator-w: 12px;
+    --volume__indicator-h: 9px;
+
+    --volume__hot-clipping-color: #f00;
+    --volume__warm-clipping-color: #ffcb0a;
+    --volume__warm-color: #c5f864;
+    --volume__cold-color: #0cf864;
+  }
+
+  ui-volume {
+    display: inline-flex;
+    position: relative;
+    --h: var(--volume-h, var(--control-w));
+    --w: var(--volume-w, var(--control-h));
+    inline-size: calc(var(--w) + (var(--volume__indicator-w)));
+    block-size: var(--h);
+
+    --fraction: 0.5;
+    --zero-pos: 7.69%;
+    --channels-pos: 50%;
+
+    --bg: var(--volume-bg, var(--panel-bg));
+    --bdw: var(--volume-bdw, var(--inset-bdw));
+    --bds: var(--volume-bds, var(--inset-bds));
+    --bdc: var(--volume-bdc, var(--inset-bdc));
+    --bdi: var(--volume-bdi, var(--inset-bdi));
+    --bdr: var(--volume-bdr, var(--inset-bdr));
+    --bsh: var(--volume-bsh, var(--inset-bsh));
+
+    &[small] {
+      --bg: var(--volume-bg, var(--panel-bg));
+      --bdw: var(--volume-bdw, var(--inset-shallow-bdw));
+      --bds: var(--volume-bds, var(--inset-shallow-bds));
+      --bdc: var(--volume-bdc, var(--inset-shallow-bdc));
+      --bdi: var(--volume-bdi, var(--inset-shallow-bdi));
+      --bdr: var(--volume-bdr, var(--inset-shallow-bdr));
+      --bsh: var(--volume-bsh, var(--inset-shallow-bsh));
+
+      --h: var(--volume--small-h, var(--picto-size));
+      --w: var(--volume--small-w, round(calc(var(--picto-size) / 2), 3px));
+      .ui-volume__zero-db { display: none; }
+    }
+
+    &[readonly] {
+      inline-size: var(--w);
+    }
+  }
+}
+
+@layer components {
+  ui-volume {
+    .ui-volume__box {
+      pointer-events: none;
+      position: relative;
+      flex: 1 0 auto;
+    }
+
+    .ui-volume__meter {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      border-width: var(--bdw);
+      border-style: var(--bds);
+      border-color: var(--bdc);
+      border-image: var(--bdi);
+      border-radius: var(--bdr);
+      box-shadow: var(--bsh);
+    }
+
+    .ui-volume__accent {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          var(--volume__hot-clipping-color),
+          var(--volume__warm-clipping-color) var(--zero-pos),
+          var(--volume__warm-color) var(--zero-pos),
+          var(--volume__cold-color)
+        );
+
+      /* channels separator */
+      --_w: round(down, var(--channels-pos), 1px);
+
+      mask-image:
+        repeating-linear-gradient(
+          to right,
+          #000,
+          #000 var(--_w),
+          #0000 var(--_w),
+          #0000 calc(var(--_w) + 1px)
+        );
+    }
+
+    input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0 !important;
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      &:not(.canvas-ready) {
+        background: var(--volume-screen-bg, var(--screen-bg));
+      }
+    }
+
+    .ui-volume__zero-db {
+      position: absolute;
+      inset: 0;
+
+      --zero-color: var(--volume--zero-color, #d4d0c8);
+
+      background:
+        linear-gradient(
+          to bottom,
+          #0000 calc(var(--zero-pos)),
+          var(--zero-color) calc(var(--zero-pos)),
+          var(--zero-color) calc(var(--zero-pos) + 1px),
+          #0000 calc(var(--zero-pos) + 1px),
+          #0000
+        );
+    }
+
+    .ui-volume__indicator {
+      position: relative;
+      top: calc((100% - 4px) * (1 - var(--fraction)));
+
+      --thumb-bg: var(--_bg, var(--volume__indicator-bg, var(--button-bg)));
+      --thumb-bdc: var(--_bdc, var(--volume__indicator-bdc, var(--button-bdc)));
+      --thumb-bdw: var(--_bdw, var(--volume__indicator-bdw, var(--button-bdw)));
+      --thumb-bds: var(--_bds, var(--volume__indicator-bds, var(--button-bds)));
+      --thumb-bsh: var(--_bsh, var(--volume__indicator-bsh, var(--button-bsh)));
+      --thumb-offset: var(--volume__indicator-offset, 1px);
+
+      background: var(--thumb-bg);
+      background-clip: padding-box;
+
+      border-color: var(--thumb-bdc);
+      border-width: var(--thumb-bdw);
+      border-style: var(--thumb-bds);
+      border-image: var(--thumb-bdi);
+      border-radius: var(--thumb-bdr);
+      box-shadow: var(--thumb-bsh);
+
+      width: var(--volume__indicator-w);
+      height: var(--volume__indicator-h);
+
+      translate: var(--thumb-offset) calc(var(--bdw) + round(-50%, 1px));
+    }
+
+    .ui-volume__indicator-container {
+      pointer-events: none;
+      position: relative;
+      z-index: 1;
+      filter:
+        var(
+          --volume__indicator-container-filter,
+          drop-shadow(1px 0 0 var(--bg))
+          drop-shadow(0 -1px 0 var(--bg))
+          drop-shadow(-1px 0 0 var(--bg))
+          drop-shadow(0 1px 0 var(--bg))
+        );
+    }
+
+    .ui-volume__indicator--left {
+      opacity: 0;
+      --thumb-offset: calc(-1 * var(--volume__indicator-offset, 1px));
+      --thumb-bdi: var(--_bdi, var(--volume__indicator-bdi, var(--button-arrow-right-bdi)));
+      margin-right: var(--volume__indicator--ma, calc(var(--volume__indicator-w) * -0.5));
+      clip-path:
+        polygon(
+          calc(50% + 1px) 0%,
+          100% 50%,
+          50% 100%,
+          0% 100%,
+          0% 0%
+        );
+    }
+
+    .ui-volume__indicator--right {
+      --thumb-bdi: var(--_bdi, var(--volume__indicator-bdi, var(--button-arrow-left-bdi)));
+      margin-left: var(--volume__indicator--ma, calc(var(--volume__indicator-w) * -0.5));
+      clip-path:
+        polygon(
+          100% 0,
+          100% 100%,
+          50% 100%,
+          0% 50%,
+          calc(50% - 1px) 0%
+        );
+    }
+
+    &[indicator="left"] {
+      .ui-volume__indicator--left { opacity: 1; }
+      .ui-volume__indicator--right { opacity: 0; }
+    }
+
+    &[indicator="both"] {
+      .ui-volume__indicator--left { opacity: 1; }
+    }
+
+    &[readonly] .ui-volume__indicator {
+      display: none;
+    }
+
+    &[muted],
+    .track--muted & {
+      .ui-volume__accent {
+        filter: brightness(0.5) grayscale(1);
+      }
+    }
+  }
+}
+
+/* MARK: ui-scope
+----------------- */
+
+@layer theme {
+  ui-scope {
+    display: inline-block;
+    position: relative;
+    --h: var(--volume-h, var(--control-h));
+    --w: var(--volume-w, var(--control-w));
+    inline-size: var(--w);
+    block-size: var(--h);
+
+    .cols > & { block-size: auto; }
+
+    --bg: var(--scope-bg, var(--panel-bg));
+    --bdw: var(--scope-bdw, var(--inset-bdw));
+    --bds: var(--scope-bds, var(--inset-bds));
+    --bdc: var(--scope-bdc, var(--inset-bdc));
+    --bdi: var(--scope-bdi, var(--inset-bdi));
+    --bdr: var(--scope-bdr, var(--inset-bdr));
+    --bsh: var(--scope-bsh, var(--inset-bsh));
+  }
+}
+
+@layer components {
+  ui-scope {
+    .ui-scope__box {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      border-width: var(--bdw);
+      border-style: var(--bds);
+      border-color: var(--bdc);
+      border-image: var(--bdi);
+      border-radius: var(--bdr);
+      box-shadow: var(--bsh);
+    }
+
+    .ui-scope__accent {
+      position: absolute;
+      inset: 0;
+      background: var(--scope-screen-accent-bg, var(--screen-fg));
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      &:not(.canvas-ready) {
+        background: var(--scope-screen-bg, var(--screen-bg));
+      }
+    }
+
+    &[mode="spectroscope"] canvas {
+      filter: var(--crispy-filter);
+    }
+  }
+}

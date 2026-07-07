@@ -1,0 +1,1552 @@
+:root {
+  --picto-size: 16px;
+
+  --picto--up: url("../img/pictos.svg#picto-up");
+  --picto--down: url("../img/pictos.svg#picto-down");
+  --picto--clear: url("../img/pictos.svg#picto-clear");
+  --picto--import: url("../img/pictos.svg#picto-import");
+  --picto--calendar: url("../img/pictos.svg#picto-calendar");
+  --picto--bullet-list: url("../img/pictos.svg#picto-bullet-list");
+
+  --addon-size: round(down, 1.17rem, 2px);
+  --addon-ma-x: round(down, 0.4rem, 2px);
+}
+
+@layer reset {
+  input::placeholder,
+  textarea::placeholder {
+    text-shadow: var(--placeholder-tsh, var(--main-tsh, none));
+    color:
+      var(
+        --placeholder-fg,
+        color-mix(
+          in srgb,
+          hsl(from var(--fg) h calc(s / 2) l),
+          var(--bg) 30%
+        )
+      );
+  }
+
+  /** Inherit fonts for inputs and buttons. */
+  input, textarea, select, button,
+  input::file-selector-button {
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+  }
+
+  a.button {
+    all: unset;
+    box-sizing: border-box;
+  }
+
+  :is(.disabled,[disabled],:disabled):not(form, fieldset) {
+    opacity: var(--disabled-opacity, 0.5);
+  }
+}
+
+@layer layout {
+
+  /* MARK: control-box
+  ==================== */
+
+  .control-box {
+    display: inline-flex;
+    max-width: 100%;
+    max-width: round(down, 100%, 1px);
+    flex-basis: min-content;
+    align-items: center;
+  }
+
+  .control-box--range {
+    flex-grow: 1;
+  }
+
+  /* MARK: fieldset
+  ----------------- */
+
+  fieldset {
+    margin-inline: 0;
+    padding: 0;
+    border: none;
+    overflow: auto;
+
+    &:not([role="none"]) {
+      padding: var(--unit);
+
+      --bdw: var(--fieldset-bdw, var(--main-bdw));
+
+      background: var(--fieldset-bg);
+      border-color: var(--fieldset-bdc, var(--main-bdc));
+      border-width: var(--bdw);
+      border-style: var(--fieldset-bds, var(--main-bds));
+      border-image: var(--fieldset-bdi, var(--main-bdi));
+      box-shadow: var(--fieldset-bsh, var(--main-bsh));
+      border-radius: var(--fieldset-bdr, var(--main-bdr));
+    }
+
+    /* & + &:has(legend) {
+      margin-top: var(--unit-xs);
+    } */
+  }
+
+  :where(:is(form, fieldset).aligned) {
+    display: flex;
+    flex-direction: column;
+    --stack: var(--unit-sm);
+
+    > :is(p, div, fieldset[role="none"]):not(.colspan) {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-template-columns: min(round(down, 35%, 1px), var(--label-mw)) 1fr;
+      > :is(label, .label) { text-align: end; align-self: start; }
+      > :last-child { width: 100%; }
+      & + & { margin-block-start: var(--stack); }
+
+      &:is(.control-box--radio, .control-box--checkbox) {
+        --stack: var(--unit-xxs);
+        grid-template-columns: 1fr auto 3fr;
+        grid-template-columns: min(round(down, 35%, 1px), var(--label-mw)) auto 1fr;
+        & > input { grid-column: 2; grid-row: 1; margin-inline-start: 0; }
+        & > :is(label, .label) { grid-column: 3; text-align: start; }
+      }
+    }
+  }
+
+  :where(:is(form, fieldset).piled) {
+    display: flex;
+    flex-direction: column;
+    --stack: var(--unit-xs);
+
+    > :is(p, div, fieldset[role="none"]):not(.colspan) {
+      display: grid;
+      > :last-child { width: 100%; }
+      & + & { margin-block-start: var(--stack); }
+
+      &:is(.control-box--radio, .control-box--checkbox) {
+        grid-template-columns: auto 1fr;
+        & > input { order: 1; }
+        & > :is(label, .label) { order: 2; text-align: start; }
+      }
+    }
+  }
+
+  legend {
+    font-weight: 700;
+    padding: 0 0.5ch;
+    margin-inline-start: -0.5ch;
+    min-inline-size: 2ch;
+    + * { --stack: 0; --flow: 0; }
+  }
+
+  .label-above,
+  .label-below,
+  .control-box--knob {
+    flex-direction: column;
+    align-items: stretch;
+
+    & > :is(label, .label) {
+      border: none;
+      margin: 0;
+      padding: 0;
+      order: 1;
+      min-inline-size: 0;
+      inline-size: calc-size(max-content, round(up, size, 1px));
+      position: relative;
+
+      overflow: visible;
+      white-space: normal;
+
+      .control-box--knob > & { line-height: 1; }
+      text-align: center;
+      align-self: start;
+      left: round(down, 50%, 1px);
+      translate: round(up, -50%, 1px) 0;
+    }
+  }
+
+  .label-above {
+    & > :is(label, .label) {
+      order: 0;
+    }
+  }
+
+  .label-left {
+    & > :is(label, .label) {
+      align-self: start !important;
+      text-align: start !important;
+      left: 0 !important;
+      translate: 0;
+    }
+  }
+}
+
+@layer theme {
+
+  /* MARK: commons
+  ================ */
+
+  .label,
+  label,
+  .control,
+  output,
+  meter,
+  progress,
+  .button,
+  button,
+  .field,
+  input,
+  textarea,
+  select {
+    --stack: var(--unit-xs);
+    --flow: var(--unit-xs);
+
+    min-inline-size: 3ch;
+
+    --pa-x: var(--field-pa-x, var(--control-pa-x));
+    --pa-y: var(--field-pa-y, var(--control-pa-y));
+    padding-inline: var(--pa-x);
+    padding-block: var(--pa-y);
+  }
+
+  :where(label, .label, output, .control):not(.button) {
+    flex: 0 1 auto;
+    min-inline-size: 2ch;
+    border-style: solid;
+    border-color: transparent;
+    border-width: var(--field-bdw);
+    padding-inline: 0;
+    border-inline-width: 0;
+    &:is(label, .label) { margin-inline-end: var(--unit-xs); }
+
+    .control-box > & { align-self: center; }
+    > p { margin: 0; }
+  }
+
+  progress, input[type="color"], input[type="range"] {
+    block-size: var(--control-h);
+  }
+
+  progress, meter, input[type="range"] {
+    inline-size: var(--control-w);
+  }
+
+  /* MARK: buttons
+  ---------------- */
+
+  :is(
+  button,
+  .button,
+  input:is(
+    [type="button"],
+    [type="reset"],
+    [type="submit"])) {
+    font-family: var(--button-ff);
+    font-size: var(--button-fs);
+    line-height: var(--button-lh);
+
+    position: relative;
+
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    --gap: var(--button-gap, var(--unit-xs));
+    gap: var(--gap);
+
+    flex: 0 1 auto;
+    min-block-size: var(--control-h);
+
+    vertical-align: baseline;
+    &:where(input) { vertical-align: top; }
+
+    /** Fix vertical misalignment (using picto or empty content). */
+    &:not(.rows)::before {
+      content: var(--ZERO_WIDTH_SPACE);
+      margin-inline-start: calc(-1 * var(--gap));
+      inline-size: 0;
+    }
+
+    /** Flex containers whose direct children are all buttons. */
+    :is(
+    .flex,
+    .flex-cols,
+    .cols,
+    .ui-dialog__footer__content):not(:has(> :not(&))) > & { flex: 1 1 auto; }
+
+    .cols > * + & {
+      margin-inline-start: var(--group-button-gap, calc(-1 * var(--group-border-collpase) * var(--bdw)));
+    }
+
+    .rows > * + & {
+      margin-block-start: var(--group-button-gap, calc(-1 * var(--group-border-collpase) * var(--bdw)));
+    }
+
+    --pa-x: var(--button-pa-x, var(--control-pa-x));
+    --pa-y: var(--button-pa-y, var(--control-pa-y));
+
+    --_pa-diff: calc(var(--pa-x) - var(--pa-y));
+    --_ma-negative: calc(-1 * var(--_pa-diff));
+    --_pa-fix: calc(var(--_pa-diff) - round(down, var(--_pa-diff), 1px));
+
+    &:not(.ui-notif__close, .ui-toast__close, .clear) {
+      /** Fix for button with picto and no span */
+      &:has(ui-picto:only-child) {
+        --_indent: calc(-1 * var(--button__picto-ma-l, var(--_ma-negative)));
+        text-indent: var(--_indent);
+        min-inline-size: min-content;
+
+        @supports (text-indent: round(down, 10px, 1px)) {
+          text-indent: round(down, var(--_indent), 1px);
+        }
+      }
+
+      > ui-picto {
+
+        margin-block-start: var(--button__picto-ma-t);
+        margin-block-end: var(--button__picto-ma-b);
+
+        &:first-child {
+          margin-inline-start: var(--button__picto-ma-l, var(--_ma-negative));
+          margin-inline-end: var(--button__picto-ma-r-fix, var(--_pa-fix));
+        }
+
+        &:last-child {
+          margin-inline-end: var(--button__picto-ma-r, var(--_ma-negative));
+          margin-inline-start: var(--button__picto-ma-l-fix, var(--_pa-fix));
+        }
+
+        &:only-child {
+          margin-inline-start: var(--button__picto-ma-l, var(--_ma-negative));
+          margin-inline-end: var(--button__picto-ma-r, var(--_ma-negative));
+        }
+      }
+    }
+
+    transition: var(--button-transition, var(--control-transition));
+
+    /* States
+    --------- */
+
+    background: var(--bg);
+    color: var(--fg);
+    text-shadow: var(--tsh, none);
+    border-width: var(--bdw);
+    border-style: var(--bds);
+    border-color: var(--bdc);
+    border-image: var(--bdi);
+    border-radius: var(--bdr);
+    corner-shape: var(--bcs);
+    box-shadow: var(--bsh);
+    transform: var(--tf);
+    filter: var(--filter);
+    mask: var(--mask);
+
+    --_bg: var(--EMPTY);
+    --_fg: var(--EMPTY);
+    --_tsh: var(--EMPTY);
+    --_bdc: var(--EMPTY);
+    --_bdw: var(--EMPTY);
+    --_bds: var(--EMPTY);
+    --_bdi: var(--EMPTY);
+    --_bdr: var(--EMPTY);
+    --_bsh: var(--EMPTY);
+    --_bcs: var(--EMPTY);
+    --_tf: var(--EMPTY);
+    --_filter: var(--EMPTY);
+    --_mask: var(--EMPTY);
+
+    &:not(.clear) {
+      --bg: var(--state-bg, var(--_bg, var(--button-bg)));
+      --fg: var(--state-fg, var(--_fg, var(--button-fg)));
+      --tsh: var(--state-tsh, var(--_tsh, var(--button-tsh)));
+      --bdc: var(--state-bdc, var(--_bdc, var(--button-bdc)));
+      --bdw: var(--state-bdw, var(--_bdw, var(--button-bdw)));
+      --bds: var(--state-bds, var(--_bds, var(--button-bds)));
+      --bdi: var(--state-bdi, var(--_bdi, var(--button-bdi)));
+      --bdr: var(--state-bdr, var(--_bdr, var(--button-bdr)));
+      --bsh: var(--state-bsh, var(--_bsh, var(--button-bsh)));
+      --bcs: var(--state-bcs, var(--_bcs, var(--button-bcs)));
+      --tf: var(--state-tf, var(--_tf, var(--button-tf)));
+      --filter: var(--state-filter, var(--_filter, var(--button-filter)));
+      --mask: var(--state-mask, var(--_mask, var(--button-mask)));
+    }
+
+    &:is(label):has(input:is([type="checkbox"],[type="radio"]):where(.disabled,[disabled],:disabled)),
+    input:is([type="checkbox"],[type="radio"]):where(.disabled,[disabled],:disabled) + &:is(label),
+    &:where(.disabled,[disabled],:disabled) {
+      --_bg: var(--button-disabled-bg);
+      --_fg: var(--button-disabled-fg);
+      --_tsh: var(--button-disabled-tsh);
+      --_bdc: var(--button-disabled-bdc);
+      --_bdw: var(--button-disabled-bdw);
+      --_bds: var(--button-disabled-bds);
+      --_bdi: var(--button-disabled-bdi);
+      --_bdr: var(--button-disabled-bdr);
+      --_bsh: var(--button-disabled-bsh);
+      --_bcs: var(--button-disabled-bcs);
+      --_tf: var(--button-disabled-tf);
+      --_filter: var(--button-disabled-filter);
+      --_mask: var(--button-disabled-mask);
+    }
+
+    &:not(.disabled,[disabled],:disabled) {
+      &:is(label):has(input:is([type="checkbox"],[type="radio"]):where(.focus,:focus-visible)),
+      &:where(.focus,:focus-visible,.ui-toolbar__item--highlight) {
+        z-index: var(--z-focused);
+        outline: var(--button-focus-ol);
+        outline-offset: var(--button-focus-olo);
+
+        --_bg: var(--button-focus-bg);
+        --_fg: var(--button-focus-fg);
+        --_tsh: var(--button-focus-tsh);
+        --_bdc: var(--button-focus-bdc);
+        --_bdw: var(--button-focus-bdw);
+        --_bds: var(--button-focus-bds);
+        --_bdi: var(--button-focus-bdi);
+        --_bdr: var(--button-focus-bdr);
+        --_bsh: var(--button-focus-bsh);
+        --_bcs: var(--button-focus-bcs);
+        --_tf: var(--button-focus-tf);
+        --_filter: var(--button-focus-filter);
+        --_mask: var(--button-focus-mask);
+      }
+
+      &:hover {
+        z-index: var(--z-focused);
+        --_bg: var(--button-hover-bg);
+        --_fg: var(--button-hover-fg);
+        --_tsh: var(--button-hover-tsh);
+        --_bdc: var(--button-hover-bdc);
+        --_bdw: var(--button-hover-bdw);
+        --_bds: var(--button-hover-bds);
+        --_bdi: var(--button-hover-bdi);
+        --_bdr: var(--button-hover-bdr);
+        --_bsh: var(--button-hover-bsh);
+        --_bcs: var(--button-hover-bcs);
+        --_tf: var(--button-hover-tf);
+        --_filter: var(--button-hover-filter);
+        --_mask: var(--button-hover-mask);
+      }
+
+      &:not(.pointer-instant):where(.active,:active) {
+        --state-bg: var(--button-active-bg);
+        --state-fg: var(--button-active-fg);
+        --state-tsh: var(--button-active-tsh);
+        --state-bdc: var(--button-active-bdc);
+        --state-bdw: var(--button-active-bdw);
+        --state-bds: var(--button-active-bds);
+        --state-bdi: var(--button-active-bdi);
+        --state-bdr: var(--button-active-bdr);
+        --state-bsh: var(--button-active-bsh);
+        --state-bcs: var(--button-active-bcs);
+        --state-tf: var(--button-active-tf);
+        --state-filter: var(--button-active-filter);
+        --state-mask: var(--button-active-mask);
+      }
+    }
+
+    /* toggled
+    ========== */
+
+    &:is(label) > input:is([type="checkbox"],[type="radio"]) {
+      opacity: 0 !important;
+      position: absolute !important;
+      inline-size: 1px !important;
+      block-size: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+    }
+
+    &:is(label):has(input:is([type="checkbox"],[type="radio"]):checked),
+    input:is([type="checkbox"],[type="radio"]):checked + &:is(label),
+    &:where([aria-pressed="true"],[aria-selected="true"],[aria-expanded="true"]) {
+      --state-bg: var(--button-toggled-bg, var(--button-fg));
+      --state-fg: var(--button-toggled-fg, var(--button-bg));
+      --state-tsh: var(--button-toggled-tsh);
+      --state-bdc: var(--button-toggled-bdc);
+      --state-bdw: var(--button-toggled-bdw);
+      --state-bds: var(--button-toggled-bds);
+      --state-bdi: var(--button-toggled-bdi);
+      --state-bdr: var(--button-toggled-bdr);
+      --state-bsh: var(--button-toggled-bsh);
+      --state-bcs: var(--button-toggled-bcs);
+      --state-tf: var(--button-toggled-tf);
+      --state-filter: var(--button-toggled-filter);
+      --state-mask: var(--button-toggled-mask);
+    }
+
+    &:is(label):not(.pointer-instant):has(input:is([type="checkbox"],[type="radio"]):where(.active,:active):not(.disabled,[disabled],:disabled)),
+    input:is([type="checkbox"],[type="radio"]):where(.active,:active):not(.disabled,[disabled],:disabled) + &:is(label),
+    &:where([aria-pressed="true"],[aria-selected="true"],[aria-expanded="true"]):where(.active,:active):not(label,.disabled,[disabled],:disabled) {
+      --state-bg: var(--button-toggled-active-bg, var(--button-toggled-bg));
+      --state-fg: var(--button-toggled-active-fg, var(--button-toggled-fg));
+      --state-tsh: var(--button-toggled-active-tsh, var(--button-toggled-tsh));
+      --state-bdc: var(--button-toggled-active-bdc, var(--button-toggled-bdc));
+      --state-bdw: var(--button-toggled-active-bdw, var(--button-toggled-bdw));
+      --state-bds: var(--button-toggled-active-bds, var(--button-toggled-bds));
+      --state-bdi: var(--button-toggled-active-bdi, var(--button-toggled-bdi));
+      --state-bdr: var(--button-toggled-active-bdr, var(--button-toggled-bdr));
+      --state-bsh: var(--button-toggled-active-bsh, var(--button-toggled-bsh));
+      --state-bcs: var(--button-toggled-active-bcs, var(--button-toggled-bcs));
+      --state-tf: var(--button-toggled-active-tf, var(--button-toggled-tf));
+      --state-filter: var(--button-toggled-active-filter, var(--button-toggled-filter));
+      --state-mask: var(--button-toggled-active-mask, var(--button-toggled-mask));
+    }
+
+    &:is(label):has(input:is([type="checkbox"],[type="radio"]):where(.disabled,[disabled],:disabled):checked),
+    input:is([type="checkbox"],[type="radio"]):where(.disabled,[disabled],:disabled):checked + &:is(label),
+    &:where([aria-pressed="true"],[aria-selected="true"],[aria-expanded="true"]):where(.disabled,[disabled],:disabled) {
+      --state-bg: var(--button-toggled-disabled-bg, var(--button-toggled-bg));
+      --state-fg: var(--button-toggled-disabled-fg, var(--button-toggled-fg));
+      --state-tsh: var(--button-toggled-disabled-tsh, var(--button-toggled-tsh));
+      --state-bdc: var(--button-toggled-disabled-bdc, var(--button-toggled-bdc));
+      --state-bdw: var(--button-toggled-disabled-bdw, var(--button-toggled-bdw));
+      --state-bds: var(--button-toggled-disabled-bds, var(--button-toggled-bds));
+      --state-bdi: var(--button-toggled-disabled-bdi, var(--button-toggled-bdi));
+      --state-bdr: var(--button-toggled-disabled-bdr, var(--button-toggled-bdr));
+      --state-bsh: var(--button-toggled-disabled-bsh, var(--button-toggled-bsh));
+      --state-bcs: var(--button-toggled-disabled-bcs, var(--button-toggled-bcs));
+      --state-tf: var(--button-toggled-disabled-tf, var(--button-toggled-tf));
+      --state-filter: var(--button-toggled-disabled-filter, var(--button-toggled-filter));
+      --state-mask: var(--button-toggled-disabled-mask, var(--button-toggled-mask));
+    }
+
+    &:is(label):has(input:is([type="checkbox"],[type="radio"]):where(.focus,:focus-visible):checked),
+    input:is([type="checkbox"],[type="radio"]):where(.focus,:focus-visible):checked + &:is(label),
+    &:where([aria-pressed="true"],[aria-selected="true"],[aria-expanded="true"]):where(.focus,:focus-visible) {
+      --state-bg: var(--button-toggled-focus-bg, var(--button-toggled-bg));
+      --state-fg: var(--button-toggled-focus-fg, var(--button-toggled-fg));
+      --state-tsh: var(--button-toggled-focus-tsh, var(--button-toggled-tsh));
+      --state-bdc: var(--button-toggled-focus-bdc, var(--button-toggled-bdc));
+      --state-bdw: var(--button-toggled-focus-bdw, var(--button-toggled-bdw));
+      --state-bds: var(--button-toggled-focus-bds, var(--button-toggled-bds));
+      --state-bdi: var(--button-toggled-focus-bdi, var(--button-toggled-bdi));
+      --state-bdr: var(--button-toggled-focus-bdr, var(--button-toggled-bdr));
+      --state-bsh: var(--button-toggled-focus-bsh, var(--button-toggled-bsh));
+      --state-bcs: var(--button-toggled-focus-bcs, var(--button-toggled-bcs));
+      --state-tf: var(--button-toggled-focus-tf, var(--button-toggled-tf));
+      --state-filter: var(--button-toggled-focus-filter, var(--button-toggled-filter));
+      --state-mask: var(--button-toggled-focus-mask, var(--button-toggled-mask));
+    }
+
+    &.primary {
+      --button-bg: var(--main-accent-bg);
+      --button-bdc: var(--main-accent-bg);
+      --button-fg: var(--main-accent-fg);
+      --button-toggled-bg: var(--main-accent-bg);
+      --button-toggled-bdc: var(--main-accent-bg);
+      --button-toggled-fg: var(--main-accent-fg);
+    }
+
+    &.default:not(.disabled,[disabled],:disabled) {
+      &:focus-visible {
+        outline: var(--button-default-focus-ol, var(--button-focus-ol));
+        outline-offset: var(--button-default-focus-olo, var(--button-focus-olo));
+      }
+      --_bg: var(--button-default-bg);
+      --_fg: var(--button-default-fg);
+      --_tsh: var(--button-default-tsh);
+      --_bdc: var(--button-default-bdc);
+      --_bdw: var(--button-default-bdw);
+      --_bds: var(--button-default-bds);
+      --_bdi: var(--button-default-bdi);
+      --_bdr: var(--button-default-bdr);
+      --_bsh: var(--button-default-bsh);
+      --_bcs: var(--button-default-bcs);
+      --_tf: var(--button-default-tf);
+      --_filter: var(--button-default-filter);
+      --_mask: var(--button-default-mask);
+    }
+
+    &.clear {
+      all: revert;
+      font: inherit;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+      flex: 0 0 auto;
+
+      &::before { margin-inline-start: 0; }
+
+      &:is(.focus,:focus-visible) {
+        z-index: var(--z-focused);
+        outline: var(--button-clear-focus-ol, var(--button-focus-ol));
+        outline-offset: var(--button-clear-focus-olo, var(--button-focus-olo));
+      }
+    }
+  }
+
+  /* MARK: fields
+  --------------- */
+
+  select,
+  textarea,
+  meter,
+  progress,
+  ui-pathpicker,
+  ui-reply,
+  ui-code,
+  ui-code .cm-scroller,
+  ui-combobox,
+  input:not(
+    [type="button"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="range"],
+    [type="reset"],
+    [type="submit"]),
+  .field {
+    font-family: var(--field-ff);
+    font-size: var(--field-fs);
+    line-height: var(--field-lh);
+
+    position: relative;
+    appearance: none;
+
+    flex: 1 1 0%;
+    /* max-height: 100%; */
+
+    :where(.rows > &) { flex: 0 0 auto; }
+    :where(.document &) { inline-size: var(--control-w); }
+
+    &.fluid { field-sizing: content; }
+    &.shrink { flex: 0 1 min-content; }
+
+    padding-inline: var(--field-pa-x, var(--control-pa-x));
+    padding-block: var(--field-pa-y, var(--control-pa-y));
+    transition: var(--field-transition, var(--control-transition));
+
+    --sel-bg: var(--field-sel-bg);
+    --sel-fg: var(--field-sel-fg);
+
+    /* States
+    --------- */
+
+    &:not(.cm-scroller) {
+      background: var(--bg);
+      color: var(--fg);
+      text-shadow: var(--tsh, none);
+      filter: var(--filter);
+      mask: var(--mask);
+    }
+
+    border-width: var(--bdw);
+    border-style: var(--bds);
+    border-color: var(--bdc);
+    border-image: var(--bdi);
+    border-radius: var(--bdr);
+    corner-shape: var(--bcs);
+    box-shadow: var(--bsh);
+
+    --_bg: var(--EMPTY);
+    --_fg: var(--EMPTY);
+    --_tsh: var(--EMPTY);
+    --_bdc: var(--EMPTY);
+    --_bdw: var(--EMPTY);
+    --_bds: var(--EMPTY);
+    --_bdi: var(--EMPTY);
+    --_bdr: var(--EMPTY);
+    --_bsh: var(--EMPTY);
+    --_bcs: var(--EMPTY);
+    --_filter: var(--EMPTY);
+    --_mask: var(--EMPTY);
+
+    --bg: var(--_bg, var(--field-bg));
+    --fg: var(--_fg, var(--field-fg));
+    --tsh: var(--_tsh, var(--field-tsh));
+    --bdc: var(--_bdc, var(--field-bdc));
+    --bdw: var(--_bdw, var(--field-bdw));
+    --bds: var(--_bds, var(--field-bds));
+    --bdi: var(--_bdi, var(--field-bdi));
+    --bdr: var(--_bdr, var(--field-bdr));
+    --bsh: var(--_bsh, var(--field-bsh));
+    --bcs: var(--_bcs, var(--field-bcs));
+    --filter: var(--_filter, var(--field-filter));
+    --mask: var(--_mask, var(--field-mask));
+
+    &:not(.disabled,[disabled],:disabled) {
+      .field:has(> &:where(.focus,:focus-visible)),
+      &:where(.focus,:focus-visible) {
+        z-index: var(--z-focused);
+        outline: var(--field-focus-ol);
+        outline-offset: var(--field-focus-olo);
+
+        --_bg: var(--field-focus-bg);
+        --_fg: var(--field-focus-fg);
+        --_tsh: var(--field-focus-tsh);
+        --_bdc: var(--field-focus-bdc);
+        --_bdw: var(--field-focus-bdw);
+        --_bds: var(--field-focus-bds);
+        --_bdi: var(--field-focus-bdi);
+        --_bdr: var(--field-focus-bdr);
+        --_bsh: var(--field-focus-bsh);
+        --_bcs: var(--field-focus-bcs);
+        --_filter: var(--field-focus-filter);
+        --_mask: var(--field-focus-mask);
+      }
+
+      .field:has(> &:where(.invalid,:invalid)),
+      &:where(.invalid,:invalid) {
+        --_bg: var(--field-invalid-bg, hsl(from var(--color-red) h s 85%));
+        --_fg: var(--field-invalid-fg);
+        --_tsh: var(--field-invalid-tsh);
+        --_bdc: var(--field-invalid-bdc);
+        --_bdw: var(--field-invalid-bdw);
+        --_bds: var(--field-invalid-bds);
+        --_bdi: var(--field-invalid-bdi);
+        --_bdr: var(--field-invalid-bdr);
+        --_bsh: var(--field-invalid-bsh);
+        --_bcs: var(--field-invalid-bcs);
+        --_filter: var(--field-invalid-filter);
+        --_mask: var(--field-invalid-mask);
+      }
+    }
+
+    .field:has(> &:where(.disabled,[disabled],:disabled)),
+    &:where(.disabled,[disabled],:disabled) {
+      --_bg: var(--field-disabled-bg);
+      --_fg: var(--field-disabled-fg);
+      --_tsh: var(--field-disabled-tsh);
+      --_bdc: var(--field-disabled-bdc);
+      --_bdw: var(--field-disabled-bdw);
+      --_bds: var(--field-disabled-bds);
+      --_bdi: var(--field-disabled-bdi);
+      --_bdr: var(--field-disabled-bdr);
+      --_bsh: var(--field-disabled-bsh);
+      --_bcs: var(--field-disabled-bcs);
+      --_filter: var(--field-disabled-filter);
+      --_mask: var(--field-disabled-mask);
+    }
+
+    .field:has(> &:where(.readonly,[readonly])),
+    &:where(.readonly,[readonly]) {
+      --_bg: var(--field-readonly-bg, var(--field-disabled-bg));
+      --_fg: var(--field-readonly-fg, var(--field-disabled-fg));
+      --_tsh: var(--field-readonly-tsh, var(--field-disabled-tsh));
+      --_bdc: var(--field-readonly-bdc, var(--field-disabled-bdc));
+      --_bdw: var(--field-readonly-bdw, var(--field-disabled-bdw));
+      --_bds: var(--field-readonly-bds, var(--field-disabled-bds));
+      --_bdi: var(--field-readonly-bdi, var(--field-disabled-bdi));
+      --_bdr: var(--field-readonly-bdr, var(--field-disabled-bdr));
+      --_bsh: var(--field-readonly-bsh, var(--field-disabled-bsh));
+      --_bcs: var(--field-readonly-bcs, var(--field-disabled-bcs));
+      --_filter: var(--field-readonly-filter, var(--field-disabled-filter));
+      --_mask: var(--field-readonly-mask, var(--field-disabled-mask));
+    }
+
+    .field > & {
+      all: unset;
+    }
+
+    &.clear {
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+      border: none;
+      border-image: none;
+      border-color: transparent;
+
+      &:is(.focus,:focus-visible) {
+        outline: var(--field-clear-focus-ol, var(--field-focus-ol));
+        outline-offset: var(--field-clear-focus-olo, var(--field-focus-olo));
+      }
+    }
+  }
+
+  .field {
+    display: flex;
+    --gap: var(--field-gap, 1ch);
+    gap: var(--gap);
+  }
+
+  /* MARK: checkboxes
+  ------------------- */
+
+  input[type="checkbox"], input[type="radio"] {
+    box-sizing: content-box;
+    position: relative;
+    appearance: none;
+
+    display: inline-block;
+    flex: 0 0 auto;
+
+    margin-block: 0;
+    margin-inline: var(--unit-xs);
+
+    &:has(+ label.button) { display: none; }
+
+    --pa: round(var(--checkbox-pa, 0px), var(--checkbox-size-round, 2px));
+    --size: round(var(--checkbox-size, var(--addon-size)), var(--checkbox-size-round, 2px));
+    --anim-speed: var(--checkbox-anim-speed, 0.1s);
+
+    inline-size: var(--size);
+    block-size: var(--size);
+    max-inline-size: var(--size);
+    max-block-size: var(--size);
+    min-inline-size: var(--size);
+    min-block-size: var(--size);
+    padding: var(--pa);
+    vertical-align: calc(25% - (var(--size) / 2) - var(--pa) - var(--bdw));
+
+    transition: var(--field-transition, var(--control-transition));
+
+    /* States
+    --------- */
+
+    --bg: var(--_bg, var(--checkbox-bg, var(--field-bg)));
+    --fg: var(--_fg, var(--checkbox-fg, var(--field-fg)));
+    --bdc: var(--_bdc, var(--checkbox-bdc, var(--field-bdc)));
+    --bdw: var(--_bdw, var(--checkbox-bdw, var(--field-bdw)));
+    --bds: var(--_bds, var(--checkbox-bds, var(--field-bds)));
+    --bdi: var(--_bdi, var(--checkbox-bdi, var(--field-bdi)));
+    --bdr: var(--_bdr, var(--checkbox-bdr, var(--field-bdr)));
+    --bsh: var(--_bsh, var(--checkbox-bsh, var(--field-bsh)));
+    --bcs: var(--_bcs, var(--checkbox-bcs, var(--field-bcs)));
+
+    background: var(--bg);
+
+    border-width: var(--bdw);
+    border-style: var(--bds);
+    border-color: var(--bdc);
+    border-image: var(--bdi);
+    border-radius: var(--bdr);
+    box-shadow: var(--bsh);
+    corner-shape: var(--bcs);
+
+    &:where(.focus,:focus-visible):not(.disabled,[disabled],:disabled) {
+      z-index: var(--z-focused);
+      outline: var(--checkbox-focus-ol, var(--field-focus-ol));
+      outline-offset: var(--checkbox-focus-olo, var(--field-focus-olo));
+
+      --_bg: var(--checkbox-focus-bg, var(--field-focus-bg));
+      --_fg: var(--checkbox-focus-fg, var(--field-focus-fg));
+      --_bdc: var(--checkbox-focus-bdc, var(--field-focus-bdc));
+      --_bdw: var(--checkbox-focus-bdw, var(--field-focus-bdw));
+      --_bds: var(--checkbox-focus-bds, var(--field-focus-bds));
+      --_bdi: var(--checkbox-focus-bdi, var(--field-focus-bdi));
+      --_bdr: var(--checkbox-focus-bdr, var(--field-focus-bdr));
+      --_bsh: var(--checkbox-focus-bsh, var(--field-focus-bsh));
+      --_bcs: var(--checkbox-focus-bcs, var(--field-focus-bcs));
+    }
+
+    &:where(.disabled,[disabled],:disabled) {
+      --_bg: var(--checkbox-disabled-bg, var(--field-disabled-bg));
+      --_fg: var(--checkbox-disabled-fg, var(--field-disabled-fg));
+      --_tsh: var(--checkbox-disabled-tsh, var(--field-disabled-tsh));
+      --_bdc: var(--checkbox-disabled-bdc, var(--field-disabled-bdc));
+      --_bdw: var(--checkbox-disabled-bdw, var(--field-disabled-bdw));
+      --_bds: var(--checkbox-disabled-bds, var(--field-disabled-bds));
+      --_bdi: var(--checkbox-disabled-bdi, var(--field-disabled-bdi));
+      --_bdr: var(--checkbox-disabled-bdr, var(--field-disabled-bdr));
+      --_bsh: var(--checkbox-disabled-bsh, var(--field-disabled-bsh));
+      --_bcs: var(--checkbox-disabled-bcs, var(--field-disabled-bcs));
+    }
+
+    /* Checkmarks
+    ------------- */
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: var(--fg);
+    }
+
+    &[type="checkbox"] {
+      &::before {
+        inset: var(--pa);
+        transition: clip-path var(--anim-speed);
+        clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+      }
+
+      &:checked::before {
+        clip-path: polygon(25% 37%, 41% 57%, 77% 26%, 87% 37%, 39% 78%, 13% 48%);
+      }
+
+      &:indeterminate::before {
+        clip-path: polygon(20% 45%, 40% 45%, 80% 45%, 80% 60%, 40% 60%, 20% 60%);
+      }
+    }
+
+    &[type="radio"] {
+      border-radius: var(--radio-bdr, 100%);
+
+      &::before {
+        border-radius: inherit;
+        background-clip: content-box;
+        background-color: var(--fg);
+        border: var(--size) solid transparent;
+        transition: border-width var(--anim-speed);
+      }
+
+      &:checked::before {
+        border-width: calc(var(--radio-pa, var(--pa)) + (var(--size) / 3.5));
+      }
+    }
+  }
+
+  /* MARK: textarea
+  ----------------- */
+
+  textarea {
+    --lines: 4;
+    --max-lines: 8;
+    vertical-align: top;
+    overflow: auto scroll;
+    resize: none;
+
+    &[wrap="soft"] {
+      overflow: hidden scroll;
+    }
+
+    /** Make sure textareas without a rows attribute are not tiny. */
+    &:not([rows], .fluid) {
+      block-size: calc((var(--lines) * 1lh) + (var(--pa-y) * 2) + (var(--bdw) * 2));
+    }
+
+    &.fluid.fluid-max {
+      max-block-size: calc((var(--max-lines) * 1lh) + (var(--pa-y) * 2) + (var(--bdw) * 2));
+    }
+
+    .cols > & { block-size: 100%; }
+    .rows > & { flex: 1 1 auto; }
+  }
+
+  /* MARK: select
+  --------------- */
+
+  /* TODO: https://developer.chrome.com/blog/a-customizable-select */
+
+  select:not([size],[multiple]) {
+    --select__arrow-image:
+      conic-gradient(
+        var(--addon-fg, var(--fg)) 0deg 45deg,
+        transparent 45deg 315deg,
+        var(--addon-fg, var(--fg)) 315deg
+      );
+
+    --_size: var(--select__arrow-size, calc(var(--addon-size) / 2));
+    --_y: calc(50% + (var(--_size) / 3));
+    --_x: calc(100% - var(--addon-ma-x) - (var(--addon-size) / 2) + (var(--_size) / 2));
+    &:dir(rtl) { --_x: calc((var(--addon-ma-x) + var(--addon-size) / 2) - (var(--_size) / 2)); }
+
+    --arrow-bg: var(--select__arrow-image) var(--_x) var(--_y) / var(--_size) var(--_size) no-repeat;
+
+    background: var(--arrow-bg), var(--bg);
+    min-inline-size: 6ch;
+  }
+
+  select:is([size],[multiple]) {
+    vertical-align: top;
+    overflow: hidden scroll;
+    padding: 0;
+
+    --pa-y: round(up, var(--field-pa-y, var(--control-pa-y)), 1px);
+    --pa-x: var(--field-pa-x, var(--control-pa-x));
+
+    --_fs: var(--field-fs, var(--control-fs, 1rem));
+
+    --_option-lh-top-fix: var(--option-lh-top-fix, 0px);
+    --_option-lh-bottom-fix: var(--option-lh-bottom-fix, 0px);
+    --_optgroup-ma-fix: var(--optgroup-ma-fix, 1px);
+
+    /* Firefox */
+    @supports (-moz-appearance: none) {
+      --_option-lh-top-fix: var(--option-lh-top-fix, 0px);
+      --_optgroup-ma-fix: 0px;
+    }
+
+    option, optgroup::before {
+      --_bg: var(--option-bg);
+      --_fg: var(--option-fg, var(--fg));
+      --_tsh: var(--option-tsh);
+
+      background: var(--_bg);
+      color: var(--_fg, var(--fg, none));
+      text-shadow: var(--_tsh, var(--tsh, none));
+
+      display: block;
+      min-block-size: auto;
+      font-size: var(--_fs);
+
+      block-size: calc(var(--control-h));
+      padding-block-start: calc(var(--pa-y) + var(--_option-lh-top-fix));
+      padding-block-end: calc(var(--pa-y) - var(--_option-lh-bottom-fix));
+
+      padding-inline: var(--pa-x);
+    }
+
+    optgroup {
+      font-size: 0;
+      font-weight: normal;
+      font-style: normal;
+      padding: 0;
+      margin-block-start: calc(-1 * var(--_optgroup-ma-fix));
+      margin-block-end: calc(-1 * var(--_optgroup-ma-fix));
+
+      option {
+        text-indent: calc(var(--optgroup-indent, var(--unit-xxs)) + var(--pa-x));
+      }
+
+      &::before {
+        content: attr(label);
+        transform: translateY(var(--_optgroup-ma-fix));
+
+        font-weight: var(--optgroup-font-weight, 700);
+        font-style: var(--optgroup-font-style, normal);
+
+        --_bg: var(--optgroup-bg);
+        --_fg: var(--optgroup-fg);
+        --_tsh: var(--optgroup-tsh);
+      }
+    }
+
+    option:checked {
+      --_bg: var(--option-toggled-bg, var(--highlight-bg, var(--main-accent-bg)));
+      --_fg: var(--option-toggled-fg, var(--highlight-fg, var(--main-accent-fg)));
+      --_tsh: var(--option-toggled-tsh, var(--highlight-tsh, none));
+    }
+
+    &:is(.disabled,[disabled],:disabled) option:checked {
+      --_bg: var(--option-toggled-disabled-bg, var(--fg));
+      --_fg: var(--option-toggled-disabled-fg, var(--bg));
+      --_tsh: var(--option-toggled-disabled-tsh, none);
+    }
+  }
+
+  /* MARK: addons
+  --------------- */
+
+  select:not([size],[multiple]),
+  input[list]:not([type="range"], :has(+ datalist:empty)),
+  input[type="file"],
+  input[type="number"],
+  input[type="month"],
+  input[type="datetime-local"],
+  input[type="time"],
+  input[type="week"],
+  input[type="date"] {
+    position: relative;
+    padding-inline-end: calc(var(--pa-x) + var(--addon-size) + (2 * var(--addon-ma-x)));
+    min-inline-size: 6ch;
+
+    @supports not selector(::-webkit-calendar-picker-indicator) { padding-inline-end: 0; }
+  }
+
+  input::-webkit-search-cancel-button,
+  input::-webkit-calendar-picker-indicator,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="file"]::file-selector-button {
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    color: inherit;
+    font-size: 0;
+    appearance: none;
+    box-sizing: border-box;
+    position: absolute;
+
+    block-size: auto !important;
+    inline-size: var(--addon-size);
+    inset-block: 0;
+    inset-inline-end: var(--addon-ma-x);
+
+    cursor: var(--cursor-default);
+    mask-image: var(--picto--calendar);
+    mask-position: round(down, 50%, 1px) round(up, 50%, 1px);
+    mask-repeat: no-repeat;
+
+    background: var(--addon-fg, var(--field-fg, currentcolor));
+  }
+
+  input:is(.disabled,[disabled],:disabled) {
+    &::-webkit-calendar-picker-indicator,
+    &[type="number"]::-webkit-inner-spin-button,
+    &[type="file"]::file-selector-button {
+      background: var(--addon-disabled-fg, var(--field-disabled-fg, currentcolor));
+    }
+  }
+
+  input[type="file"]::file-selector-button {
+    mask-image: var(--picto--import);
+  }
+
+  :dir(rtl) {
+    input:not([list])::-webkit-calendar-picker-indicator {
+      inset-inline-start: var(--addon-ma-x);
+    }
+
+    input[list]::-webkit-calendar-picker-indicator {
+      inset-inline-start: auto;
+    }
+  }
+
+  input[list]::-webkit-calendar-picker-indicator {
+    mask-image: var(--picto--bullet-list);
+  }
+
+  input::-webkit-search-cancel-button {
+    mask-image: var(--picto--clear);
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
+    --offset: var(--spin-button-offset, 4px);
+    mask-image: var(--picto--up), var(--picto--down);
+    mask-position:
+      var(--spin-button-top, round(down, 50%, 1px) round(up, calc(50% - var(--offset)), 1px)),
+      var(--spin-button-bottom, round(down, 50%, 1px) calc(round(up, calc(50% + var(--offset)), 1px)));
+  }
+
+  /** Fix because chrome force ltr direction on calendar. */
+  input[type="month"],
+  input[type="datetime-local"],
+  input[type="time"],
+  input[type="week"],
+  input[type="date"] {
+    :dir(rtl) & { text-align: right; }
+  }
+
+  input::-webkit-datetime-edit-fields-wrapper { padding: 0; }
+  input::-webkit-datetime-edit-text { padding: 0; }
+  input::-webkit-datetime-edit-ampm-field { padding: 0 0.5px; }
+
+  input::-webkit-datetime-edit-ampm-field:focus,
+  input::-webkit-datetime-edit-day-field:focus,
+  input::-webkit-datetime-edit-hour-field:focus,
+  input::-webkit-datetime-edit-millisecond-field:focus,
+  input::-webkit-datetime-edit-minute-field:focus,
+  input::-webkit-datetime-edit-month-field:focus,
+  input::-webkit-datetime-edit-second-field:focus,
+  input::-webkit-datetime-edit-week-field:focus,
+  input::-webkit-datetime-edit-year-field:focus {
+    background: var(--highlight-bg, var(--fg));
+    color: var(--highlight-fg, var(--bg));
+    text-shadow: var(--highlight-tsh, none);
+  }
+
+  /* MARK: color
+  -------------- */
+
+  input[type="color"] {
+    vertical-align: top;
+
+    .document & {
+      inline-size: auto;
+      aspect-ratio: 1;
+    }
+
+    --pa: var(--color-pa, var(--px));
+    padding: var(--pa);
+
+    --_swatch-bdr: var(--swatch-bdr, calc(var(--bdr) - var(--bdw) - var(--pa)));
+    --_swatch-bdc: var(--swatch-bdc, transparent);
+    --_swatch-bdw: var(--swatch-bdw, var(--main-bdw));
+    --_swatch-bsh: var(--swatch-bsh);
+    --_swatch-bcs: var(--swatch-bcs);
+
+    &::-webkit-color-swatch-wrapper { padding: 0; }
+
+    &::-webkit-color-swatch {
+      border-style: solid;
+      border-width: var(--_swatch-bdw);
+      border-color: var(--_swatch-bdc, transparent);
+      box-shadow: var(--_swatch-bsh);
+      border-radius: var(--_swatch-bdr);
+      corner-shape: var(--_swatch-bcs);
+    }
+
+    &::-moz-color-swatch {
+      border-style: solid;
+      border-width: var(--_swatch-bdw);
+      border-color: var(--_swatch-bdc, transparent);
+      box-shadow: var(--_swatch-bsh);
+      border-radius: var(--_swatch-bdr);
+      corner-shape: var(--_swatch-bcs);
+    }
+  }
+
+  /* MARK: progress
+  ----------------- */
+
+  @keyframes progress-wait {
+    0% { transform: translateX(-50%); }
+    50% { transform: translateX(50%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  progress {
+    position: relative;
+    overflow: hidden;
+
+    vertical-align: top;
+    align-self: center;
+
+    --pa: var(--progress-pa, 0);
+    padding: var(--pa);
+
+    flex: 0 1 auto;
+
+    .rows > & { width: 100%; }
+
+    --_bg: var(--progress-bg);
+    --_fg: var(--progress-fg);
+    --_tsh: var(--progress-tsh);
+    --_bdc: var(--progress-bdc);
+    --_bdw: var(--progress-bdw);
+    --_bds: var(--progress-bds);
+    --_bdi: var(--progress-bdi);
+    --_bdr: var(--progress-bdr);
+    --_bsh: var(--progress-bsh);
+
+    --value-bdr: var(--progress__value-bdr, calc(var(--bdr) - var(--bdw) - var(--pa)));
+    --value-bg: var(--progress__value-bg, var(--main-accent-bg));
+    --value-bsh: var(--progress__value-bsh);
+    --wait-bg: var(--progress__wait-bg, var(--value-bg));
+    --wait-anim: var(--progress__wait-anim, progress-wait 7s infinite steps(25));
+
+    &::-webkit-progress-bar { background: transparent; }
+
+    &[value] {
+      &::-webkit-progress-value {
+        background: var(--value-bg);
+        border-radius: var(--value-bdr);
+        box-shadow: var(--value-bsh);
+      }
+
+      &::-moz-progress-bar {
+        background: var(--value-bg);
+        border-radius: var(--value-bdr);
+        box-shadow: var(--value-bsh);
+      }
+    }
+
+    &:not(.hide-value) {
+      &::before,
+      &::after {
+        content: attr(value);
+        position: absolute;
+        block-size: var(--control-h);
+        top: var(--progress__value-top, round(up, var(--control-pa-y), 1px));
+        left: round(down, 50%, 1px);
+        translate: round(down, -50%, 1px) 0;
+        inline-size: auto;
+        font-weight: 700;
+        color: var(--fg);
+      }
+
+      &::before {
+        text-shadow:
+          0 1px 0 var(--bg),
+          1px 0 0 var(--bg),
+          0 -1px 0 var(--bg),
+          -1px 0 0 var(--bg),
+          -1px -1px 0 var(--bg),
+          1px -1px 0 var(--bg),
+          -1px 1px 0 var(--bg),
+          1px 1px 0 var(--bg),
+          2px 0 0 var(--bg),
+          -2px 0 0 var(--bg),
+          2px 1px 0 var(--bg),
+          -2px 1px 0 var(--bg),
+          2px -1px 0 var(--bg),
+          -2px -1px 0 var(--bg);
+      }
+
+      &[max]::before,
+      &[max]::after { content: attr(value) "/" attr(max); }
+
+      &[max="100"]::before,
+      &[max="100"]::after { content: attr(value) "%"; }
+
+      &[data-label]::before,
+      &[data-label]::after {
+        content: attr(data-label);
+      }
+    }
+
+    &:not([value]) {
+      &::before {
+        content: "";
+        position: absolute;
+        inset: var(--pa);
+        background: var(--wait-bg);
+        border-radius: var(--value-bdr);
+        box-shadow: var(--value-bsh);
+        will-change: transform;
+        transform-origin: 0;
+        animation: var(--wait-anim);
+      }
+
+      &::-moz-progress-bar {
+        background: var(--wait-bg);
+        border-radius: var(--value-bdr);
+        box-shadow: var(--value-bsh);
+        will-change: transform;
+        transform-origin: 0;
+        animation: var(--wait-anim);
+      }
+    }
+  }
+
+  /* MARK: meter
+  -------------- */
+
+  meter {
+    overflow: hidden;
+
+    vertical-align: baseline;
+    align-self: center;
+
+    --pa: var(--meter-pa, 0px);
+    padding: var(--pa);
+
+    --h: round(up, calc(1ex + (2 * var(--pa)) + (2 * var(--bdw))), 1px);
+    block-size: var(--h);
+    max-block-size: var(--control-h);
+
+    --_bg: var(--meter-bg);
+    --_bdc: var(--meter-bdc);
+    --_bdw: var(--meter-bdw);
+    --_bds: var(--meter-bds);
+    --_bdi: var(--meter-bdi);
+    --_bdr: var(--meter-bdr);
+    --_tsh: var(--meter-tsh);
+    --_bsh: var(--meter-bsh);
+
+    --bar-bdr: var(--meter__bar-bdr, calc(var(--bdr) - var(--bdw) - var(--pa)));
+    --bar--high-bg: var(--meter__bar--high-bg, var(--color-lime));
+    --bar--medium-bg: var(--meter__bar--medium-bg, var(--color-yellow));
+    --bar--low-bg: var(--meter__bar--low-bg, var(--color-red));
+
+    &::-webkit-meter-inner-element { display: block; }
+
+    &::-webkit-meter-bar {
+      background: transparent;
+      border: none;
+      border-radius: var(--bar-bdr);
+      block-size: 100%;
+      max-inline-size: calc(100% - (var(--pa) * 2));
+      translate: 0 50%;
+      translate: 0 round(down, 50%, 1px);
+    }
+
+    &::-webkit-meter-optimum-value { background: var(--bar--high-bg); }
+    &::-webkit-meter-suboptimum-value { background: var(--bar--medium-bg); }
+    &::-webkit-meter-even-less-good-value { background: var(--bar--low-bg); }
+
+    &::-moz-meter-bar {
+      background: transparent;
+      border: none;
+      border-radius: var(--bar-bdr);
+    }
+
+    &:-moz-meter-optimum::-moz-meter-bar { background: var(--bar--high-bg); }
+    &:-moz-meter-sub-optimum::-moz-meter-bar { background: var(--bar--medium-bg); }
+    &:-moz-meter-sub-sub-optimum::-moz-meter-bar { background: var(--bar--low-bg); }
+  }
+
+  /* MARK: range
+  --------------
+  TODO: take a look at https://codepen.io/t_afif/full/MWdmZPL */
+
+  input[type="range"] {
+    appearance: none;
+    overflow: visible;
+
+    vertical-align: bottom;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    margin: 0;
+    padding-inline: 0;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    outline: none;
+
+    --ticks: 1;
+    --ticks-color: color-mix(in srgb, currentcolor, transparent 70%);
+
+    --_ticks-space: calc(var(--ticks) * 100%);
+    --_ticks-orientation: 90deg;
+
+    background:
+      repeating-linear-gradient(
+        var(--_ticks-orientation),
+        transparent,
+        transparent calc(var(--_ticks-space)),
+        var(--ticks-color) var(--_ticks-space),
+        var(--ticks-color) calc(var(--_ticks-space) + 1px)
+      ) no-repeat 50%;
+
+    background-size: 100% 70%;
+
+    flex: 1 1 auto;
+    .rows > & { flex: 0 1 auto; }
+
+    .cols > & {
+      &[aria-orientation="vertical"] { height: unset; }
+      &:not([aria-orientation="vertical"]) { align-self: center; }
+    }
+
+    &[aria-orientation="vertical"] {
+      --_ticks-orientation: 0deg;
+      background-size: 70% 100%;
+      writing-mode: sideways-lr;
+      vertical-align: top;
+
+      @supports not (writing-mode: sideways-lr) {
+        writing-mode: vertical-lr;
+        direction: rtl;
+      }
+
+      flex: 0 1 auto;
+      --end: top;
+    }
+
+    --fraction: 1;
+    --range_gradient:
+      linear-gradient(
+        to var(--end),
+        var(--range__track-active-bg, var(--main-accent-bg)) calc(100% * var(--fraction)),
+        transparent 0
+      );
+
+    --track-bg:
+      var(--range__track-bg, var(--range_gradient)),
+      var(--range__track-inactive-bg, var(--main-bdc));
+
+    --track-h: var(--range__track-h, var(--px));
+    --track-bdc: var(--range__track-bdc);
+    --track-bdw: var(--range__track-bdw);
+    --track-bds: var(--range__track-bds);
+    --track-bdi: var(--range__track-bdi);
+    --track-bdr: var(--range__track-bdr);
+    --track-bsh: var(--range__track-bsh);
+
+    --thumb-w: var(--range__thumb-w, var(--addon-size));
+    --thumb-h: var(--range__thumb-h, var(--addon-size));
+
+    --clip: var(--range__thumb-clip, none);
+    --bdr: var(--range__thumb-bdr, 1e5px);
+    --transition: var(--range__thumb-transition, var(--button-transition, var(--control-transition)));
+
+    --bg: var(--_bg, var(--range__thumb-bg, var(--button-bg)));
+    --bdc: var(--_bdc, var(--range__thumb-bdc, var(--button-bdc)));
+    --bdw: var(--_bdw, var(--range__thumb-bdw, var(--button-bdw)));
+    --bds: var(--_bds, var(--range__thumb-bds, var(--button-bds)));
+    --bdi: var(--_bdi, var(--range__thumb-bdi, var(--button-bdi)));
+    --bsh: var(--_bsh, var(--range__thumb-bsh, var(--button-bsh)));
+
+    &:where(.readonly,[readonly]) {
+      cursor: var(--cursor-not-allowed);
+    }
+
+    &:where(.disabled,[disabled],:disabled) {
+      --_bg: var(--range__thumb-disabled-bg, var(--button-disabled-bg));
+      --_bdc: var(--range__thumb-disabled-bdc, var(--button-disabled-bdc));
+      --_bdw: var(--range__thumb-disabled-bdw, var(--button-disabled-bdw));
+      --_bds: var(--range__thumb-disabled-bds, var(--button-disabled-bds));
+      --_bdi: var(--range__thumb-disabled-bdi, var(--button-disabled-bdi));
+      --_bsh: var(--range__thumb-disabled-bsh, var(--button-disabled-bsh));
+    }
+
+    &:where(.focus,:focus-visible):not(.disabled,[disabled],:disabled) {
+      --_bg: var(--range__thumb-focus-bg, var(--button-focus-bg));
+      --_bdc: var(--range__thumb-focus-bdc, var(--button-focus-bdc));
+      --_bdw: var(--range__thumb-focus-bdw, var(--button-focus-bdw));
+      --_bds: var(--range__thumb-focus-bds, var(--button-focus-bds));
+      --_bdi: var(--range__thumb-focus-bdi, var(--button-focus-bdi));
+      --_bsh: var(--range__thumb-focus-bsh, var(--button-focus-bsh));
+    }
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    box-sizing: border-box;
+    block-size: var(--track-h);
+
+    background: var(--track-bg);
+    border-color: var(--track-bdc);
+    border-width: var(--track-bdw);
+    border-style: var(--track-bds);
+    border-image: var(--track-bdi);
+    border-radius: var(--track-bdr);
+    box-shadow: var(--track-bsh);
+  }
+
+  input[type="range"]::-moz-range-track {
+    box-sizing: border-box;
+    block-size: var(--track-h);
+
+    background: var(--track-bg);
+    border-color: var(--track-bdc);
+    border-width: var(--track-bdw);
+    border-style: var(--track-bds);
+    border-image: var(--track-bdi);
+    border-radius: var(--track-bdr);
+    box-shadow: var(--track-bsh);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    box-sizing: content-box;
+
+    appearance: none;
+    position: relative;
+    inset-block-start: round(down, calc(50% - (var(--thumb-h) / 2)) - var(--bdw), 1px);
+
+    inline-size: var(--thumb-w);
+    block-size: var(--thumb-h);
+    transition: var(--transition);
+
+    background: var(--bg);
+    border-color: var(--bdc);
+    border-width: var(--bdw);
+    border-style: var(--bds);
+    border-image: var(--bdi);
+    border-radius: var(--bdr);
+    box-shadow: var(--bsh);
+
+    clip-path: var(--clip);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    box-sizing: content-box;
+
+    inline-size: var(--thumb-w);
+    block-size: var(--thumb-h);
+    transition: var(--transition);
+
+    background: var(--bg);
+    border-color: var(--bdc);
+    border-width: var(--bdw);
+    border-style: var(--bds);
+    border-image: var(--bdi);
+    border-radius: var(--bdr);
+    box-shadow: var(--bsh);
+
+    clip-path: var(--clip);
+  }
+
+  input[type="range"]:where(.focus,:focus-visible):not(.disabled,[disabled],:disabled)::-webkit-slider-thumb {
+    outline: var(--range-focus-ol, var(--button-focus-ol));
+    outline-offset: var(--range-focus-olo, var(--button-focus-olo));
+  }
+
+  input[type="range"]:where(.focus,:focus-visible):not(.disabled,[disabled],:disabled)::-moz-range-thumb {
+    outline: var(--range-focus-ol, var(--button-focus-ol));
+    outline-offset: var(--range-focus-olo, var(--button-focus-olo));
+  }
+
+  input[type="range"]::-ms-tooltip { display: none; }
+}

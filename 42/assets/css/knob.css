@@ -1,0 +1,224 @@
+/* MARK: ui-knob
+  ------------------ */
+
+:root {
+  --knob-fill-color: var(--accent-color);
+  --knob-empty-color: currentcolor;
+  --knob-size: 34px;
+
+  --knob__ring-space: 14%;
+  --knob__cap-space: 0%;
+
+  --knob__indicator-offset-start: 0%;
+  --knob__indicator-offset-end: 0%;
+}
+
+ui-knob[small] {
+  --knob-size: 28px;
+}
+
+ui-knob[medium] {
+  --knob-size: 46px;
+}
+
+ui-knob[large] {
+  --knob-size: 62px;
+}
+
+ui-knob[disabled] {
+  opacity: 0.5;
+}
+
+.knobs ui-knob {
+  aspect-ratio: 1;
+}
+
+.knobs .control-box--knob {
+  flex-basis: 0%;
+}
+
+.control-box--knob {
+  border: 2px solid #0000;
+  width: var(--stretch);
+  height: var(--stretch);
+  justify-content: center;
+  /* justify-content: end; */
+  word-break: keep-all;
+}
+
+ui-knob {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  min-inline-size: var(--knob-min-size, var(--knob-size));
+  min-block-size: var(--knob-min-size, var(--knob-size));
+  pointer-events: none;
+  --fraction: 0;
+
+  outline: none;
+
+  &:not(.disabled,[disabled],:disabled) {
+    &:is(.focus,:focus-visible) > .ui-knob__ring-box,
+    .control-box--knob:has(> &:is(.focus,:focus-visible)) {
+      .ui-knob__ring-box { background: none; }
+
+      /* TODO: https://css-tip.com/corner-only-border-image/ */
+
+      --c: currentcolor;
+      --b: 1px;
+      --w: 5px;
+
+      --_g: #0000 90deg, var(--c) 0;
+      --_p: var(--w) var(--w) border-box no-repeat;
+
+      background:
+        conic-gradient(from 90deg  at top    var(--b) left  var(--b), var(--_g)) 0    0    / var(--_p),
+        conic-gradient(from 180deg at top    var(--b) right var(--b), var(--_g)) 100% 0    / var(--_p),
+        conic-gradient(from 0deg   at bottom var(--b) left  var(--b), var(--_g)) 0    100% / var(--_p),
+        conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--_g)) 100% 100% / var(--_p);
+    }
+  }
+}
+
+ui-knob[ringless] {
+  /* --knob__cap-space: 0%; */
+  --knob-fill-color: var(--knob-empty-color);
+}
+
+.ui-knob__ring,
+.ui-knob__cap,
+.ui-knob__ring-box,
+.ui-knob__cap-box {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: auto;
+  aspect-ratio: 1;
+}
+
+.ui-knob__ring-box {
+  border-radius: 0;
+}
+
+.ui-knob__ring,
+.ui-knob__cap {
+  inset: 0;
+}
+
+.ui-knob__ring-box,
+.ui-knob__cap-box {
+  --size: 100%;
+  height: round(down, var(--size), 2px);
+
+  top: round(down, 50%, 1px);
+  left: round(down, 50%, 1px);
+  translate: -50% -50%;
+}
+
+.ui-knob__cap-box {
+  overflow: hidden;
+  --size: calc(100% - var(--knob__cap-space));
+}
+
+.ui-knob__ring {
+  mask-composite: intersect;
+  mask-image:
+    radial-gradient(
+      farthest-side,
+      #0000 calc((100% - var(--knob__ring-space)) - 1.25px),
+      #000 calc(100% - var(--knob__ring-space)),
+      #000 calc(100% - 1.25px),
+      #0000 100%
+    ),
+    conic-gradient(
+      #000 140deg,
+      #0000 140.5deg,
+      #0000 220deg,
+      #000 220.5deg,
+      #000 0deg
+    )/*,
+    repeating-conic-gradient(#0000, #0000 16deg 16.5deg, #000 17deg 17deg, #000 17.5deg 18deg)*/;
+
+  --_y: calc(280.5deg * var(--fraction));
+
+  background-image:
+    conic-gradient(
+      from -140deg,
+      var(--knob-fill-color) calc(var(--_y) - 0.5deg),
+      var(--knob-empty-color) var(--_y)
+    );
+}
+
+ui-knob[centerdetent]:not([negative]) .ui-knob__ring {
+  --_y: calc((280.5deg * var(--fraction)) - 140deg);
+
+  background-image:
+    conic-gradient(
+      from 0deg,
+      var(--knob-fill-color) calc(var(--_y) - 0.5deg),
+      var(--knob-empty-color) var(--_y)
+    );
+}
+
+ui-knob[centerdetent][negative] .ui-knob__ring {
+  --_y: calc(280.5deg * var(--fraction));
+
+  background-image:
+    conic-gradient(
+      from -140deg,
+      var(--knob-empty-color) calc(var(--_y) - 0.5deg),
+      var(--knob-fill-color) var(--_y),
+      var(--knob-fill-color) 140deg,
+      var(--knob-empty-color) 140.5deg
+    );
+}
+
+/* ui-knob[centerdetent] .ui-knob__center {
+  position: absolute;
+  left: round(down, 50%, 1px);
+  translate: round(up, -50%, 1px) calc(-50% - 1px);
+
+  --size: max(9px, 10%);
+
+  width: var(--size);
+  height: var(--size);
+  clip-path: polygon(50% 50%, 0 0, 100% 0);
+  background: var(--knob__center-color, var(--knob__indicator-color, currentcolor));
+} */
+
+/*  */
+
+.ui-knob__cap {
+  inset: 0;
+  transform: rotate(calc(-140deg + (280deg * var(--fraction))));
+  border-radius: 9999px;
+  /* will-change: transform; */
+}
+
+.ui-knob__indicator {
+  position: absolute;
+  background: var(--knob__indicator-color, currentcolor);
+
+  --w: max(1px, var(--knob__indicator-width, 7.5%));
+  --w2: calc(var(--w) / 2);
+
+  left: 50%;
+  width: var(--w);
+
+  --_top: calc(50% - var(--knob__indicator-offset-start) + var(--w2));
+  --_height: calc(50% - var(--knob__indicator-offset-start) - var(--knob__indicator-offset-end) + var(--w2) - 1px);
+
+  --top: var(--_top);
+  --height: var(--_height);
+
+  top: var(--top);
+  height: var(--height);
+
+  @supports (width: round(down, var(--size), 1px)) {
+    width: round(up, var(--w), 1px);
+    --height: round(down, var(--_height), 1px);
+    --top: round(down, var(--_top), 1px);
+  }
+
+  transform: translate(-50%, -100%);
+  border-radius: var(--knob__indicator-bdr, 9999px);
+}
