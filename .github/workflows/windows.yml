@@ -34,10 +34,14 @@ jobs:
           path: dist/*.exe
           retention-days: 30
 
-      - name: Release EXE (on tag push)
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Release EXE
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: dist/*.exe
+          tag_name: latest
+          name: "Latest Pre-release Build"
+          draft: false
+          prerelease: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

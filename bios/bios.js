@@ -3,6 +3,7 @@
 import { trap } from "../42/api/trap.js?original"
 
 const VERSION = "3.1.3"
+const base = location.pathname.endsWith('/') ? location.pathname : location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1);
 
 function removeBoot() {
   document.querySelector("output#boot")?.remove()
@@ -46,7 +47,7 @@ bios.handleError = async () => {
     "../42/lib/browser/resetAllData.js?original"
   )
   await resetAllData()
-  location.href = "/"
+  location.href = base
 }
 
 bios.traceHeader = () => {
@@ -121,7 +122,7 @@ if (window.NO_DYNAMIC_MODULES !== true) {
 
   if (unregistered) {
     isReloaded = false
-    const path = reset ? "/?reset-data" : "/"
+    const path = reset ? (base + "?reset-data") : base
     window.history.replaceState({}, "", path)
   } else if (reset) {
     isReloaded = false
@@ -130,7 +131,7 @@ if (window.NO_DYNAMIC_MODULES !== true) {
     )
     const [registrations] = await resetAllData()
     for (const [ok, reg] of registrations) {
-      if (ok && reg.active) location.href = "/?reset-data&unregistered"
+      if (ok && reg.active) location.href = base + "?reset-data&unregistered"
     }
   }
 
