@@ -1,0 +1,9 @@
+{
+  name: "Dangerous",
+
+  width: 480,
+  height: 480,
+  inset: true,
+
+  document: "./index.html",
+}

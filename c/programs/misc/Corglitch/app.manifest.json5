@@ -1,0 +1,7 @@
+{
+  name: "Corglitch",
+  command: "glitch",
+  categories: ["Amusement", "Malware"],
+
+  module: "./Corglitch.js",
+}
