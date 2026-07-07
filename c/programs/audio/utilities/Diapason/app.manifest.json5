@@ -1,0 +1,7 @@
+{
+  name: "Diapason",
+  command: "diapason",
+  categories: ["Audio", "Music", "Tuner"],
+
+  module: "./Diapason.js",
+}

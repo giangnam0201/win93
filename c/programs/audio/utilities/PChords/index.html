@@ -1,0 +1,172 @@
+<!doctype html>
+<meta charset="UTF-8" />
+<title>PChords</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/style.css" />
+<link rel="stylesheet" href="./style.css" />
+<script src="/42/core.js" data-options="{autoResume:false}"></script>
+
+<div class="rows fit gap-xxs">
+  <div class="chords cols shrink gap-xxs">
+    <div class="notes grid-4 shrink scroll-x-auto inset">
+      <button aria-pressed="true"><span>C</span></button>
+      <button><span>C#</span></button>
+      <button><span>D</span></button>
+      <button><span>D#</span></button>
+      <button><span>E</span></button>
+      <button><span>F</span></button>
+      <button><span>F#</span></button>
+      <button><span>G</span></button>
+      <button><span>G#</span></button>
+      <button><span>A</span></button>
+      <button><span>A#</span></button>
+      <button><span>B</span></button>
+    </div>
+    <div class="types grid-8 scroll-x-auto inset">
+      <button aria-pressed="true"><span>Ma</span></button>
+      <button><span>Ma7</span></button>
+      <button><span>m</span></button>
+      <button><span>m7</span></button>
+      <button><span>7</span></button>
+      <button><span>m7(b5)</span></button>
+      <button><span>dim</span></button>
+      <button><span>aug</span></button>
+      <button><span>sus2</span></button>
+      <button><span>sus4</span></button>
+      <button><span>9</span></button>
+      <button><span>m9</span></button>
+      <button><span>6</span></button>
+      <button><span>m6</span></button>
+      <button><span>maj9</span></button>
+      <button><span>7sus4</span></button>
+      <button><span>11</span></button>
+      <button><span>13</span></button>
+      <button><span>maj7(b5)</span></button>
+      <button><span>mMaj7</span></button>
+      <button><span>C6/9</span></button>
+      <button><span>maj7</span></button>
+      <button><span>7(b9)</span></button>
+      <button><span>m7(b9)</span></button>
+    </div>
+  </div>
+
+  <div class="cols shrink gap-xxs">
+    <div id="chord" class="inset screen font-mono shrink">CMa</div>
+    <div id="note" class="inset screen font-mono shrink">---</div>
+
+    <select name="waveform" id="waveform" class="shrink">
+      <option value="sawtooth" selected>Sawtooth</option>
+      <option value="square">Square</option>
+      <option value="triangle">Triangle</option>
+      <option value="sine">Sine</option>
+      <option value="cosinus">Cosinus</option>
+      <option value="harmonic-rich">Harmonic Rich</option>
+      <option value="soft-bell">Soft Bell</option>
+      <option value="deep-bass">Deep Bass</option>
+      <option value="hollow">hollow</option>
+      <option value="buzz">buzz</option>
+      <option value="soft-string">soft-string</option>
+      <option value="robotic">robotic</option>
+      <option value="water-drop">water-drop</option>
+      <option value="wind">wind</option>
+      <option value="weird">Weird</option>
+      <option value="no-sound">No Sound</option>
+    </select>
+
+    <select id="scaleSelect" class="shrink" title="Scale display">
+      <option value="none" selected>No Scale</option>
+      <option value="Chromatic">Chromatic</option>
+      <option value="Ionian">Ionian</option>
+      <option value="Dorian">Dorian</option>
+      <option value="Phrygian">Phrygian</option>
+      <option value="Lydian">Lydian</option>
+      <option value="Mixolydian">Mixolydian</option>
+      <option value="Aeolian">Aeolian</option>
+      <option value="Locrian">Locrian</option>
+      <option value="Major Blues">Major Blues</option>
+      <option value="Minor Blues">Minor Blues</option>
+      <option value="Diminish">Diminish</option>
+      <option value="Combination Diminish">Combination Diminish</option>
+      <option value="Major Pentatonic">Major Pentatonic</option>
+      <option value="Minor Pentatonic">Minor Pentatonic</option>
+      <option value="Raga Bhairav">Raga Bhairav</option>
+      <option value="Raga Gamanasrama">Raga Gamanasrama</option>
+      <option value="Raga Todi">Raga Todi</option>
+      <option value="Spanish Scale">Spanish Scale</option>
+      <option value="Gypsy Scale">Gypsy Scale</option>
+      <option value="Arabian Scale">Arabian Scale</option>
+      <option value="Egyptian Scale">Egyptian Scale</option>
+      <option value="Hawaiian Scale">Hawaiian Scale</option>
+      <option value="Bali Island Pelog">Bali Island Pelog</option>
+      <option value="Japanese Miyakobushi">Japanese Miyakobushi</option>
+      <option value="Ryukyu Scale">Ryukyu Scale</option>
+      <option value="Wholetone">Wholetone</option>
+      <option value="minor 3rd Interval">minor 3rd Interval</option>
+      <option value="3rd Interval">3rd Interval</option>
+      <option value="4th Interval">4th Interval</option>
+      <option value="5th Interval">5th Interval</option>
+      <option value="Octave Interval">Octave Interval</option>
+    </select>
+
+    <button id="midiAccessButton">
+      <ui-picto value="piano"></ui-picto>MIDI
+    </button>
+
+    <select title="Midi Outputs" id="midiouts">
+      <option value="noMidiout" selected>No Midi Out</option>
+    </select>
+
+    <select title="Midi Channel" id="midiChannel" class="shrink">
+      <option value="1" selected>Ch. 1</option>
+      <option value="2">Ch. 2</option>
+      <option value="3">Ch. 3</option>
+      <option value="4">Ch. 4</option>
+      <option value="5">Ch. 5</option>
+      <option value="6">Ch. 6</option>
+      <option value="7">Ch. 7</option>
+      <option value="8">Ch. 8</option>
+      <option value="9">Ch. 9</option>
+      <option value="10">Ch. 10</option>
+      <option value="11">Ch. 11</option>
+      <option value="12">Ch. 12</option>
+      <option value="13">Ch. 13</option>
+      <option value="14">Ch. 14</option>
+      <option value="15">Ch. 15</option>
+      <option value="16">Ch. 16</option>
+    </select>
+  </div>
+
+  <div class="piano inset ground">
+    <ul class="keys">
+      <li class="key white" id="C" title="C4"><span>C4</span></li>
+      <li class="key black" id="C-sharp" title="C#4"><span>C#4</span></li>
+      <li class="key white" id="D" title="D4"><span>D4</span></li>
+      <li class="key black" id="D-sharp" title="D#4"><span>D#4</span></li>
+      <li class="key white" id="E" title="E4"><span>E4</span></li>
+      <li class="key white" id="F" title="F4"><span>F4</span></li>
+      <li class="key black" id="F-sharp" title="F#4"><span>F#4</span></li>
+      <li class="key white" id="G" title="G4"><span>G4</span></li>
+      <li class="key black" id="G-sharp" title="G#4"><span>G#4</span></li>
+      <li class="key white" id="A" title="A4"><span>A4</span></li>
+      <li class="key black" id="A-sharp" title="A#4"><span>A#4</span></li>
+      <li class="key white" id="B" title="B4"><span>B4</span></li>
+
+      <li class="key white" id="C2" title="C5"><span>C5</span></li>
+      <li class="key black" id="C-sharp2" title="C#5"><span>C#5</span></li>
+      <li class="key white" id="D2" title="D5"><span>D5</span></li>
+      <li class="key black" id="D-sharp2" title="D#5"><span>D#5</span></li>
+      <li class="key white" id="E2" title="E5"><span>E5</span></li>
+      <li class="key white" id="F2" title="F5"><span>F5</span></li>
+      <li class="key black" id="F-sharp2" title="F#5"><span>F#5</span></li>
+      <li class="key white" id="G2" title="G5"><span>G5</span></li>
+      <li class="key black" id="G-sharp2" title="G#5"><span>G#5</span></li>
+      <li class="key white" id="A2" title="A5"><span>A5</span></li>
+      <li class="key black" id="A-sharp2" title="A#5"><span>A#5</span></li>
+      <li class="key white" id="B2" title="B5"><span>B5</span></li>
+    </ul>
+  </div>
+</div>
+
+<script type="module" src="./script.js"></script>

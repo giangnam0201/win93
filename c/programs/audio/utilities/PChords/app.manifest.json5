@@ -1,0 +1,10 @@
+{
+  name: "PChords",
+  command: "pchords",
+
+  width: 515,
+  height: 200,
+
+  about: "./README.md",
+  document: "./index.html",
+}
