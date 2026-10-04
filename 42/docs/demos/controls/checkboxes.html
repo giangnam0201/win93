@@ -1,0 +1,74 @@
+<div class="demo | pa stack outset panel">
+  <fieldset>
+    <legend>Checkboxes</legend>
+
+    <input id="cb-normal" type="checkbox" /><label for="cb-normal"
+      >Normal</label
+    >
+
+    <input checked id="cb-checked" type="checkbox" /><label for="cb-checked"
+      >Checked</label
+    >
+
+    <input id="cb-idtm" type="checkbox" /><label for="cb-idtm"
+      >Indeterminate</label
+    >
+  </fieldset>
+
+  <fieldset>
+    <legend>Radio</legend>
+
+    <input id="ra-normal" name="ra-1" type="radio" /><label for="ra-normal"
+      >Normal</label
+    >
+    <input checked id="ra-checked" name="ra-1" type="radio" /><label
+      for="ra-checked"
+      >Checked</label
+    >
+  </fieldset>
+
+  <fieldset>
+    <legend>Checkboxes (button)</legend>
+
+    <input id="btn-cb-normal" type="checkbox" /><label
+      class="button"
+      for="btn-cb-normal"
+      ><span>Normal</span></label
+    >
+
+    <input checked id="btn-cb-checked" type="checkbox" /><label
+      class="button"
+      for="btn-cb-checked"
+      ><span>Checked</span></label
+    >
+
+    <input id="btn-cb-idtm" type="checkbox" /><label
+      class="button"
+      for="btn-cb-idtm"
+      ><span>Indeterminate</span></label
+    >
+  </fieldset>
+
+  <fieldset>
+    <legend>Radio (button)</legend>
+
+    <input id="btn-ra-normal" name="btn-ra-1" type="radio" /><label
+      class="button"
+      for="btn-ra-normal"
+      ><span>Normal</span></label
+    >
+    <input checked id="btn-ra-checked" name="btn-ra-1" type="radio" /><label
+      class="button"
+      for="btn-ra-checked"
+      ><span>Checked</span></label
+    >
+  </fieldset>
+</div>
+
+<script>
+  for (const item of document.querySelectorAll(
+    "[id^='cb-idtm'],[id^='btn-cb-idtm']",
+  )) {
+    item.indeterminate = true
+  }
+</script>

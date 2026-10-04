@@ -1,0 +1,119 @@
+.demos {
+  --cell: 300px;
+  > div > * + * { margin-block-start: var(--stack, var(--gap)); }
+}
+
+@layer theme {
+  :where(.demo) {
+    border: var(--px) solid var(--main-bdc, currentcolor);
+    background: color-mix(in srgb, var(--screen-bg), #0000 70%);
+    max-block-size: 60rem;
+
+    &.demo-document {
+      max-block-size: none;
+      block-size: 60rem;
+    }
+
+    resize: both;
+    overflow: auto;
+    position: relative;
+
+    &.demo-layout {
+      &#demo-layout :not([class]),
+      &.rows :not([class]),
+      &:not(#demo-layout) > .cols > *,
+      &.cols > * {
+        padding: var(--unit-xxxs) var(--unit-xs);
+        background-image:
+          linear-gradient(
+            150deg,
+            var(--highlight-bg, var(--bg)),
+            color-mix(
+              in srgb,
+              var(--highlight-bg, var(--bg)),
+              var(--highlight-fg, var(--fg)) 30%
+            )
+          );
+        color: var(--highlight-fg, var(--fg));
+        text-shadow: none;
+        outline: 1px solid var(--bdc, #000);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    &[style] {
+      z-index: calc(infinity);
+    }
+  }
+}
+
+.code:has(+ .demo) {
+  color: var(--ansi-blackBright);
+  overflow: hidden auto;
+
+  padding: 0;
+  max-block-size: 0;
+
+  transition: padding 0.2s, max-block-size 0.2s;
+
+  em {
+    font-style: normal;
+    color: var(--ansi-white);
+    opacity: 0.7;
+  }
+
+  strong {
+    font-weight: normal;
+    color: var(--ansi-cyanBright);
+  }
+
+  + .demo {
+    margin-block-start: 0;
+  }
+
+  .show-code & {
+    padding: var(--unit) !important;
+    max-block-size: 171px !important;
+  }
+}
+
+#demo-pictos {
+  padding: var(--unit);
+
+  display: flex;
+
+  > div {
+    /* margin: auto;  */
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    > div {
+      display: flex;
+      gap: 3px;
+    }
+  }
+
+  /* ui-picto {
+    outline: 1px solid color-mix(in srgb, currentcolor, transparent 70%);
+
+    &:hover {
+      color: var(--screen-bg);
+      background-color: var(--screen-fg);
+      z-index: calc(infinity);
+    }
+  } */
+
+  /* ui-picto {
+    outline: 1px solid var(--screen-bg);
+    color: var(--screen-bg);
+    background-color: var(--screen-fg);
+
+    &:hover {
+      color: var(--screen-fg);
+      background-color: var(--screen-bg);
+    }
+  } */
+}

@@ -1,0 +1,70 @@
+/* MARK: ui-piano
+  ------------------ */
+@layer components {
+  ui-piano {
+    flex: 1 0 auto;
+    display: block;
+    position: relative;
+    min-inline-size: 0;
+    min-block-size: var(--piano-min-height, 60px);
+    overflow: auto hidden;
+    user-select: none;
+    touch-action: none;
+    cursor: default;
+  }
+
+  ui-piano:focus {
+    outline: none;
+  }
+
+  ui-piano[viewfrom][viewto] {
+    flex-grow: 0;
+    inline-size: calc(var(--piano-view-key-count) * var(--piano-key-min-width, 17px));
+  }
+
+  .ui-piano__keys {
+    position: relative;
+    block-size: 100%;
+    min-block-size: inherit;
+    min-inline-size: calc(var(--piano-key-count) * var(--piano-key-min-width, 17px));
+  }
+
+  .ui-piano__key {
+    position: absolute;
+    inset-block-start: 0;
+    --piano-key-start: round(nearest, 100% * var(--piano-position) / var(--piano-key-count), 1px);
+    --piano-key-end: round(nearest, 100% * (var(--piano-position) + 1) / var(--piano-key-count), 1px);
+
+    inset-inline-start: var(--piano-key-start);
+    inline-size: calc(var(--piano-key-end) - var(--piano-key-start));
+    block-size: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--piano-border-color, #000);
+    border-inline-end: 0;
+    border-radius: 0 0 3px 3px;
+    background: var(--piano-white-color, #fff);
+  }
+
+  .ui-piano__key:last-child {
+    border-inline-end: 1px solid var(--piano-border-color, #000);
+  }
+
+  .ui-piano__key--black {
+    border-inline-end: 1px solid var(--piano-border-color, #000);
+    z-index: 1;
+    --piano-black-width: round(down, 50% / var(--piano-key-count), 1px);
+
+    inset-inline-start: round(nearest, var(--piano-key-start) - var(--piano-black-width) / 2, 1px);
+    inline-size: var(--piano-black-width);
+    block-size: 66.6667%;
+    background: var(--piano-black-color, #000);
+  }
+
+  .ui-piano__key.marked {
+    background: var(--piano-mark-color, var(--piano-active-color, var(--accent-color)));
+  }
+
+  .ui-piano__key.active {
+    background: var(--piano-active-color, var(--accent-color));
+  }
+}

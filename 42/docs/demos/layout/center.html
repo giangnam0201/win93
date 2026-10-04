@@ -1,0 +1,31 @@
+<div id="demo-center" class="demo demo-layout | ratio | center-content">
+  <script type="module">
+    {
+      const frag = document.createDocumentFragment()
+
+      for (let i = 1; i <= 10; i++) {
+        const div = document.createElement("div")
+        div.append(i)
+        frag.append(div)
+      }
+
+      document.querySelector("#demo-center").append(frag)
+    }
+  </script>
+</div>
+
+<div id="demo-center-safe" class="demo demo-layout | ratio | center-content">
+  <script type="module">
+    {
+      const frag = document.createDocumentFragment()
+
+      for (let i = 1; i <= 30; i++) {
+        const div = document.createElement("div")
+        div.append(i)
+        frag.append(div)
+      }
+
+      document.querySelector("#demo-center-safe").append(frag)
+    }
+  </script>
+</div>

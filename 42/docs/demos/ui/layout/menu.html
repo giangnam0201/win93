@@ -1,0 +1,94 @@
+<div class="demo demo-layout | pa" id="demo-menu" style="height: 300px">
+  <script type="module">
+    import "/42/ui/layout/menu.js"
+    import { gui } from "/42/api/gui.js"
+    gui("#demo-menu", [
+      {
+        tag: "ui-menu",
+        // displayPicto: false,
+        content: [
+          { label: "Item 1" },
+          "---",
+          {
+            // label: "Item with a very long name that goes on forever and ever",
+            label: "Item 2",
+            picto: "save",
+            shortcut: "Ctrl+S",
+          },
+          { label: "Item 2", picto: "folder", disabled: true },
+          "---",
+          { label: "Item checkbox", tag: "checkbox", value: true },
+          {
+            label: "Item checkbox",
+            // label:
+            //   "Checkbox subitem with a very long name that goes on forever and ever",
+            tag: "checkbox",
+            value: true,
+            disabled: true,
+          },
+          "---",
+          {
+            label: "Item radio 1",
+            tag: "radio",
+            name: "rrr",
+            checked: true,
+            disabled: true,
+          },
+          { label: "Item radio 2", tag: "radio", name: "rrr" },
+          { label: "Item radio 3", tag: "radio", name: "rrr" },
+          {
+            label: "Item 3",
+            content: [
+              { label: "Subitem 3.1", action: () => console.log(3.1) },
+              { label: "Subitem 3.2", action: () => console.log(3.2) },
+              {
+                label: "Subitem with a long name",
+                shortcut: "Ctrl+Shift+P",
+                action: () => console.log(3.3),
+              },
+            ],
+          },
+          {
+            label: "Item 4",
+            content: [
+              { label: "Subitem 4.1", action: () => console.log(4.1) },
+              {
+                label: "Subitem 4.2",
+                content: [
+                  {
+                    label: "Subitem 4.2 1",
+                    action: () => console.log(4.2, 1),
+                  },
+                  {
+                    label: "Subitem 4.2 2",
+                    action: () => console.log(4.2, 2),
+                  },
+                ],
+              },
+              {
+                label:
+                  "Subitem with a very long name that goes on forever and ever",
+                shortcut: "Ctrl+Shift+P",
+                action: () => console.log(4.3),
+              },
+              {
+                label:
+                  "Checkbox subitem with a very long name that goes on forever and ever",
+                tag: "checkbox",
+                value: true,
+              },
+            ],
+          },
+          {
+            label: "Item 6",
+            disabled: true,
+            content: [
+              { label: "Subitem 6.1", action: () => console.log(6.1) },
+              { label: "Subitem 6.2", action: () => console.log(6.2) },
+            ],
+          },
+        ],
+      },
+    ])
+  </script>
+</div>
