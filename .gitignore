@@ -5,6 +5,7 @@ __pycache__/
 *.restore
 file-index.json
 mirror-report.json
+release-audit.json
 # The large collection belongs in release archives, not Git history.
 c/
 42.tar.gz
