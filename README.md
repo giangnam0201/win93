@@ -20,6 +20,8 @@ The complete media/ROM collection remains available in release archives;
 it is larger than the public Pages site can hold.
 
 Run `node tools/test-page-assets.mjs` to verify the compressed asset loader.
+Run `node tools/test-file-index.mjs` to verify recovery of a partial startup
+index without losing saved file descriptors.
 
 ## Store the full collection on GitHub without filling the PC
 

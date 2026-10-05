@@ -37,7 +37,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify compressed asset loader
-        run: node tools/test-page-assets.mjs
+        run: |
+          node tools/test-page-assets.mjs
+          node tools/test-file-index.mjs
       - name: Restore verified app assets using public release links
         run: python tools/build_pages.py
       - name: Publish generated site to its Pages branch
