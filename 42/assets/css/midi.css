@@ -1,0 +1,62 @@
+/* MARK: ui-midi */
+
+@layer ui {
+  ui-midi {
+    display: inline-grid;
+    flex: 0 0 auto;
+    max-width: 100%;
+
+    > button {
+      display: flex;
+      align-items: center;
+      gap: var(--unit-xs);
+      max-inline-size: 100%;
+    }
+
+    &[small] .ui-midi__label { display: none; }
+    &[small] > button { min-inline-size: min-content; }
+  }
+
+  .ui-midi__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ui-midi__indicator {
+    display: inline-block;
+    inline-size: 1.5ch;
+    block-size: 1.5ch;
+    flex: 0 0 auto;
+    padding: 0;
+    background: var(--ui-midi-indicator-bg, var(--document-bg));
+
+    border-width: var(--ui-midi-indicator-bdw, var(--inset-shallow-bdw));
+    border-style: var(--ui-midi-indicator-bds, var(--inset-shallow-bds));
+    border-color: var(--ui-midi-indicator-bdc, var(--inset-shallow-bdc));
+    border-image: var(--ui-midi-indicator-bdi, var(--inset-shallow-bdi));
+    border-radius: var(--ui-midi-indicator-bdr, var(--inset-shallow-bdr));
+    box-shadow: var(--ui-midi-indicator-bsh, var(--inset-shallow-bsh));
+
+    &.active { background: var(--ui-midi-active-color, var(--accent-color)) !important; }
+  }
+
+  .ui-midi__menu {
+    min-inline-size: 180px;
+    max-inline-size: min(360px, calc(100vw - 8px));
+  }
+
+  .ui-midi__menu .ui-menu__menuitem > span:last-child {
+    display: flex;
+    align-items: center;
+    gap: var(--unit-xs, 6px);
+    inline-size: 100%;
+  }
+
+  .ui-midi__menu-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+}

@@ -1,0 +1,66 @@
+<div class="demo pa outset panel" id="demo-spacing">
+  <div>
+    <div><samp></samp><span>xxxs</span></div>
+    <div><samp></samp><span>xxs</span></div>
+    <div><samp></samp><span>xs</span></div>
+    <div><samp></samp><span>sm</span></div>
+    <div><samp></samp><span>md</span></div>
+    <div><samp></samp><span>lg</span></div>
+    <div><samp></samp><span>xl</span></div>
+    <div><samp></samp><span>xxl</span></div>
+    <div><samp></samp><span>xxxl</span></div>
+  </div>
+  <style>
+    #demo-spacing > div {
+      /* writing-mode: vertical-lr; */
+      display: grid;
+      gap: var(--unit-xs);
+
+      div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        line-height: var(--unit);
+        align-items: center;
+        gap: var(--unit-xs);
+      }
+
+      div span {
+        margin-block-start: -0.2rem;
+      }
+
+      div samp {
+        background-color: var(--main-accent-bg);
+        display: inline-block;
+        margin-inline-start: auto;
+        block-size: var(--unit);
+      }
+      div:nth-child(1) samp {
+        inline-size: var(--unit-xxxs);
+      }
+      div:nth-child(2) samp {
+        inline-size: var(--unit-xxs);
+      }
+      div:nth-child(3) samp {
+        inline-size: var(--unit-xs);
+      }
+      div:nth-child(4) samp {
+        inline-size: var(--unit-sm);
+      }
+      div:nth-child(5) samp {
+        inline-size: var(--unit-md);
+      }
+      div:nth-child(6) samp {
+        inline-size: var(--unit-lg);
+      }
+      div:nth-child(7) samp {
+        inline-size: var(--unit-xl);
+      }
+      div:nth-child(8) samp {
+        inline-size: var(--unit-xxl);
+      }
+      div:nth-child(9) samp {
+        inline-size: var(--unit-xxxl);
+      }
+    }
+  </style>
+</div>
