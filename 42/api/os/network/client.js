@@ -69,6 +69,25 @@ class Client {
       })
     }
 
+    const pendingWorker = this.registration?.installing ?? this.registration?.waiting
+    if (pendingWorker && pendingWorker.state !== "activated") {
+      await new Promise((resolve, reject) => {
+        const done = () => {
+          if (pendingWorker.state === "activated" || pendingWorker.state === "redundant") {
+            clearTimeout(timer)
+            pendingWorker.removeEventListener("statechange", done)
+            pendingWorker.state === "activated" ? resolve() : reject(new Error("Service worker installation failed"))
+          }
+        }
+        const timer = setTimeout(() => {
+          pendingWorker.removeEventListener("statechange", done)
+          reject(new Error("Service worker activation timed out"))
+        }, 15000)
+        pendingWorker.addEventListener("statechange", done)
+        done()
+      })
+    }
+
     if (!this.controller) {
       await new Promise((resolve) => {
         const timer = setTimeout(() => {
