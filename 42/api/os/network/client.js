@@ -55,7 +55,8 @@ class Client {
         type: "module",
         updateViaCache: "none",
       })
-    } catch {
+    } catch (error) {
+      console.warn("Module service worker registration failed", error)
       this.registration = await serviceWorker.register(bundleURL, {
         updateViaCache: "none",
       })
@@ -112,6 +113,7 @@ class Client {
           console.debug(t(), `📡 service worker state: (${sw.state})`)
         }
         this.bus = ipc.bus(this.controller)
+        console.debug(t(), "📡 worker script", this.controller.scriptURL)
         this.bus.emit("42_SW_HANDSHAKE")
       }
     }
