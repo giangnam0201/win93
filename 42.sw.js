@@ -71,7 +71,9 @@ self.addEventListener("install", () => {
 self.addEventListener("activate", (e) => {
   d("🛰️ activate")
   state = "activate"
-  e.waitUntil(self.clients.claim())
+  // Clear only downloaded program files on worker upgrades; user data stays
+  // in its virtual filesystem databases. Old modules must not mask new fixes.
+  e.waitUntil(caches.delete("fetched").then(() => self.clients.claim()))
 })
 
 const REQUEST_INIT_KEYS = [

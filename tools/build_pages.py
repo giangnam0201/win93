@@ -8,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tempfile
+import time
 import zipfile
 from mirror import ROOT, indexed_paths
 from restore import is_core
@@ -16,7 +17,17 @@ REPO = os.environ.get('GITHUB_REPOSITORY', 'giangnam0201/win93')
 LIMIT = 950 * 1024**2
 
 def gh(*args):
-    return subprocess.run(['gh', *args, '--repo', REPO], check=True, capture_output=True, text=True).stdout
+    arguments = ['gh', *args, '--repo', REPO]
+    if args[:2] == ('release', 'download'):
+        arguments.append('--clobber')
+    for attempt in range(5):
+        result = subprocess.run(arguments, capture_output=True, text=True)
+        if result.returncode == 0:
+            return result.stdout
+        print(result.stderr, flush=True)
+        if attempt == 4:
+            result.check_returncode()
+        time.sleep(2 ** (attempt + 1))
 
 def main():
     output = ROOT / '_site'

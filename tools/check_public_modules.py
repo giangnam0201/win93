@@ -16,7 +16,7 @@ def read(path):
 
 def main():
     manifest = json.loads(read('/asset-map.json'))
-    seen, pending, failures = set(), {'/desktop.js'}, {}
+    seen, pending, failures = set(), {'/desktop.js', '/42.sw.js'}, {}
     def inspect(path):
         try:
             if path in manifest:
