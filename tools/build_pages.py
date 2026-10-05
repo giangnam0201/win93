@@ -44,6 +44,13 @@ def main():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, destination)
     (output / '.nojekyll').touch()
+    # Every deployment must activate a new worker so downloaded modules cannot
+    # hide updated startup code. Activation preserves the virtual filesystem.
+    source_revision = os.environ.get('GITHUB_SHA')
+    if source_revision:
+        for name in ('42.sw.js', '42.sw.bundle.js'):
+            worker = output / name
+            worker.write_text(f'// Mirror build {source_revision}\n' + worker.read_text(encoding='utf-8'), encoding='utf-8')
     subprocess.run(['node', str(ROOT / 'tools/inspect-index.mjs')], check=True, stdout=subprocess.DEVNULL)
     index = json.loads((ROOT / 'file-index.json').read_text())
     required = {p for p in indexed_paths(index) if is_core(p)}

@@ -8,7 +8,7 @@ import urllib.request
 
 BASE = 'https://win93.namdev.online'
 HEADERS = {'User-Agent': 'Mozilla/5.0'}
-IMPORTS = re.compile(r'(?m)^\s*(?:import|export)\s+(?:[^;]*?\bfrom\s*)?["\x27]([^"\x27]+)["\x27]')
+IMPORTS = re.compile(r'(?m)^\s*(?:import|export)\s*(?:[^;]*?\bfrom\s*)?["\x27]([^"\x27]+)["\x27]')
 
 def read(path):
     with urllib.request.urlopen(urllib.request.Request(BASE + path, headers=HEADERS), timeout=30) as response:
@@ -16,7 +16,7 @@ def read(path):
 
 def main():
     manifest = json.loads(read('/asset-map.json'))
-    seen, pending, failures = set(), {'/desktop.js', '/42.sw.js'}, {}
+    seen, pending, failures = set(), {'/desktop.js', '/42.sw.js', '/c/programs/editors/CodeMirror/CodeMirror.js'}, {}
     def inspect(path):
         try:
             if path in manifest:
