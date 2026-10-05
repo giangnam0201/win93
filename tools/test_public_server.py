@@ -23,7 +23,8 @@ class TestHandler(Handler):
                 return None
         return super().send_head()
 
-httpd = ThreadingHTTPServer(('127.0.0.1', 8097), TestHandler)
+port = int(sys.argv[1]) if len(sys.argv) > 1 else 8097
+httpd = ThreadingHTTPServer(('127.0.0.1', port), TestHandler)
 httpd.offline = False
-print('Public gzip-asset validation: http://localhost:8097/diagnostics.html', flush=True)
+print(f'Public gzip-asset validation: http://localhost:{port}/diagnostics.html', flush=True)
 httpd.serve_forever()
