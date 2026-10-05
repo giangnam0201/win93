@@ -19,6 +19,9 @@ Large assets are stored in Releases rather than Git history. Every archive has
 a SHA-256 manifest; each shard publishes a report of unavailable upstream files.
 Rerunning resumes batches with completion receipts. A failed job is not a
 complete mirror; inspect its `shard-report.json` and rerun after resolving errors.
+Run `python tools/audit_releases.py` to check that every indexed asset belongs
+to a completed uploaded batch. This produces `release-audit.json` and exits
+with an error while any files or release archives are still missing.
 
 ## Restore assets for offline use
 

@@ -15,7 +15,13 @@ import zipfile
 from mirror import indexed_paths, ORIGIN, ROOT
 
 def gh(*args, capture=False):
-    return subprocess.run(['gh', *args], check=True, text=True, stdout=subprocess.PIPE if capture else None).stdout
+    for attempt in range(3):
+        try:
+            return subprocess.run(['gh', *args], check=True, text=True, stdout=subprocess.PIPE if capture else None).stdout
+        except subprocess.CalledProcessError:
+            if attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
