@@ -38,7 +38,8 @@ export class Storable extends Locator {
     await this.store
 
     const prev = await this.store.get("value")
-    if (prev) this.value = prev
+    if (prev !== undefined && prev !== null) this.value = prev
+    else await this.populate()
 
     this.ready.resolve()
   }

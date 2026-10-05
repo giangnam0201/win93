@@ -9,10 +9,18 @@ function log(value) { lines.push(value); output.textContent = lines.join('\n'); 
 log(`Automated browser: ${navigator.webdriver}`);
 log(`Current worker: ${navigator.serviceWorker.controller?.scriptURL ?? 'none'}`);
 try {
-  const registration = await navigator.serviceWorker.register('/42.sw.js', {type:'module', updateViaCache:'none'});
+  const classic = new URLSearchParams(location.search).has('classic');
+  const registration = await navigator.serviceWorker.register(classic ? '/42.sw.bundle.js' : '/42.sw.js', {type:classic ? 'classic' : 'module', updateViaCache:'none'});
   await navigator.serviceWorker.ready;
-  log(`Module worker: ${registration.active?.scriptURL}, ${registration.active?.state}`);
-} catch(error) { log(`Module worker registration error: ${error.stack}`); }
+  log(`Worker: ${registration.active?.scriptURL}, ${registration.active?.state}`);
+} catch(error) {
+  log(`Module worker registration error: ${error.stack}`);
+  try {
+    const registration = await navigator.serviceWorker.register('/42.sw.bundle.js', {updateViaCache:'none'});
+    await navigator.serviceWorker.ready;
+    log(`Classic worker: ${registration.active?.scriptURL}, ${registration.active?.state}`);
+  } catch(error) { log(`Classic worker registration error: ${error.stack}`); }
+}
 for (const path of ['/asset-map.json', '/c/libs/animate-css/4.1/animate.js', '/c/libs/codemirror/6.39/lib/view.js']) {
   try {
     const response = await fetch(path, {cache:'reload'});
@@ -23,6 +31,11 @@ try {
   await import('/c/libs/codemirror/6.39/lib/view.js');
   log('CodeMirror module import: OK');
 } catch(error) { log(`CodeMirror module import: ${error.stack}`); }
+try {
+  const {fileIndex} = await import('/42/api/fileIndex.js');
+  log(`File index roots: ${Object.keys(fileIndex.value).join(', ')}`);
+  log(`Desktop indexed: ${fileIndex.isDir('/c/users/windows93/desktop/')}`);
+} catch(error) { log(`File index: ${error.stack}`); }
 for (const entry of performance.getEntriesByType('resource')) {
   if (entry.responseStatus >= 400) log(`Failed request: ${entry.name}, ${entry.responseStatus}`);
 }

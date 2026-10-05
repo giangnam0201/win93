@@ -62,6 +62,10 @@ ipc
   })
 
 // Immediate page control
+// An already active worker must also claim a hard-refreshed page before apps load.
+self.addEventListener("message", (e) => {
+  if (e.data?.type === "42_SW_CLAIM") e.waitUntil(self.clients.claim())
+})
 
 self.addEventListener("install", () => {
   d("🛰️ install")

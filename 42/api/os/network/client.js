@@ -51,13 +51,14 @@ class Client {
     }
 
     try {
-      this.registration = await serviceWorker.register(moduleURL, {
-        type: "module",
+      this.registration = await serviceWorker.register(options?.url ? moduleURL : bundleURL, {
+        type: options?.url ? "module" : "classic",
         updateViaCache: "none",
       })
     } catch (error) {
-      console.warn("Module service worker registration failed", error)
-      this.registration = await serviceWorker.register(bundleURL, {
+      console.warn("Service worker registration failed; trying alternate format", error)
+      this.registration = await serviceWorker.register(options?.url ? bundleURL : moduleURL, {
+        type: options?.url ? "classic" : "module",
         updateViaCache: "none",
       })
     }
@@ -69,8 +70,6 @@ class Client {
     }
 
     if (!this.controller) {
-      if (this.registration?.active) return // Hard refresh https://stackoverflow.com/a/62596701
-
       await new Promise((resolve) => {
         const timer = setTimeout(() => {
           serviceWorker.removeEventListener("controllerchange", handler)
@@ -84,6 +83,7 @@ class Client {
           }
         }
         serviceWorker.addEventListener("controllerchange", handler)
+        this.registration?.active?.postMessage({ type: "42_SW_CLAIM" })
       })
     }
   }

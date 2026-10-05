@@ -1746,7 +1746,8 @@
         async init() {
           await this.store;
           const prev = await this.store.get("value");
-          if (prev) this.value = prev;
+          if (prev !== void 0 && prev !== null) this.value = prev;
+          else await this.populate();
           this.ready.resolve();
         }
         #pending;
@@ -2860,6 +2861,7 @@
   var init_FileIndex = __esm({
     "42/api/fs/FileIndex.js"() {
       init_FileLocator();
+      init_merge();
       FS_DRIVER_MASKS = {
         0: "fetch",
         16: "memory",
@@ -2870,6 +2872,14 @@
       };
       FileIndex = class extends FileLocator {
         synced = false;
+        async init() {
+          await super.init();
+          if (this.store && this.config.populate && !this.isDir("/42/") && !this.isDir("/c/users/windows93/desktop/")) {
+            const defaults = await this.config.populate({ fresh: true });
+            this.value = merge(defaults, this.value);
+            await this.save();
+          }
+        }
         constructor(value, options) {
           if (fileIndex) {
             console.warn("FileIndex already initialized");
@@ -4890,6 +4900,9 @@
     } catch (err) {
       d(`\u{1F6F0}\uFE0F\u{1F4A5} 42_FILEINDEX_CHANGE error`, err);
     }
+  });
+  self2.addEventListener("message", (e) => {
+    if (e.data?.type === "42_SW_CLAIM") e.waitUntil(self2.clients.claim());
   });
   self2.addEventListener("install", () => {
     d("\u{1F6F0}\uFE0F install");
