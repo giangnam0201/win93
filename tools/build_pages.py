@@ -125,7 +125,7 @@ def main():
     total_bytes += (output / 'asset-map.json').stat().st_size
     if total_bytes > LIMIT:
         raise SystemExit(f'Compressed app bundle exceeds the Pages size budget: {total_bytes} bytes')
-    report = {'revision': revision, 'files': len(required), 'bytes': total_bytes, 'compressed': len(compressed)}
+    report = {'revision': revision, 'source': os.environ.get('GITHUB_SHA'), 'files': len(required), 'bytes': total_bytes, 'compressed': len(compressed)}
     (output / 'deployment.json').write_text(json.dumps(report, indent=2))
     print(f"Ready to publish {len(required)} app assets; {total_bytes / 1024**2:.1f} MiB", flush=True)
 
