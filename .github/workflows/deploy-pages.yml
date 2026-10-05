@@ -17,6 +17,7 @@ on:
 permissions:
   contents: write
   pages: write
+  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -24,6 +25,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -54,7 +58,10 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit -m "Publish WINDOWS93 app bundle from $GITHUB_SHA"
           git push origin HEAD:codex/pages-assets
-      - name: Request Pages build after publication
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python tools/request_pages_build.py
+      - name: Upload verified site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Deploy verified site
+        id: deployment
+        uses: actions/deploy-pages@v4
