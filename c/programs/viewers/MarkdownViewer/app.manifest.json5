@@ -1,0 +1,20 @@
+{
+  name: "MarkdownViewer",
+  command: "markdown",
+  categories: ["Utility", "Viewer"],
+
+  width: 400,
+  height: 500,
+
+  decode: {
+    types: [
+      {
+        accept: {
+          "text/markdown": [".md", ".markdown"],
+        },
+      },
+    ],
+  },
+
+  module: "./MarkdownViewer.js",
+}

@@ -1,0 +1,91 @@
+;-3
+
+[Theme]
+DisplayName=Windows 93
+
+[Control Panel\Colors]
+ActiveTitle=255 0 255
+GradientActiveTitle=0 255 255
+TitleText=255 255 255
+; The inactive caption bar
+InactiveTitle=112 0 112
+GradientInactiveTitle=0 112 112
+InactiveTitleText=255 255 255
+; Tooltip
+InfoWindow=254 255 224
+InfoText=0 0 0
+; Window 3d colors
+ButtonFace=212 208 200
+ButtonLight=223 223 223
+ButtonHilight=255 255 255
+ButtonShadow=128 128 128
+ButtonDkShadow=64 64 64
+; Other window colors
+ActiveBorder=212 208 200
+InactiveBorder=212 208 200
+MenuBar=236 233 216
+Menu=212 208 200
+WindowFrame=0 0 0
+Scrollbar=212 208 200
+Window=255 255 255
+ButtonAlternateFace=181 181 181
+; Background workspace
+Background=131 125 255
+AppWorkspace=128 128 128
+; Selection
+MenuHilight=0 128 203
+HilightText=255 255 255
+Hilight=0 128 203
+; Text colors
+WindowText=0 0 0
+MenuText=0 0 0
+ButtonText=0 0 0
+GrayText=128 128 128
+HotTrackingColor=0 0 128
+
+[Control Panel\Desktop]
+Wallpaper=
+TileWallpaper=0
+WallpaperStyle=2
+Pattern=
+ScreenSaveActive=0
+
+[Control Panel\Desktop\WindowMetrics]
+
+[Metrics]
+IconMetrics=76 0 0 0 75 0 0 0 75 0 0 0 1 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 144 1 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0
+NonclientMetrics=84 1 0 0 1 0 0 0 16 0 0 0 16 0 0 0 18 0 0 0 18 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 188 2 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0 15 0 0 0 15 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 188 2 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0 18 0 0 0 18 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 144 1 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 144 1 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0 245 255 255 255 0 0 0 0 0 0 0 0 0 0 0 0 144 1 0 0 0 0 0 1 0 0 0 0 77 105 99 114 111 115 111 102 116 32 83 97 110 115 32 83 101 114 105 102 0 0 0 0 0 0 0 0 0 0 0 0
+
+[MasterThemeSelector]
+MTSM=DABJDKT
+ThemeColorBPP=4
+
+[VisualStyles]
+Path=
+ColorStyle=@themeui.dll,-854
+Size=@themeui.dll,-2019
+Transparency=0
+
+[boot]
+SCRNSAVE.EXE=
+
+[AppEvents\Schemes\Apps\.Default\SystemStart\.Current]
+DefaultValue=%ThemeDir%Windows 93\BOOT.ogg
+
+[AppEvents\Schemes\Apps\.Default\SystemExclamation\.Current]
+DefaultValue=%ThemeDir%Windows 93\QUACK.ogg
+
+[AppEvents\Schemes\Apps\.Default\SystemHand\.Current]
+DefaultValue=%ThemeDir%Windows 93\QUACK.ogg
+
+[css]
+--desktop-bg="var(--Background) radial-gradient(circle at 0% 100%, #f0f, #0ff 100%);"
+--desktop__icon-bg="#0000;"
+--desktop__icon-fg="#fff;"
+--desktop__icon-tsh="1px 1px 0 #0008;"
+
+--highlight-bg="#c3ff00;"
+--highlight-fg="#000;"
+
+--screen-fg="#c3ff00;"
+--volume__warm-color="#c3ff00;"

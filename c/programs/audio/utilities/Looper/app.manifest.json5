@@ -1,0 +1,16 @@
+{
+  name: "Looper",
+  command: "looper",
+  categories: ["Audio", "Effect", "Looper"],
+
+  hasAudioInput: true,
+  hasAudioOutput: true,
+  hideBypassButton: true,
+
+  picto: "loop",
+  width: 220,
+  resizable: false,
+  maximizable: false,
+
+  module: "./looper.js",
+}

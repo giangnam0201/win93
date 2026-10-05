@@ -1,0 +1,9 @@
+{
+  name: "Manifesto",
+  command: "manifesto",
+  categories: ["Amusement"],
+
+  solo: true,
+
+  module: "./Manifesto.js",
+}

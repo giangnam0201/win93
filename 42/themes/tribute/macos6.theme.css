@@ -1,0 +1,649 @@
+/**
+ * Name: MacOs6
+ * Author: Zombectro
+ */
+
+@import url("./assets/pixel-font-fix.css");
+
+@font-face {
+  font-family: Tomo;
+  src:
+    url("./windows9x/fonts/tomo/Tomo.woff2") format("woff2"),
+    url("./windows9x/fonts/tomo/Tomo.woff") format("woff"),
+    url("./windows9x/fonts/tomo/Tomo.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: Tomo-fallback;
+  src:
+    url("./windows9x/fonts/tomo/Tomo.woff2") format("woff2"),
+    url("./windows9x/fonts/tomo/Tomo.woff") format("woff"),
+    url("./windows9x/fonts/tomo/Tomo.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  size-adjust: 120%;
+}
+
+@font-face {
+  font-family: Chicago;
+  src:
+    url("./macos6/fonts/ChiKareGo2.woff2") format("woff2"),
+    url("./macos6/fonts/ChiKareGo2.woff") format("woff"),
+    url("./macos6/fonts/ChiKareGo2.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  /* size-adjust: 133.333333333333333333333333%; */
+  size-adjust: 160%;
+}
+
+@font-face {
+  font-family: FindersKeepers;
+  src:
+    url("./macos6/fonts/FindersKeepers.woff2") format("woff2"),
+    url("./macos6/fonts/FindersKeepers.woff") format("woff"),
+    url("./macos6/fonts/FindersKeepers.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  size-adjust: 160%;
+}
+
+.theme--macos6,
+:root:not(.themed) {
+  --theme: "macos6";
+
+  --theme-light: true;
+  --theme-dark: false;
+
+  --xxxs: 0.125;
+  --xxs: 0.25;
+  --xs: 0.5;
+  --sm: 0.75;
+  --md: 1;
+  --lg: 1.5;
+  --xl: 2;
+  --xxl: 3.25;
+  --xxxl: 5;
+
+  --px: 1px;
+  --main-unit: 8px;
+
+  --group-border-collpase: 0;
+
+  /* MARK: fonts
+  -------------- */
+
+  font-synthesis: style small-caps;
+
+  --font-sans: Chicago, var(--font-emoji-ff);
+  --font-sans-fs: 10px; /* 12px; */
+  --font-sans-lh: 1.4;
+
+  --font-mono: Tomo;
+  --font-mono-fs: 12px;
+  --font-mono-lh: calc(14 / 12);
+
+  --heading-lh: 1;
+
+  --highlight-bg: #000;
+  --highlight-fg: #fff;
+  --code-bg: #000;
+
+  --outset-shallow-bds: dotted solid solid dotted;
+  --outset-shallow-bdw: 1px;
+  --outset-bdw: 1px 2px 2px 1px;
+  --inset-shallow-bds: solid dotted dotted solid;
+  --inset-shallow-bdw: 1px;
+  --inset-bdw: 2px 1px 1px 2px;
+
+  --field-bds: solid;
+  --field-bdw: 1px;
+  --button-bds: solid;
+  /* --button-bdw: 1px; */
+  --dialog-bdw: 1px;
+  --menu-bdw: 1px;
+
+  --balloon-ff: FindersKeepers, Tomo-fallback, var(--font-emoji-ff), var(--font-sans-ff);
+  --balloon__title-ff: var(--font-sans-ff);
+  --balloon__title-fs: var(--font-sans-fs);
+  --balloon__title-lh: var(--font-sans-lh);
+
+  --dialog-pa: 0;
+  --dialog-gap: 0;
+  --dialog-bsh: 1px 1px 0 #000;
+  --balloon-bsh: 1px 1px 0 #000;
+  --menu-bsh: 1px 1px 0 #000;
+
+  --screentone-border-bg:
+    linear-gradient(var(--bg), var(--bg)) 0% / auto content-box padding-box,
+    repeating-conic-gradient(
+      var(--bg) 0% 25%,
+      var(--fg) 0% 50%
+    ) 0px 0px / 2px 2px;
+
+  --fieldset-bdc: transparent;
+  --fieldset-bg: var(--screentone-border-bg);
+  --separator-bdc: transparent;
+  --separator-bg: var(--screentone-border-bg);
+  legend { background: var(--bg); }
+
+  ui-picto img {
+    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"><feComponentTransfer in="SourceGraphic" result="contrast"><feFuncR type="discrete" tableValues="0 0.5 0 1"/><feFuncG type="discrete" tableValues="0 0.5 0 1"/><feFuncB type="discrete" tableValues="0 0.5 0 1"/><feFuncA type="discrete" tableValues="0 0.5 0 1"/></feComponentTransfer><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -1 -1 -1 1 0" in="contrast" result="black-isolated"/><feFlood flood-color="rgb(0 0 0)" result="shadow-color"/><feFlood flood-color="rgb(255 255 255)" result="hilight-color"/><feOffset dx="1" dy="1" in="black-isolated" result="offset"/><feComposite operator="in" in="hilight-color" in2="offset" result="hilight"/><feComposite operator="in" in="shadow-color" in2="black-isolated" result="shadow"/><feMerge><feMergeNode in="hilight"/><feMergeNode in="shadow"/></feMerge></filter></svg>#f');
+  }
+
+  /* .code, .code-style, code, kbd, samp, pre {
+    filter: grayscale(1) brightness(5) contrast(2);
+  } */
+
+  /* .ui-dialog-demand__image > img,
+  .ui-icon__image,
+  ui-picto img {
+    filter: url("../../../c/programs/misc/FX/fx.svg#fx-dithering");
+  } */
+
+  /* #desktop {
+    filter: url("../../../c/programs/misc/FX/fx.svg#fx-dithering");
+  } */
+
+  /* MARK: icons
+  -------------- */
+
+  --icon-ff: FindersKeepers, Tomo-fallback, var(--font-emoji-ff), var(--font-sans-ff);
+  --icon-fs: 10px;
+  --icon-lh: 12px;
+
+  .ui-icon__label {
+    padding: 0 4px;
+    padding-bottom: 1px;
+  }
+
+  --screentone-image:
+    repeating-conic-gradient(
+      #000 0% 25%,
+      #fff 0% 50%
+    ) 0 0 / 2px 2px;
+
+  --desktop-bg: var(--screentone-image);
+  --desktop__icon-bg: #fff;
+  --icon-gap: 1px;
+
+  ui-icon > .ui-icon__label {
+    box-shadow: 0 0 0 1px var(--bg);
+  }
+
+  ui-icon[disabled] {
+    filter: none;
+    opacity: 1;
+
+    .ui-icon__mask,
+    > .ui-icon__label::after {
+      --_offset: 0;
+      background:
+        repeating-conic-gradient(
+          #fff 0% 25%,
+          transparent 0% 50%
+        ) 0 var(--_offset) / 2px 2px;
+    }
+
+    > .ui-icon__label::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      --_offset: 1px; /* improve readability */
+    }
+  }
+
+  /* MARK: button
+  --------------- */
+
+  /* --field-focus-bg: #000;
+  --field-focus-fg: #fff;
+  --field-focus-ol: none;
+  --field-focus-bsh: inset 0 0 0 2px #fff; */
+
+  --sel-bg: #000;
+  --sel-fg: #fff;
+
+  /* --button-pa-y: 0px;
+  --button-pa-x: 0px; */
+  --button-bdi-url: url("../../themes/tribute/macos6/button-border.png");
+  --button-bg: #fff;
+  --button-fg: #000;
+  --button-bdw: 1px;
+  --button-bdi: var(--button-bdi-url) 3 / 3px;
+  /* --button-focus-ol: none;
+  --button-focus-bsh: 1px 1px red; */
+
+  /* --button__picto-ma-t: -8px; */
+
+  --button__picto-ma-l: -4px;
+  --button__picto-ma-r: -3px;
+  --button__picto-ma-t: -3px;
+  --button__picto-ma-b: -3px;
+
+  --button-focus-ol: none;
+  --button-focus-filter:
+    drop-shadow(0 -1px 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(1px 1px 0 #000);
+  --field-focus-ol: none;
+  --field-focus-bsh: 0 0 0 1px #000;
+
+  --button-default-filter:
+    drop-shadow(0 -1px 0 #fff)
+    drop-shadow(-1px 0 0 #fff)
+    drop-shadow(1px 0 0 #fff)
+    drop-shadow(0 1px 0 #fff)
+    drop-shadow(0 -1px 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(1px 0 0 #000)
+    drop-shadow(0 1px 0 #000)
+    drop-shadow(0 -1px 0 #000)
+    drop-shadow(-1px 0 0 #000)
+    drop-shadow(1px 0 0 #000)
+    drop-shadow(0 1px 0 #000);
+
+  .ui-tabs__tab:focus-visible {
+    outline: none;
+    filter: var(--button-focus-filter);
+  }
+
+  --button-active-bg: #000;
+  --button-active-fg: #fff;
+  --button-toggled-bg: #000;
+  --button-toggled-fg: #fff;
+
+  button,
+  .button,
+  input:is(
+    [type="button"],
+    [type="reset"],
+    [type="submit"]) {
+
+    text-indent: 2px;
+    background-clip: padding-box;
+
+    &:is(.disabled,[disabled],:disabled)::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background:
+        repeating-conic-gradient(
+          var(--bg) 0% 25%,
+          transparent 0% 50%
+        ) 0 0 / 2px 2px;
+    }
+  }
+
+  --select__arrow-size: 8px;
+
+  --disabled-opacity: 1;
+
+  /* --field-disabled-bg: url("../../themes/tribute/macos6/screentone.png"); */
+  /* --field-disabled-mask:
+    url("../../themes/tribute/macos6/screentone.png") padding-box,
+    linear-gradient(#fff); */
+
+  --field-disabled-mask: url("../../themes/tribute/macos6/screentone.png");
+  /* --button-disabled-mask: url("../../themes/tribute/macos6/screentone.png"); */
+
+  /* MARK: checkbox
+  ----------------- */
+
+  --checkbox-focus-bsh: none;
+  --radio-bdr: none;
+
+  input[type="checkbox"], input[type="radio"] {
+    &::before, &::after { display: none; }
+    --size: 12px;
+    border: none;
+
+    &:is(.disabled,[disabled],:disabled) {
+      &, & + label {
+        mask: var(--field-disabled-mask);
+      }
+    }
+  }
+
+  label.ui-menu__menuitem:has(:disabled) {
+    mask: var(--field-disabled-mask);
+  }
+
+  input[type="checkbox"] {
+    background: url("./macos6/checkbox.png") no-repeat;
+
+    &:checked { background: url("./macos6/checkbox-checked.png") no-repeat; }
+
+    &:not(.disabled,[disabled],:disabled,[role="menuitemcheckbox"]) {
+      &.focus,
+      &:focus-visible,
+      &:active { background: url("./macos6/checkbox-active.png") no-repeat; }
+
+      &:focus-visible:checked,
+      &:active:checked { background: url("./macos6/checkbox-checked-active.png") no-repeat; }
+    }
+  }
+
+  input[type="radio"] {
+    border-radius: 0;
+    background: url("./macos6/radio.png") no-repeat;
+
+    &:checked { background: url("./macos6/radio-checked.png") no-repeat; }
+
+    &:not(.disabled,[disabled],:disabled,[role="menuitemradio"]) {
+      &.focus,
+      &:focus-visible,
+      &:active { background: url("./macos6/radio-active.png") no-repeat; }
+
+      &:focus-visible:checked,
+      &:active:checked { background: url("./macos6/radio-checked-active.png") no-repeat; }
+    }
+  }
+
+  input[type="checkbox"][role="menuitemcheckbox"],
+  input[type="radio"][role="menuitemradio"] {
+    background-position: 2px;
+
+    .ui-menu__menuitem--highlight & {
+      filter: invert();
+    }
+  }
+
+  /* MARK: rubberband
+  ------------------- */
+
+  .rubberband {
+    stroke: #000;
+    fill: transparent;
+    stroke-width: 1px;
+  }
+
+  /* MARK: tabs
+  ------------- */
+
+  --tabs__tab-pa-x: 7px;
+  --tabs__tab-pa-y: 4px;
+  --tabs-overlap: 2px;
+
+  --tabs__tab-bdi: var(--button-bdi-url) 3 / 3px 3px 0;
+  --tabs__tab-bg: var(--button-bg);
+
+  /* MARK: dialog
+  --------------- */
+
+  .ui-dialog__body, .ui-dialog__footer { padding: 5px; }
+  ui-menubar + .ui-dialog__body { padding-top: 0; }
+
+  .ui-dialog__header {
+    gap: 0;
+    padding: 0;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      top: 5px;
+      bottom: auto;
+      height: 11px;
+      z-index: -1;
+    }
+
+    ui-dialog[active] &::after {
+      background-image: linear-gradient(#000 1px, transparent 1px);
+      background-size: 2px 2px;
+      background-position: 0 0;
+    }
+  }
+
+  .ui-dialog__title-container {
+    position: relative;
+    &::before { content: var(--ZERO_WIDTH_SPACE); inline-size: 0; }
+  }
+
+  .ui-dialog__title {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    translate: -50%;
+    max-width: 100%;
+    min-height: var(--picto-size);
+
+    @supports (left: round(50%, 1px)) {
+      left: round(down, 50%, 1px);
+      translate: round(up, -50%, 1px);
+    }
+    background: #fff;
+    padding-right: 2px;
+  }
+
+  .ui-dialog__title ui-picto {
+    position: relative;
+  }
+
+  .ui-dialog__title__text {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+  }
+
+  .ui-dialog__title__text-container {
+    display: inline-block;
+    margin: 0;
+    max-width: calc(100%);
+    .ui-dialog__picto[value] + & { max-width: calc(100% - 20px); }
+  }
+
+  --grip-gap: 6px;
+
+  .ui-dialog__button {
+    --fg: var(--main-fg);
+    --bg: #fff;
+    --bdc: transparent;
+    border-image: none;
+    background-clip: border-box !important;
+    width: 13px;
+    height: 11px;
+    overflow: visible;
+    > ui-picto { translate: 0 1px; }
+  }
+
+  .ui-dialog__button--close {
+    position: absolute;
+    left: var(--grip-gap);
+    background-image: url("./macos6/button-close.png");
+  }
+
+  .ui-dialog__button--minimize {
+    background-image: url("./macos6/button-minimize.png");
+    order: 2;
+  }
+
+  .ui-dialog__button--maximize {
+    background-image: url("./macos6/button-maximize.png");
+  }
+
+  .ui-dialog__button--close,
+  .ui-dialog__button--minimize,
+  .ui-dialog__button--maximize {
+    background-color: #fff;
+    background-repeat: no-repeat;
+    width: 11px;
+    height: 11px;
+    > ui-picto { display: none; }
+
+    &:is(:active, .active) {
+      background-image: url("./macos6/button-active.png");
+    }
+  }
+
+  .ui-dialog__buttons--extra {
+    margin-left: calc(var(--grip-gap) - 1px);
+  }
+
+  .ui-dialog__buttons:first-child {
+    margin-right: calc(18px + var(--grip-gap));
+  }
+
+  .ui-dialog__buttons:last-child {
+    margin-right: var(--grip-gap);
+  }
+
+  /* MARK: dialog footer
+  ---------------------- */
+
+  .ui-dialog__footer:not(.ui-explorer__footer) {
+    --gap: 4px;
+
+    ui-dialog[role="alertdialog"] & {
+      justify-content: start;
+      padding: var(--unit);
+      position: relative;
+
+      > .ui-dialog__footer__content {
+        flex: 0 0 min-content;
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px)) 0;
+      }
+    }
+  }
+
+  .ui-dialog__footer button {
+    flex: 0 0 auto;
+    min-width: 75px;
+
+    &:has(span:only-child) {
+      justify-content: start;
+
+      > span {
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px)) 0;
+      }
+    }
+  }
+
+  /* MARK: demand
+  --------------- */
+
+  .ui-dialog-demand:not(.ui-dialog-form) {
+    inline-size: 370px;
+  }
+
+  /* MARK: knob
+  ------------- */
+
+  ui-knob * {
+    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f" style="color-interpolation-filters:sRGB"><feColorMatrix result="fbSourceGraphic" in="fbSourceGraphic" values="0.1 0.1 0.1 0 0 0.1 0.1 0.1 0 0 0.1 0.1 0.1 0 0 0 0 0 1000 0 "></feColorMatrix></filter></svg>#f');
+    /* filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"><feComponentTransfer><feFuncA type="discrete" tableValues="0 0 1 1"/></feComponentTransfer></filter></svg>#f'); */
+    /* filter: url("../../../c/programs/misc/FX/fx.svg#fx-litho"); */
+    /* filter: brightness(0.1) contrast(0.9) url("../../../c/programs/misc/FX/fx.svg#fx-onebit"); */
+  }
+
+  ui-knob:is(.disabled,[disabled],:disabled)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-conic-gradient(
+        #fff 0% 25%,
+        transparent 0% 50%
+      ) 0 0 / 2px 2px;
+  }
+
+  --volume-bdw: 1px;
+
+  .ui-volume__box {
+    filter: brightness(0.6) contrast(2.5) url("../../../c/programs/misc/FX/fx.svg#fx-dithering");
+  }
+
+  /* MARK: scrollbars
+  ------------------- */
+
+  --scrollbar-bg: #fff;
+  --scrollbar-sprites-url: url("./macos6/scrollbar-sprites.svg");
+
+  --scrollbar-up-bg: var(--scrollbar-sprites-url) 0px 0 no-repeat;
+  --scrollbar-down-bg: var(--scrollbar-sprites-url) -16px 0px no-repeat;
+  --scrollbar-left-bg: var(--scrollbar-sprites-url) -32px 0px no-repeat;
+  --scrollbar-right-bg: var(--scrollbar-sprites-url) -50px 0px no-repeat;
+
+  :not(.scrollbar-overlay) {
+    &::-webkit-scrollbar {
+      border: 1px solid;
+      background: url("./macos6/screentone.png");
+    }
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+      inline-size: 15px;
+      block-size: 15px;
+    }
+
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+      background: #fff;
+      border: 1px solid;
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement { background: var(--scrollbar-bg) var(--scrollbar-up-bg); }
+    &::-webkit-scrollbar-button:vertical:increment { background: var(--scrollbar-bg) var(--scrollbar-down-bg); }
+    &::-webkit-scrollbar-button:horizontal:decrement { background: var(--scrollbar-bg) var(--scrollbar-left-bg); }
+    &::-webkit-scrollbar-button:horizontal:increment { background: var(--scrollbar-bg) var(--scrollbar-right-bg); }
+
+    &::-webkit-scrollbar:disabled { background: var(--scrollbar-bg); }
+
+    &::-webkit-scrollbar-thumb:horizontal { border-block-start: 2px solid; }
+    &::-webkit-scrollbar-thumb:vertical { border-inline-start: 2px solid; }
+
+    &::-webkit-scrollbar:horizontal { border-block-end: none; }
+    &::-webkit-scrollbar-button:horizontal { border-block-end: none; }
+
+    &::-webkit-scrollbar:vertical { border-inline-end: none; }
+    &::-webkit-scrollbar-button:vertical { border-inline-end: none; }
+
+    &::-webkit-scrollbar-button:start:horizontal { border-inline-start: none; }
+    &::-webkit-scrollbar-button:start:vertical { border-block-start: none; }
+    &::-webkit-scrollbar-button:end:horizontal { border-inline-end: none; }
+    &::-webkit-scrollbar-button:end:vertical { border-block-end: none; }
+
+    &::-webkit-scrollbar-corner {
+      border-top: 1px solid;
+      border-left: 1px solid;
+    }
+
+    ui-dialog:not([active]) & {
+      &::-webkit-scrollbar-button:start:horizontal { border-inline-end: none; }
+      &::-webkit-scrollbar-button:start:vertical { border-block-end: none; }
+      &::-webkit-scrollbar-button:end:horizontal { border-inline-start: none; }
+      &::-webkit-scrollbar-button:end:vertical { border-block-start: none; }
+      &::-webkit-scrollbar-thumb { display: none; }
+      &::-webkit-scrollbar { background: var(--scrollbar-bg); }
+      &::-webkit-scrollbar-button:horizontal { background: var(--scrollbar-bg); }
+      &::-webkit-scrollbar-button:vertical { background: var(--scrollbar-bg); }
+    }
+
+    /* active
+    --------- */
+    &::-webkit-scrollbar-button:vertical:decrement:active { background-position-y: -16px; }
+    &::-webkit-scrollbar-button:vertical:increment:active { background-position-y: -16px; }
+    &::-webkit-scrollbar-button:horizontal:decrement:active { background-position-y: -16px; }
+    &::-webkit-scrollbar-button:horizontal:increment:active { background-position-y: -16px; }
+
+    &::-webkit-scrollbar-button:end:decrement,
+    &::-webkit-scrollbar-button:start:increment {
+      display: none;
+    }
+  }
+}

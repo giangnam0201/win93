@@ -1,0 +1,12 @@
+{
+  name: "Delay",
+  command: "delay",
+  categories: ["Audio", "Effect", "Delay"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

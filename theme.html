@@ -1,0 +1,73 @@
+<!doctype html>
+<html _dir="rtl">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>theme</title>
+
+  <!-- <link rel="stylesheet" href="./style.css" /> -->
+  <link rel="stylesheet" href="./42/assets/css/base.css" />
+  <link rel="stylesheet" href="./42/assets/css/controls.css" />
+  <link rel="stylesheet" href="./42/assets/css/tabs.css" />
+  <link rel="stylesheet" href="./42/assets/css/knob.css" />
+  <link rel="stylesheet" href="./42/assets/css/volume.css" />
+
+  <!-- <link rel="stylesheet" href="./42/themes/test.theme.css" /> -->
+  <!-- <link rel="stylesheet" href="./42/themes/cyberpunk.theme.css" /> -->
+  <!-- <link rel="stylesheet" href="./42/themes/neumorphism.theme.css" /> -->
+  <!-- <link rel="stylesheet" href="./42/themes/routine.theme.css" /> -->
+  <link rel="stylesheet" href="./42/themes/tribute/windows9x.theme.css" />
+  <!-- <link rel="stylesheet" href="./42/themes/tribute/windowsXP.theme.css" /> -->
+  <!-- <link rel="stylesheet" href="./42/themes/tribute/macos6.theme.css" /> -->
+
+  <!-- <link rel="stylesheet" href="../c/libs/animate-css/4.1/animate.css" /> -->
+  <script src="/42/core.js" data-options="{autoResume:false}"></script>
+
+  <style>
+    #desktopFolder {
+      position: absolute;
+      inset: 0;
+      padding-top: var(--unit-md);
+    }
+  </style>
+
+  <main class="fit desktop">
+    <div class="fit rows">
+      <div>
+        <div id="desktopFolder">
+          <ui-icon picto="computer" label="Icon"></ui-icon>
+          <ui-icon
+            _small
+            picto="user-trash"
+            label="Focus"
+            class="focus"></ui-icon>
+          <ui-icon
+            picto="network-workgroup"
+            label="Selected"
+            aria-selected="true"></ui-icon>
+          <ui-icon
+            picto="folder"
+            label="Both"
+            aria-selected="true"
+            class="focus"></ui-icon>
+          <ui-icon picto="folder-desktop" label="Disabled" disabled></ui-icon>
+
+          <svg
+            class="rubberband"
+            fill="rgba(80,80,80,0.5)"
+            style="position: absolute; inset: 0px; height: 100%; width: 100%">
+            <polygon points="20,80 120,80 120,120 20,120"></polygon>
+          </svg>
+        </div>
+        <ui-workspaces>
+          <ui-workspace active></ui-workspace>
+        </ui-workspaces>
+      </div>
+      <div class="outset shrink panel pa-xs">
+        <button>Start</button>
+        <ui-dock></ui-dock>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="./theme.js"></script>
+</html>

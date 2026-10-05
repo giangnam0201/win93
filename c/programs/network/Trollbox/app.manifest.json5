@@ -1,0 +1,10 @@
+{
+  name: "Trollbox",
+  command: "trollbox",
+  categories: ["Network", "Chat"],
+
+  width: 770,
+  height: 480,
+
+  document: "./index.html",
+}

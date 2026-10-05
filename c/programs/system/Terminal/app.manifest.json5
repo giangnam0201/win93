@@ -1,0 +1,11 @@
+{
+  name: "Terminal",
+  command: "terminal",
+  categories: ["System", "TerminalEmulator"],
+
+  inset: true,
+  width: 480,
+  height: 320,
+
+  module: "./Terminal.js",
+}

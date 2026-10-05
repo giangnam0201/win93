@@ -1,0 +1,14 @@
+{
+  name: "Sirtet",
+  command: "sirtet",
+  categories: ["Game", "BlocksGame"],
+
+  // width: 222,
+  // height: 300,
+  width: 232,
+  height: 494,
+
+  about: "./about.md",
+  module: "./Sirtet.js",
+  document: "./index.html",
+}

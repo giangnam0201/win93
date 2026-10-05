@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="32" fill="rgb(0 0 0)">
+  <path id="a"
+    d="M6 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h-3v4h-7v-4h-3v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1z M6 3h-1v1h-1v1h-1v1h-1v1h2v4h5v-4h2v-1h-1v-1h-1v-1h-1v-1h-1v-1h-1z" />
+  <use transform="translate(13) rotate(180 8 7)" href="#a" />
+  <use transform="translate(28) rotate(-90 8 5)" href="#a" />
+  <use transform="translate(49) rotate(90 8 8)" href="#a" />
+  <g transform="translate(0 16)">
+    <path id="b" d="M6 1h1v1h1v1h1v1h1v1h1v1h1v1h1v1h-3v4h-7v-4h-3v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1z" />
+    <use transform="translate(13) rotate(180 8 7)" href="#b" />
+    <use transform="translate(28) rotate(-90 8 5)" href="#b" />
+    <use transform="translate(49) rotate(90 8 8)" href="#b" />
+  </g>
+</svg>

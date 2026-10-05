@@ -1,0 +1,8 @@
+{
+  name: "Contact Us",
+  command: "contact",
+
+  solo: true,
+
+  module: "./ContactUs.js",
+}

@@ -1,0 +1,12 @@
+{
+  name: "Chorus",
+  command: "chorus",
+  categories: ["Audio", "Effect"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

@@ -1,0 +1,47 @@
+***********************************
+*     Princess Mononoke Theme     *
+***********************************
+	"There was a time, long, long ago
+	When people killed the Great God of the Forest.
+	Human face. Body of a stag.
+	Horns atop his head like the trunks of massive trees.
+	For what reason did the humans take his life?"
+
+
+Auteur :	BlackEyed
+		Akhenaton@excite.fr
+		http://BlackEyed.le-Village.com
+
+Contient :	1 Wallpaper 800*600
+		1 Wallpaper 1024*768
+		5 Nouvelles Icônes
+		2 Curseurs Animés
+		3 Logos Windows
+		13 Extraits Sonores
+		1 Mise en Veille
+		3 Eléments WebView et leur prog. d'installation
+
+Remarques :	
+
+1. A l'exception de la mise en veille (cf 3), tous les fichiers de ce thème ont été scannés, 
+retouchés et compressés par moi-même.  Ils ne peuvent être distribués sans ce fichier.
+Je vous demanderais de m'avertir par mail (Akhenaton@excite.fr) si vous décidez de le poster
+sur votre site.
+
+2. Tous les extraits sonores ont été compressés soit au format Ms ADPCM 44kHz 4bits Stéréo,
+soit au format Ms ACM MPEG3 44kHz 16bits Stéréo.
+Ils proviennent du cd intitulé "Princess Mononoke : Music from the Miramax Motion Picture"
+Celui-ci est paru sous le label BMG et peut-être commandé sur le site http://www.Proxis.com
+
+3. La mise en veille, distribuée avec ce thème, provient du site officiel de Princesse Mononoké
+Pour plus de renseignements, visitez http://www.Princess-Mononoke.com
+
+4. Afin d'utiliser les éléments WebView, vous devez lancer le programme 
+"Mononoke WebViews Install.exe".  Celui-ci remplacera la banderolle gauche des fenêtres 
+du Poste de Travail, de même que la banderolle de protection du répertoire Windows.
+Pour les désinstaller, relancer simplement une seconde fois le programme 
+"Mononoke WebViews Install.exe"
+
+
+		Que Moro veille sur vous,
+				BlackEyed.

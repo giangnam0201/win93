@@ -1,0 +1,14 @@
+{
+  name: "LFO",
+  command: "lfo",
+  description: "Low-frequency oscillator for AudioParam modulation",
+  categories: ["Audio", "Generator", "Oscillator"],
+
+  mixer: false,
+  audioPatchOutput: true,
+
+  resizable: true,
+  maximizable: false,
+
+  module: "./index.js",
+}

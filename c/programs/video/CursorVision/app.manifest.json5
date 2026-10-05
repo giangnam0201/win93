@@ -1,0 +1,9 @@
+{
+  name: "CursorVision",
+  command: "cursorvision",
+  categories: ["video", "opencv", "procrastination"],
+
+  solo: true,
+
+  module: "./CursorVision.js",
+}

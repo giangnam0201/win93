@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>WINDOWS93 asset diagnostics</title>
+<pre id="report">Checking public asset delivery...</pre>
+<script type="module">
+const output = document.querySelector('#report');
+const lines = [];
+function log(value) { lines.push(value); output.textContent = lines.join('\n'); }
+log(`Automated browser: ${navigator.webdriver}`);
+log(`Current worker: ${navigator.serviceWorker.controller?.scriptURL ?? 'none'}`);
+try {
+  const registration = await navigator.serviceWorker.register('/42.sw.js', {type:'module', updateViaCache:'none'});
+  await navigator.serviceWorker.ready;
+  log(`Module worker: ${registration.active?.scriptURL}, ${registration.active?.state}`);
+} catch(error) { log(`Module worker registration error: ${error.stack}`); }
+for (const path of ['/asset-map.json', '/c/libs/animate-css/4.1/animate.js', '/c/libs/codemirror/6.39/lib/view.js']) {
+  try {
+    const response = await fetch(path, {cache:'reload'});
+    log(`${path}: ${response.status}, ${response.headers.get('Content-Type')}, ${(await response.arrayBuffer()).byteLength} bytes`);
+  } catch(error) { log(`${path}: ${error.stack}`); }
+}
+try {
+  await import('/c/libs/codemirror/6.39/lib/view.js');
+  log('CodeMirror module import: OK');
+} catch(error) { log(`CodeMirror module import: ${error.stack}`); }
+for (const entry of performance.getEntriesByType('resource')) {
+  if (entry.responseStatus >= 400) log(`Failed request: ${entry.name}, ${entry.responseStatus}`);
+}
+</script>

@@ -1,0 +1,12 @@
+{
+  name: "Moog Filter",
+  command: "moogfilter",
+  categories: ["Audio", "Effect", "Filter"],
+
+  hasAudioInput: true,
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

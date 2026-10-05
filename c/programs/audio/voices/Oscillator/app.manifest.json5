@@ -1,0 +1,10 @@
+{
+  name: "Oscillator",
+  command: "osc",
+  categories: ["Audio", "Generator", "Oscillator"],
+
+  resizable: false,
+  maximizable: false,
+
+  module: "./index.js",
+}

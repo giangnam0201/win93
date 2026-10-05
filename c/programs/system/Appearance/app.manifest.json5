@@ -1,0 +1,25 @@
+{
+  name: "Appearance",
+  command: "appearance",
+
+  solo: true,
+  maximizable: false,
+  minimizable: false,
+
+  decode: {
+    types: [
+      {
+        description: "Windows Theme",
+        accept: {
+          "application/x-theme": [".theme"],
+        },
+        icons: [
+          { src: "./icons/16x16/ext/theme.png", sizes: "16x16" },
+          { src: "./icons/32x32/ext/theme.png", sizes: "32x32" },
+        ],
+      },
+    ],
+  },
+
+  module: "./Appearance.js",
+}
