@@ -1,0 +1,12 @@
+name: Check Pages API quota
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read the deployment API quota and reset time
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api rate_limit --jq '.resources.core | {remaining, limit, reset}'
