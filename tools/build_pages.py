@@ -1,6 +1,7 @@
 """Build the public site from the archived desktop/app assets on a GitHub runner."""
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
+import gzip
 import json
 import os
 from pathlib import Path
@@ -80,12 +81,30 @@ def main():
         for copied, size in pool.map(restore_shard, range(16)):
             restored.update(copied)
             total_bytes += size
-            if total_bytes > LIMIT:
-                raise SystemExit(f'App bundle exceeds the Pages size budget: {total_bytes} bytes')
     missing = sorted(p for p in required if not (output / p.lstrip('/')).is_file())
     if missing:
         raise SystemExit('Required app assets missing from releases: ' + ', '.join(missing))
-    report = {'revision': revision, 'files': len(required), 'bytes': total_bytes}
+    # Pages cannot set Content-Encoding per file. Store beneficial gzip copies
+    # and let the service worker restore their original bytes and MIME types.
+    compressed = {}
+    for source in (output / 'c').rglob('*'):
+        if not source.is_file() or source.stat().st_size < 65536:
+            continue
+        original_size = source.stat().st_size
+        body = gzip.compress(source.read_bytes(), compresslevel=6, mtime=0)
+        if len(body) >= original_size * 0.85:
+            continue
+        path = '/' + source.relative_to(output).as_posix()
+        destination = source.with_name(source.name + '.gz')
+        destination.write_bytes(body)
+        source.unlink()
+        compressed[path] = {'url': path + '.gz', 'size': original_size}
+        total_bytes -= original_size - len(body)
+    (output / 'asset-map.json').write_text(json.dumps(compressed, separators=(',', ':')))
+    total_bytes += (output / 'asset-map.json').stat().st_size
+    if total_bytes > LIMIT:
+        raise SystemExit(f'Compressed app bundle exceeds the Pages size budget: {total_bytes} bytes')
+    report = {'revision': revision, 'files': len(required), 'bytes': total_bytes, 'compressed': len(compressed)}
     (output / 'deployment.json').write_text(json.dumps(report, indent=2))
     print(f"Ready to publish {len(required)} app assets; {total_bytes / 1024**2:.1f} MiB", flush=True)
 

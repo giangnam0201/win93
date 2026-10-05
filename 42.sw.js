@@ -3,6 +3,7 @@ import { FileIndex } from "./42/api/fs/FileIndex.js"
 import { getDriver } from "./42/api/fs/getDriver.js"
 import { getPathInfo } from "./42/lib/syntax/path/getPathInfo.js"
 import { Database } from "./42/api/db/Database.js"
+import { pageAssetResponse } from "./42/api/os/network/pageAssets.js"
 
 // eslint-disable-next-line prefer-destructuring
 const self = /** @type {ServiceWorkerGlobalScope} */ (
@@ -104,7 +105,8 @@ async function fromCacheOrNetwork(req, pathname, forcePathname) {
   if (res) return res
 
   if (forcePathname) req = await cloneRequest(pathname, req)
-  res =
+  res = await pageAssetResponse(pathname, req)
+  res ??=
     req.destination === "iframe"
       ? await fetch(req, {
           credentials: "same-origin",
@@ -116,7 +118,7 @@ async function fromCacheOrNetwork(req, pathname, forcePathname) {
       : await fetch(req, { credentials: "same-origin" })
 
   if (
-    res.status < 400 &&
+    res.ok && res.status !== 206 && req.method === "GET" &&
     pathname !== "/42.tar.gz" &&
     !pathname.startsWith("/42_DEV") &&
     Number(res.headers.get("Content-Length")) < MAX_CACHE_SIZE
