@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import time
 import zipfile
+import urllib.request
 from mirror import ROOT, indexed_paths
 from restore import is_core
 
@@ -49,21 +50,30 @@ def main():
     revision = hashlib.sha256((ROOT / 'files.cbor').read_bytes()).hexdigest()[:12]
     total_bytes = sum(p.stat().st_size for p in output.rglob('*') if p.is_file())
     restored = set()
+    catalog = json.loads((ROOT / 'tools/pages-assets.json').read_text())
+    if catalog['revision'] != revision:
+        raise SystemExit('Regenerate tools/pages-assets.json for the new file index')
     def restore_shard(shard):
         tag = f'assets-{revision}-{shard:02d}'
-        assets = json.loads(gh('release', 'view', tag, '--json', 'assets'))['assets']
+        assets = catalog['shards'][shard]
         with tempfile.TemporaryDirectory(prefix='win93-pages-') as directory:
             temporary = Path(directory)
-            gh('release', 'download', tag, '--pattern', '*-complete.json', '--dir', directory)
-            selected = set()
-            for receipt in temporary.glob('*-complete.json'):
-                value = json.loads(receipt.read_text())
-                if any(is_core(p) for p in value['paths']):
-                    selected.update(a['name'] for a in value['archives'])
             copied, size = set(), 0
-            for name in sorted(selected):
-                gh('release', 'download', tag, '--pattern', name, '--dir', directory)
+            for asset in assets:
+                name = asset['name']
                 archive = temporary / name
+                for attempt in range(5):
+                    try:
+                        request = urllib.request.Request(asset['url'], headers={'User-Agent': 'WINDOWS93-Pages-Build'})
+                        with urllib.request.urlopen(request, timeout=120) as source, archive.open('wb') as destination:
+                            shutil.copyfileobj(source, destination)
+                        if archive.stat().st_size != asset['size']:
+                            raise ValueError('Release archive size mismatch')
+                        break
+                    except Exception:
+                        if attempt == 4:
+                            raise
+                        time.sleep(2 ** (attempt + 1))
                 with zipfile.ZipFile(archive) as bundle:
                     records = json.loads(bundle.read('_mirror-manifest.json'))
                     for record in records:

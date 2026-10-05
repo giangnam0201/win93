@@ -1,0 +1,652 @@
+{
+  "revision": "da3f99e5cde3",
+  "shards": [
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0000-00.zip",
+        "size": 28943868
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0001-00.zip",
+        "size": 19820830
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0002-00.zip",
+        "size": 5300329
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0003-00.zip",
+        "size": 73188352
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0004-00.zip",
+        "size": 1311098
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0005-00.zip",
+        "size": 7511995
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-00/part-0006-00.zip",
+        "size": 26982085
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0000-00.zip",
+        "size": 25239012
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0001-00.zip",
+        "size": 21290973
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0002-00.zip",
+        "size": 23765356
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0003-00.zip",
+        "size": 68187053
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0004-00.zip",
+        "size": 3518438
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0005-00.zip",
+        "size": 9486533
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0006-00.zip",
+        "size": 18342418
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-01/part-0070-00.zip",
+        "size": 51168105
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0000-00.zip",
+        "size": 13479475
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0001-00.zip",
+        "size": 5524552
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0002-00.zip",
+        "size": 16994013
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0003-00.zip",
+        "size": 72512530
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0004-00.zip",
+        "size": 2923297
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0005-00.zip",
+        "size": 5726851
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0006-00.zip",
+        "size": 25202252
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-02/part-0070-00.zip",
+        "size": 37409297
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0000-00.zip",
+        "size": 12916906
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0001-00.zip",
+        "size": 5204564
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0002-00.zip",
+        "size": 10625170
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0003-00.zip",
+        "size": 59921413
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0004-00.zip",
+        "size": 4833346
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0005-00.zip",
+        "size": 5997087
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0006-00.zip",
+        "size": 19605666
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-03/part-0070-00.zip",
+        "size": 83559539
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0000-00.zip",
+        "size": 12006299
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0001-00.zip",
+        "size": 10826071
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0002-00.zip",
+        "size": 27816147
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0003-00.zip",
+        "size": 76360479
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0004-00.zip",
+        "size": 2334664
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0005-00.zip",
+        "size": 7259090
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0006-00.zip",
+        "size": 19417100
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-04/part-0070-00.zip",
+        "size": 310800369
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0000-00.zip",
+        "size": 8049774
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0001-00.zip",
+        "size": 6410669
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0002-00.zip",
+        "size": 26037349
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0003-00.zip",
+        "size": 60817749
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0004-00.zip",
+        "size": 1440028
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0005-00.zip",
+        "size": 6320241
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0006-00.zip",
+        "size": 15700475
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-05/part-0070-00.zip",
+        "size": 491260110
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0000-00.zip",
+        "size": 9030832
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0001-00.zip",
+        "size": 3959288
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0002-00.zip",
+        "size": 10813153
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0003-00.zip",
+        "size": 72144341
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0004-00.zip",
+        "size": 4481366
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0005-00.zip",
+        "size": 10153957
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0006-00.zip",
+        "size": 23105388
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-06/part-0070-00.zip",
+        "size": 205423534
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0000-00.zip",
+        "size": 11129034
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0001-00.zip",
+        "size": 5574101
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0002-00.zip",
+        "size": 3589364
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0003-00.zip",
+        "size": 58785147
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0004-00.zip",
+        "size": 1435240
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0005-00.zip",
+        "size": 15028466
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0006-00.zip",
+        "size": 19680069
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-07/part-0070-00.zip",
+        "size": 196827259
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0000-00.zip",
+        "size": 10422203
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0001-00.zip",
+        "size": 3122243
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0002-00.zip",
+        "size": 15555090
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0003-00.zip",
+        "size": 79733845
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0004-00.zip",
+        "size": 3199132
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0005-00.zip",
+        "size": 11461143
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0006-00.zip",
+        "size": 20797173
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-08/part-0070-00.zip",
+        "size": 236878749
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0000-00.zip",
+        "size": 9438273
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0001-00.zip",
+        "size": 5880736
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0002-00.zip",
+        "size": 10477050
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0003-00.zip",
+        "size": 62518980
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0004-00.zip",
+        "size": 2107829
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0005-00.zip",
+        "size": 5499222
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0006-00.zip",
+        "size": 33915028
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-09/part-0070-00.zip",
+        "size": 87136509
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0000-00.zip",
+        "size": 20306144
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0001-00.zip",
+        "size": 4137503
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0002-00.zip",
+        "size": 10028995
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0003-00.zip",
+        "size": 95181948
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0004-00.zip",
+        "size": 2481955
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0005-00.zip",
+        "size": 10025629
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0006-00.zip",
+        "size": 17832681
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-10/part-0070-00.zip",
+        "size": 18922608
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0000-00.zip",
+        "size": 9680871
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0001-00.zip",
+        "size": 4554794
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0002-00.zip",
+        "size": 11325371
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0003-00.zip",
+        "size": 73491816
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0004-00.zip",
+        "size": 2245053
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0005-00.zip",
+        "size": 8975922
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0006-00.zip",
+        "size": 22696582
+      },
+      {
+        "name": "part-0070-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-11/part-0070-00.zip",
+        "size": 145404065
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0000-00.zip",
+        "size": 14009381
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0001-00.zip",
+        "size": 5997953
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0002-00.zip",
+        "size": 7152739
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0003-00.zip",
+        "size": 81742260
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0004-00.zip",
+        "size": 1640153
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0005-00.zip",
+        "size": 11490355
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-12/part-0006-00.zip",
+        "size": 22595029
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0000-00.zip",
+        "size": 11134444
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0001-00.zip",
+        "size": 5377733
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0002-00.zip",
+        "size": 9188859
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0003-00.zip",
+        "size": 63126586
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0004-00.zip",
+        "size": 1050342
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0005-00.zip",
+        "size": 6646436
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-13/part-0006-00.zip",
+        "size": 36084554
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0000-00.zip",
+        "size": 14226641
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0001-00.zip",
+        "size": 2839861
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0002-00.zip",
+        "size": 7717272
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0003-00.zip",
+        "size": 82185229
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0004-00.zip",
+        "size": 1851184
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0005-00.zip",
+        "size": 9240078
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-14/part-0006-00.zip",
+        "size": 42999342
+      }
+    ],
+    [
+      {
+        "name": "part-0000-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0000-00.zip",
+        "size": 12136915
+      },
+      {
+        "name": "part-0001-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0001-00.zip",
+        "size": 4730721
+      },
+      {
+        "name": "part-0002-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0002-00.zip",
+        "size": 21637324
+      },
+      {
+        "name": "part-0003-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0003-00.zip",
+        "size": 58749623
+      },
+      {
+        "name": "part-0004-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0004-00.zip",
+        "size": 2678825
+      },
+      {
+        "name": "part-0005-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0005-00.zip",
+        "size": 9558790
+      },
+      {
+        "name": "part-0006-00.zip",
+        "url": "https://github.com/giangnam0201/win93/releases/download/assets-da3f99e5cde3-15/part-0006-00.zip",
+        "size": 35531401
+      }
+    ]
+  ]
+}

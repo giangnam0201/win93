@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/deploy-pages.yml'
       - 'tools/build_pages.py'
+      - 'tools/pages-assets.json'
       - 'tools/restore.py'
       - '42/**'
       - 'bios/**'
@@ -14,9 +15,7 @@ on:
       - '*.css'
       - 'files.cbor'
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -32,21 +31,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Restore verified app assets from release archives
+      - name: Verify compressed asset loader
+        run: node tools/test-page-assets.mjs
+      - name: Restore verified app assets using public release links
+        run: python tools/build_pages.py
+      - name: Publish generated site to its Pages branch
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python tools/build_pages.py
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Publish
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: |
+          cd _site
+          git init -b codex/pages-assets
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config credential.helper '!gh auth git-credential'
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY.git"
+          if git ls-remote --exit-code origin refs/heads/codex/pages-assets >/dev/null; then
+            git fetch --depth=1 origin codex/pages-assets
+            git reset --soft FETCH_HEAD
+          fi
+          git add --all
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish WINDOWS93 app bundle from $GITHUB_SHA"
+          git push origin HEAD:codex/pages-assets
