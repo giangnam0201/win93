@@ -9,6 +9,18 @@ https://www.windows93.net and saved to disk for subsequent offline use.
 Internet apps such as web radio still require their original live services.
 The restored service worker preserves the virtual filesystem used by app iframes.
 
+## Public website
+
+The **Deploy WINDOWS93 apps to Pages** workflow restores the desktop, apps,
+libraries, and interface assets from Releases into the published site.
+It verifies file hashes and compresses large libraries to stay within the
+GitHub Pages size limit. The service worker decompresses these files while
+preserving their original URLs, MIME types, and range responses.
+The complete media/ROM collection remains available in release archives;
+it is larger than the public Pages site can hold.
+
+Run `node tools/test-page-assets.mjs` to verify the compressed asset loader.
+
 ## Store the full collection on GitHub without filling the PC
 
 Run the **Mirror all WINDOWS93 assets** workflow in the repository's Actions tab.
