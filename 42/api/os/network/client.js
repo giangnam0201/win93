@@ -1,5 +1,3 @@
-import { inAutomated } from "../../env/runtime/inAutomated.js"
-
 const { serviceWorker } = navigator
 
 export async function unregisterServiceWorker() {
@@ -27,14 +25,14 @@ class Client {
   }
 
   async connect(options) {
-    if (skipServiceWorker || inAutomated || !serviceWorker) return
+    if (skipServiceWorker || !serviceWorker) return
     if (typeof options === "string") options = { url: options }
     await this.register(options)
     if (options?.sync !== false) await this.sync()
   }
 
   async register(options) {
-    if (skipServiceWorker || inAutomated || !serviceWorker) return
+    if (skipServiceWorker || !serviceWorker) return
 
     const moduleURL = new URL(
       options?.url ?? "/42.sw.js", //
