@@ -1,0 +1,9 @@
+{
+  "name": "windows93-offline",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python tools/server.py",
+    "mirror": "python tools/mirror.py"
+  }
+}

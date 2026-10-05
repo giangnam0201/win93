@@ -230,6 +230,7 @@ if (window.NO_DYNAMIC_MODULES !== true) {
     console.warn("Failed to preload user config or timestamps", err)
   }
 
+  window.sys42.env ??= {}
   if (window.sys42.env.USER === undefined) {
     if (isReloaded) window.sys42.bios.el.className = "reload"
     const { client } = await import("../42/api/os/network/client.js")
@@ -255,6 +256,6 @@ if (window.NO_DYNAMIC_MODULES !== true) {
   } else {
     log(`Version: ${version}\n`)
     const { boot } = await import("../bios/boot.js?original")
-    boot({ splash })
+    await boot({ splash })
   }
 }

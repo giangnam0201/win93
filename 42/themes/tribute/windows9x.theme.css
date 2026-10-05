@@ -1,0 +1,1047 @@
+/**
+ * Name: Windows9x
+ * Author: Zombectro
+ *
+ * Based on best parts from
+ * https://v2.windows93.net by Jankenpopp and Zombectro
+ * https://98.js.org by 1j01
+ * https://tpenguinltg.github.io/winclassic by tPenguinLTG
+ */
+
+/*
+TODO: check https://winhistory.de/more/win95.htm
+*/
+
+@import url("./assets/pixel-font-fix.css");
+
+@font-face {
+  font-family: Tomo;
+  src:
+    url("./windows9x/fonts/tomo/Tomo.woff2") format("woff2"),
+    url("./windows9x/fonts/tomo/Tomo.woff") format("woff"),
+    url("./windows9x/fonts/tomo/Tomo.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+  /* size-adjust: 120%; */
+}
+
+@font-face {
+  font-family: sserife;
+  src:
+    url("./windows9x/fonts/sserife/sserife.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  font-family: sserife;
+  src:
+    url("./windows9x/fonts/sserife/sserife-bold.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife-bold.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife-bold.ttf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: block;
+}
+
+@font-face {
+  /* fallback for missing glyphs in sserife-bold */
+  font-family: sserife-fallback;
+  src:
+    url("./windows9x/fonts/sserife/sserife.woff2") format("woff2"),
+    url("./windows9x/fonts/sserife/sserife.woff") format("woff"),
+    url("./windows9x/fonts/sserife/sserife.ttf") format("opentype");
+  font-display: block;
+}
+
+.theme--windows9x,
+:root:not(.themed) {
+  --theme: "windows9x";
+
+  --Sound-Default: "/c/users/windows93/interface/sounds/Windows 95/DING.WAV";
+  --Sound-SystemAsterisk: "/c/users/windows93/interface/sounds/Windows 95/CHORD.WAV";
+  --Sound-SystemExclamation: "/c/users/windows93/interface/sounds/Windows 95/CHORD.WAV";
+  --Sound-SystemHand: "/c/users/windows93/interface/sounds/Windows 95/CHORD.WAV";
+  --Sound-SystemQuestion: "/c/users/windows93/interface/sounds/Windows 95/CHORD.WAV";
+  --Sound-SystemExit: "/c/users/windows93/interface/sounds/Windows 95/TADA.WAV";
+  --Sound-SystemStart: "/c/users/windows93/interface/sounds/Windows 95/The Microsoft Sound.wav";
+
+  --theme-light: true;
+  --theme-dark: false;
+
+  --xxxs: 0.125;
+  --xxs: 0.25;
+  --xs: 0.5;
+  --sm: 0.75;
+  --md: 1;
+  --lg: 1.5;
+  --xl: 2;
+  --xxl: 3.25;
+  --xxxl: 5;
+
+  --px: 1px;
+  --main-unit: 8px;
+
+  --group-border-collpase: 0;
+
+  /* MARK: fonts
+  -------------- */
+
+  font-synthesis: style small-caps;
+
+  --font-sans: sserife, sserife-fallback, Tomo, var(--font-emoji-ff);
+  --font-sans-fs: 12px;
+  --font-sans-lh: calc(16 / 12);
+
+  --font-mono: Tomo;
+  --font-mono-fs: 12px;
+  --font-mono-lh: calc(14 / 12);
+
+  --heading-lh: 1;
+
+  /* MARK: palette
+  ---------------- */
+
+  /* The active caption bar */
+  --ActiveTitle: rgb(10 36 106);
+  --GradientActiveTitle: rgb(166 202 240);
+  --TitleText: rgb(255 255 255);
+
+  /* The inactive caption bar */
+  --InactiveTitle: rgb(128 128 128);
+  --GradientInactiveTitle: rgb(192 192 192);
+  --InactiveTitleText: rgb(212 208 200);
+
+  /* Tooltip */
+  --InfoWindow: rgb(254 255 224);
+  --InfoText: rgb(0 0 0);
+
+  /* Window 3d colors */
+  --ButtonFace: rgb(212 208 200);
+  --ButtonLight: rgb(223 223 223);
+  --ButtonHilight: rgb(255 255 255);
+  --ButtonShadow: rgb(128 128 128);
+  --ButtonDkShadow: rgb(64 64 64);
+
+  /* Other window colors */
+  --ActiveBorder: var(--ButtonFace);
+  --InactiveBorder: var(--ButtonFace);
+  --MenuBar: rgb(236 233 216);
+  --Menu: rgb(212 208 200);
+  --WindowFrame: rgb(0 0 0);
+  --Scrollbar: rgb(212 208 200);
+  --Window: rgb(255 255 255);
+  --ButtonAlternateFace: rgb(181 181 181);
+
+  /* Background workspace */
+  --Background: rgb(0 128 128);
+  --AppWorkspace: rgb(128 128 128);
+
+  /* Selection */
+  --MenuHilight: rgb(0 0 128);
+  --HilightText: rgb(255 255 255);
+  --Hilight: rgb(10 36 106);
+
+  /* Text colors */
+  --WindowText: rgb(0 0 0);
+  --MenuText: rgb(0 0 0);
+  --ButtonText: rgb(0 0 0);
+  --GrayText: rgb(128 128 128);
+  --HotTrackingColor: rgb(0 0 128);
+
+  /* MARK: colors
+  --------------- */
+
+  --disabled-opacity: 1;
+
+  --main-accent-bg: var(--Hilight);
+
+  --main-bdc: var(--WindowFrame);
+
+  --placeholder-fg: var(--GrayText);
+
+  --highlight-bg: var(--Hilight);
+  --highlight-fg: var(--HilightText);
+
+  --ground-bg: var(--AppWorkspace);
+  --ground-fg: #fff;
+  --ground-tsh: 0 -1px 0 #0005;
+
+  --desktop-bg: var(--Background);
+  --desktop-fg: #fff;
+  --desktop__icon-bg: var(--Background);
+
+  --document-bg: var(--Window);
+  --document-fg: var(--WindowText);
+
+  --panel-bg: var(--ButtonFace);
+  --panel-fg: var(--ButtonText);
+
+  --button-bg: var(--ButtonFace);
+  --button-fg: var(--ButtonText);
+  --addon-fg: var(--ButtonText);
+
+  --field-bg: var(--Window);
+  --field-fg: var(--WindowText);
+
+  --field-disabled-bg: var(--ButtonFace);
+  --field-disabled-fg: var(--GrayText);
+  --field-disabled-tsh: 1px 1px 0 var(--ButtonHilight);
+
+  --field-readonly-bg: color-mix(in srgb, var(--Window), var(--ButtonFace) 50%);
+  /* --field-readonly-bg: var(--screentone-image); */
+  --field-readonly-fg: var(--ButtonText);
+  --field-readonly-tsh: none;
+
+  --button-disabled-fg: var(--field-disabled-fg);
+  --button-disabled-tsh: var(--field-disabled-tsh);
+
+  --button-toggled-fg: var(--ButtonText);
+  --button-toggled-bg: var(--ButtonFace) var(--screentone-image);
+  --button-toggled-disabled-fg: var(--field-disabled-fg);
+  --button-toggled-disabled-bg: var(--ButtonFace);
+
+  /* MARK: controls
+  ----------------- */
+
+  --control-pa-y: 0.5px;
+  --control-pa-x: var(--unit-xs);
+  --button-pa-x: var(--unit);
+  --button-gap: 2px;
+
+  --fieldset-bdw: 2px;
+
+  --addon-size: var(--picto-size);
+  --addon-ma-x: 0px;
+
+  --checkbox-size: 9px;
+  --checkbox-size-round: 1px;
+
+  --spin-button-offset: 3px;
+
+  --swatch-bdc: #0008;
+  --swatch-bsh: inset 1px 1px 0 0 #fff8, inset -1px -1px 0 0 #0003;
+
+  --progress-pa: 2px;
+  --progress__value-bg:
+    repeating-linear-gradient(
+      90deg,
+      var(--Hilight),
+      var(--Hilight) 8px,
+      transparent 8px,
+      transparent 10px
+    );
+
+  --range__track-h: 4px;
+  --range__track-bdw: var(--field-bdw);
+  --range__track-bdi: var(--field-bdi);
+  --range__thumb-h: calc(21px - 4px);
+  --range__thumb-w: calc(9px - 4px);
+  --range__thumb-bdr: 0;
+  --range__thumb-disabled-bg: var(--ButtonFace) var(--screentone-image);
+
+  --separator-bdc: var(--ButtonShadow);
+  --separator-bsh: 0 1px 0 0 var(--ButtonHilight);
+  --separator-v-bsh: 1px 0 0 0 var(--ButtonHilight);
+
+  --balloon-separator-bdc: color-mix(in srgb, var(--InfoWindow), var(--InfoText) 30%);
+
+  --volume__indicator-container-filter: none;
+
+  /* MARK: images
+  --------------- */
+
+  --screentone-image: repeating-conic-gradient(var(--ButtonHilight) 0% 25%, #0000 0% 50%) 0 0 / 2px 2px;
+  --broken-image-bg: url("../../themes/tribute/windows9x/broken.png");
+  --addon-bg-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" style="background:rgb(212 208 200)" width="16px" height="17px"><path fill="rgb(223 223 223)" d="M0 0h15v1H1v15H0Z" /><path fill="rgb(64 64 64)" d="M15 0h1v17H0V16h15z" /><path fill="rgb(255 255 255)" d="M1 1h13v1H2v13H1Z" /><path fill="rgb(128 128 128)" d="M14 1h1v15H1V15h13z" /></svg>');
+
+  --radio-picto: url("../../assets/img/pictos.svg#picto-bullet-small");
+  --menutiemradio-picto: url("../../assets/img/pictos.svg#picto-bullet");
+  --checkbox-picto: url("../../assets/img/pictos.svg#picto-check");
+  --checkbox--indeterminate-picto: url("../../assets/img/pictos.svg#picto-bullet-grid");
+
+  /* MARK: borders
+  ---------------- */
+
+  --inset-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(128 128 128)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(64 64 64)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(223 223 223)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(255 255 255)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --button-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(255 255 255)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(223 223 223)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(128 128 128)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(64 64 64)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --outset-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(223 223 223)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(255 255 255)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(128 128 128)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(64 64 64)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --outset-shallow-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(255 255 255)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(128 128 128)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --tabs__tab-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(255 255 255)" d="M2 0h3v1H2z  M1 1h1v1H1z M0 2h1v3H0z"/><path fill="rgb(223 223 223)" d="M2 1h3v1H2z M1 2h1v3H1z"/><path fill="rgb(128 128 128)" d="M5 2h1v3H5z M2 5h3v1H2z"/><path fill="rgb(64 64 64)" d="M6 2h1v3H6z M5 1h1v1H5z M5 5h1v1H5z M2 6h3v1H2z M1 5h1v1H1z"/><path fill="rgb(212 208 200)" d="M2 2h3v3H2z"/></svg>');
+
+  --button-toggled-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(64 64 64)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(128 128 128)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(223 223 223)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(255 255 255)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --button-active-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(64 64 64)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(128 128 128)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(128 128 128)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(64 64 64)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --button-default-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(64 64 64)" d="M7 0v7H0V0h7Z"/><path fill="rgb(255 255 255)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(223 223 223)" d="M2 2h2v1H3v1H2Z"/><path fill="rgb(128 128 128)" d="M4 2h1v3H2V4h2z"/></svg>');
+  --fieldset-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7px" height="7px"><path fill="rgb(128 128 128)" d="M0 0h6v1H1v5H0Z"/><path fill="rgb(255 255 255)" d="M1 1h4v1H2v3H1Z"/><path fill="rgb(128 128 128)" d="M5 1h1v5H1V5h4z"/><path fill="rgb(255 255 255)" d="M6 0h1v7H0V6h6z"/></svg>');
+  --radio-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><path fill="rgb(64 64 64)" d="M4 1h4v1h2v1H8V2H4v1H3v1H2v4h1v1H2V8H1V4h1V2h2z"/><path fill="rgb(128 128 128)" d="M4 0h4v1h2v1H8V1H4v1H2v2H1v4h1v2H1V8H0V4h1V2h1V1h2z"/><path fill="rgb(223 223 223)" d="M9 3h1v1h1v4h-1v2H8v1H4v-1H2V9h2v1h4V9h1V8h1V4H9z"/><path fill="rgb(255 255 255)" d="M10 2h1v2h1v4h-1v2h-1v1H8v1H4v-1H2v-1h2v1h4v-1h2V8h1V4h-1z"/></svg>');
+
+  --button-arrow-top-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"><path d="M4 0h1v1h-1v1h-1v1h-1v1h-1v4h-1v-4h1v-1h1v-1h1v-1h1z" fill="rgb(255 255 255)"></path><path d="M4 1h1v1h-1v1h-1v1h-1v3h-1v-3h1v-1h1v-1h1z" fill="rgb(223 223 223)"></path><path d="M5 1h1v1h1v1h1v1h1v5h-9v-1h8v-4h-1v-1h-1v-1h-1z" fill="rgb(64 64 64)"></path><path d="M5 2h1v1h1v1h1v4h-7v-1h6v-3h-1v-1h-1z" fill="rgb(128 128 128)"></path></svg>');
+  --button-arrow-bottom-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"><path d="M0 0h8v1h-7v4h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-1z" fill="rgb(255 255 255)"></path><path d="M8 0h1v5h-1v1h-1v1h-1v1h-1v1h-1v-1h1v-1h1v-1h1v-1h1z" fill="rgb(64 64 64)"></path><path d="M1 1h6v1h-5v3h1v1h1v1h-1v-1h-1v-1h-1z" fill="rgb(223 223 223)"></path><path d="M7 1h1v4h-1v1h-1v1h-1v1h-1v-1h1v-1h1v-1h1z" fill="rgb(128 128 128)"></path></svg>');
+  --button-arrow-left-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"><path d="M4 0h4v1h-4v1h-1v1h-1v1h-1v1h-1v-1h1v-1h1v-1h1v-1h1z" fill="rgb(255 255 255)"></path><path d="M8 0h1v9h-5v-1h-1v-1h-1v-1h-1v-1h1v1h1v1h1v1h4z" fill="rgb(64 64 64)"></path><path d="M4 1h3v1h-3v1h-1v1h-1v1h-1v-1h1v-1h1v-1h1z" fill="rgb(223 223 223)"></path><path d="M7 1h1v7h-4v-1h-1v-1h-1v-1h1v1h1v1h3z" fill="rgb(128 128 128)"></path></svg>');
+  --button-arrow-right-bdi-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"><path d="M0 0h5v1h1v1h1v1h1v1h-1v-1h-1v-1h-1v-1h-4v7h-1z" fill="rgb(255 255 255)"></path><path d="M1 1h4v1h1v1h1v1h-1v-1h-1v-1h-3v5h-1z" fill="rgb(223 223 223)"></path><path d="M7 4h1v1h-1v1h-1v1h-1v1h-4v-1h4v-1h1v-1h1z" fill="rgb(128 128 128)"></path><path d="M8 4h1v1h-1v1h-1v1h-1v1h-1v1h-5v-1h5v-1h1v-1h1v-1h1z" fill="rgb(64 64 64)"></path></svg>');
+
+  /* @src https://github.com/1j01/98/blob/5245105214cee90ab984fc15bece6c92db15ca7d/programs/explorer/index.html#L163 */
+  --disabled-filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"><feComponentTransfer in="SourceGraphic" result="contrast"><feFuncR type="discrete" tableValues="0 0.5 0 1"/><feFuncG type="discrete" tableValues="0 0.5 0 1"/><feFuncB type="discrete" tableValues="0 0.5 0 1"/><feFuncA type="discrete" tableValues="0 0.5 0 1"/></feComponentTransfer><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -1 -1 -1 1 0" in="contrast" result="black-isolated"/><feFlood flood-color="rgb(128 128 128)" result="shadow-color"/><feFlood flood-color="rgb(255 255 255)" result="hilight-color"/><feOffset dx="1" dy="1" in="black-isolated" result="offset"/><feComposite operator="in" in="hilight-color" in2="offset" result="hilight"/><feComposite operator="in" in="shadow-color" in2="black-isolated" result="shadow"/><feMerge><feMergeNode in="hilight"/><feMergeNode in="shadow"/></feMerge></filter></svg>#f');
+
+  --inset-bdw: 2px;
+  --outset-bdw: 2px;
+  --inset-shallow-bdw: 1px;
+  --outset-shallow-bdw: 1px;
+
+  --inset-bdi: var(--inset-bdi-url) 2 / 2px;
+  --button-bdi: var(--button-bdi-url) 2 / 2px;
+  --inset-shallow-bdi: var(--inset-bdi-url) 1 / 1px;
+  --outset-bdi: var(--outset-bdi-url) 2 / 2px;
+  --outset-shallow-bdi: var(--outset-shallow-bdi-url) 1 / 1px;
+
+  --button-arrow-top-bdi: var(--button-arrow-top-bdi-url) 4 / 4px;
+  --button-arrow-bottom-bdi: var(--button-arrow-bottom-bdi-url) 4 / 4px;
+  --button-arrow-left-bdi: var(--button-arrow-left-bdi-url) 4 / 4px;
+  --button-arrow-right-bdi: var(--button-arrow-right-bdi-url) 4 / 4px;
+
+  --button-toggled-bdi: var(--button-toggled-bdi-url) 2 / 2px;
+  --button-active-bdi: var(--button-active-bdi-url) 2 / 2px;
+  --button-default-bdi: var(--button-default-bdi-url) 3 / 3px;
+  --fieldset-bdi: var(--fieldset-bdi-url) 2 / 2px;
+  --radio-bdi: var(--radio-bdi-url) 4 / 4px;
+
+  --palette-bsh: 3px 3px 0 #3334;
+  --dialog-bsh: 3px 3px 0 #3333;
+
+  /* MARK: menu
+  ------------- */
+
+  --menu-highlight-fg: var(--HilightText);
+  --menu-highlight-bg: var(--MenuHilight);
+
+  /* MARK: datatable
+  ------------------ */
+
+  --datatable__th-bdw: 0;
+  --datatable__th-bsh:
+    inset -1px -1px var(--ButtonDkShadow),
+    inset 1px 1px var(--ButtonHilight),
+    inset -2px -2px var(--ButtonShadow),
+    inset 2px 2px var(--ButtonLight);
+
+  /* MARK: cursors
+  ---------------- */
+
+  --cursor-default: url("/42/themes/tribute/windows9x/cursors/default.cur"), default;
+  --cursor-help: url("/42/themes/tribute/windows9x/cursors/help.cur"), help;
+  --cursor-pointer: url("/42/themes/tribute/windows9x/cursors/pointer.cur"), pointer;
+  --cursor-progress: url("/42/themes/tribute/windows9x/cursors/progress.ani"), progress;
+  --cursor-wait: url("/42/themes/tribute/windows9x/cursors/wait.ani"), wait;
+  --cursor-cell: url("/42/themes/tribute/windows9x/cursors/cell.cur"), cell;
+  --cursor-crosshair: url("/42/themes/tribute/windows9x/cursors/crosshair.cur"), crosshair;
+  --cursor-text: url("/42/themes/tribute/windows9x/cursors/text.cur"), text;
+  --cursor-alias: url("/42/themes/tribute/windows9x/cursors/alias.cur"), alias;
+  --cursor-copy: url("/42/themes/tribute/windows9x/cursors/copy.cur"), copy;
+  --cursor-move: url("/42/themes/tribute/windows9x/cursors/move.cur"), move;
+  --cursor-no-drop: url("/42/themes/tribute/windows9x/cursors/no-drop.cur"), no-drop;
+  --cursor-not-allowed: url("/42/themes/tribute/windows9x/cursors/not-allowed.cur"), not-allowed;
+  --cursor-grab: url("/42/themes/tribute/windows9x/cursors/grab.cur"), grab;
+  --cursor-grabbing: url("/42/themes/tribute/windows9x/cursors/grabbing.cur"), grabbing;
+  --cursor-ew-resize: url("/42/themes/tribute/windows9x/cursors/ew-resize.cur"), ew-resize;
+  --cursor-ns-resize: url("/42/themes/tribute/windows9x/cursors/ns-resize.cur"), ns-resize;
+  --cursor-nesw-resize: url("/42/themes/tribute/windows9x/cursors/nesw-resize.cur"), nesw-resize;
+  --cursor-nwse-resize: url("/42/themes/tribute/windows9x/cursors/nwse-resize.cur"), nwse-resize;
+
+  /* aliases */
+
+  --cursor-context-menu: url("/42/themes/tribute/windows9x/cursors/default.cur"), context-menu;
+  /* --cursor-vertical-text: url("/42/themes/tribute/windows9x/cursors/vertical-text.cur"), vertical-text; */
+  --cursor-all-scroll: url("/42/themes/tribute/windows9x/cursors/move.cur"), all-scroll;
+  --cursor-col-resize: url("/42/themes/tribute/windows9x/cursors/ew-resize.cur"), col-resize;
+  --cursor-row-resize: url("/42/themes/tribute/windows9x/cursors/ns-resize.cur"), row-resize;
+  --cursor-n-resize: url("/42/themes/tribute/windows9x/cursors/ns-resize.cur"), n-resize;
+  --cursor-e-resize: url("/42/themes/tribute/windows9x/cursors/ew-resize.cur"), e-resize;
+  --cursor-s-resize: url("/42/themes/tribute/windows9x/cursors/ns-resize.cur"), s-resize;
+  --cursor-w-resize: url("/42/themes/tribute/windows9x/cursors/ew-resize.cur"), w-resize;
+  --cursor-ne-resize: url("/42/themes/tribute/windows9x/cursors/nesw-resize.cur"), ne-resize;
+  --cursor-nw-resize: url("/42/themes/tribute/windows9x/cursors/nwse-resize.cur"), nw-resize;
+  --cursor-se-resize: url("/42/themes/tribute/windows9x/cursors/nwse-resize.cur"), se-resize;
+  --cursor-sw-resize: url("/42/themes/tribute/windows9x/cursors/nesw-resize.cur"), sw-resize;
+  /* --cursor-zoom-in: url("/42/themes/tribute/windows9x/cursors/zoom-in.cur"), zoom-in; */
+  /* --cursor-zoom-out: url("/42/themes/tribute/windows9x/cursors/zoom-out.cur"), zoom-out; */
+
+  /* MARK: tooltip
+  ---------------- */
+
+  --toaster-gap: var(--unit-xs);
+
+  --balloon-fg: var(--InfoText);
+  --balloon-bg: var(--InfoWindow);
+  --balloon-bdc: var(--InfoText);
+  --tail-h: var(--unit);
+  --tail-w: var(--unit);
+  --balloon-br: 5px;
+  --balloon-offset-y: 5px;
+  --balloon-filter: drop-shadow(2px 2px 1px #3335);
+
+  /* MARK: button
+  --------------- */
+
+  --link-ol: 1px dotted;
+  --link-olo: 1px;
+
+  --control-focus-ol: 1px dotted;
+  --control-focus-olo: -4px;
+  --button-clear-focus-olo: -2px;
+  --field-focus-olo: -4px;
+  --checkbox-focus-olo: 2px;
+  --range-focus-olo: 2px;
+
+  label.button:has(:disabled) :is(img, svg, .ui-volume__accent),
+  :is(button, .button):is(:disabled, [disabled], .disabled) :is(img, svg, .ui-volume__accent) {
+    fill: #000;
+    filter: var(--disabled-filter);
+  }
+
+  @layer utility {
+    :is(button, .button) {
+      &.round,
+      &.radius-xxxs,
+      &.radius-xxs,
+      &.radius-xs,
+      &.radius-sm,
+      &.radius,
+      &.radius-lg,
+      &.radius-xl,
+      &.radius-xxl,
+      &.radius-xxxl {
+        --button-bdw: 0;
+        --button-bdi: none;
+        --button-bsh:
+          inset 1px 1px var(--ButtonHilight),
+          inset -1px -1px var(--ButtonShadow),
+          inset 2px 2px var(--ButtonLight),
+          1px 0 var(--ButtonDkShadow),
+          0 1px var(--ButtonDkShadow),
+          1px 1px var(--ButtonDkShadow);
+
+        --button-active-bdw: 0;
+        --button-active-bdi: none;
+        --button-active-bsh:
+          inset 1px 1px var(--ButtonDkShadow),
+          inset -1px -1px var(--ButtonShadow),
+          inset 2px 2px var(--ButtonShadow),
+          1px 0 var(--ButtonDkShadow),
+          0 1px var(--ButtonDkShadow),
+          1px 1px var(--ButtonDkShadow);
+      }
+    }
+  }
+
+  button.ui-menu__menuitem > ui-picto {
+    translate: 0 1px;
+  }
+
+  .ui-toast__close > ui-picto {
+    translate: 1px -1px;
+  }
+
+  /* MARK: icons
+    -------------- */
+
+  /* https://lea.verou.me/blog/2024/contrast-color/ */
+  :where(#desktopFolder .ui-icon__label) {
+    color: #fff;
+    text-shadow:
+      var(
+        --desktop__icon-tsh,
+        0 0 2px #000,
+        0 0 2px #000,
+        0 0 2px #000,
+        0 0 2px #000,
+        0 0 2px #000
+      );
+
+    @supports (color: oklch(from red l c h)) {
+      --l: clamp(0, (l / var(--l-threshold, 0.623) - 1) * -infinity, 1);
+      color: var(--fg, oklch(from var(--bg) var(--l) 0 h));
+      text-shadow: var(--tsh, none);
+    }
+
+    @supports (color: contrast-color(red)) {
+      color: var(--fg, contrast-color(var(--bg)));
+      text-shadow: var(--tsh, none);
+    }
+  }
+
+  /* MARK: controls
+    ----------------- */
+
+  .message,
+  .tooltip,
+  ui-toast,
+  ui-notif,
+  ui-tooltip,
+  .document {
+    --button-bdi: var(--outset-bdi);
+  }
+
+  input[list]:not([type="range"], :has(+ datalist:empty)),
+  input[type="file"],
+  input[type="number"],
+  input[type="time"],
+  input[type="week"],
+  input[type="month"],
+  input[type="date"],
+  input[type="datetime-local"] {
+    --_picto: var(--EMPTY_IMAGE);
+
+    background-image: var(--_picto), var(--addon-bg-image);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-position-x: var(--end);
+  }
+
+  /* --spin-button-top: 0px -3px; */
+
+  label.button:not(.pointer-instant):has(input:is([type="checkbox"],[type="radio"]):where(.active,:active)),
+  label.button:has(input:is([type="checkbox"],[type="radio"]):where(.checked,:checked)),
+  input:is([type="checkbox"],[type="radio"]):where(.active,:active):not(.disabled,[disabled],:disabled) + label.button,
+  :where(button, .button):not(label,.ui-menu__menuitem,.ui-toast__close):where(
+    :where(.active,:active):not(.pointer-instant,.disabled,[disabled],:disabled),
+    [aria-pressed="true"],[aria-selected="true"],[aria-expanded="true"]) {
+    > * {
+      --active-offset: 1px;
+      translate: 1px 1px;
+    }
+  }
+
+  :is(button, .button):not(.clear, .ui-dialog__button, .ui-gamepad__button) {
+    & > ui-picto {
+      overflow: visible !important;
+      > :is(img, svg) { translate: -1px -1px; }
+    }
+  }
+
+  .app__utility__mute > ui-picto > svg {
+    translate: -1px 1px !important;
+  }
+
+  /* MARK: checkbox
+  ----------------- */
+
+  input[type="checkbox"], input[type="radio"] {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      background: var(--fg, currentColor);
+      border: none;
+      mask-position: -3px -4px;
+    }
+
+    &:checked::before,
+    &:checked::after {
+      clip-path: none !important;
+      mask-image: var(--checkbox-picto);
+    }
+
+    &:where(.disabled,[disabled],:disabled)::before {
+      mask-position: -2px -3px;
+      background-color: var(--ButtonHilight);
+    }
+  }
+
+  input[type="checkbox"]:not([role="menuitemcheckbox"]) {
+    &:indeterminate::before,
+    &:indeterminate::after {
+      clip-path: none !important;
+      mask-image: var(--checkbox--indeterminate-picto);
+    }
+
+    &:indeterminate:checked::before,
+    &:where(.disabled,[disabled],:disabled):checked::before {
+      mask-position: -2px -3px;
+      background-color: var(--ButtonHilight);
+    }
+  }
+
+  input[type="radio"]:not([role="menuitemradio"]) {
+    inline-size: 10px;
+    block-size: 10px;
+    border-width: 1px;
+    border-image: var(--radio-bdi);
+    border-radius: 0 !important;
+    background-clip: content-box;
+    translate: 0 -1px;
+
+    &:checked::before,
+    &:checked::after {
+      clip-path: none !important;
+      mask-position: -3px -4px;
+      mask-image: var(--radio-picto);
+    }
+
+    &:where(.disabled,[disabled],:disabled):checked::before {
+      mask-position: -2px -3px;
+      background-color: var(--ButtonHilight);
+    }
+  }
+
+  input[type="checkbox"][role="menuitemcheckbox"] {
+    &::before,
+    &::after {
+      mask-position: 0 0;
+    }
+
+    &:where(.disabled,[disabled],:disabled):checked::before {
+      mask-position: 1px 1px;
+      background-color: var(--ButtonHilight);
+    }
+  }
+
+  input[type="radio"][role="menuitemradio"] {
+    &::before,
+    &::after {
+      mask-image: var(--menutiemradio-picto);
+      mask-position: 0 0;
+    }
+
+    &:where(.disabled,[disabled],:disabled):checked::before {
+      mask-position: 1px 1px;
+      background-color: var(--ButtonHilight);
+    }
+  }
+
+  /* MARK: select
+  --------------- */
+
+  --optgroup-indent: 0px;
+  --option-lh-top-fix: 2px;
+  --option-lh-bottom-fix: -1px;
+
+  @supports (-moz-appearance: none) {
+    --option-lh-top-fix: 1px;
+  }
+
+  select:not([size],[multiple]) {
+    background:
+      var(--arrow-bg),
+      var(--addon-bg-image) top var(--end) / var(--addon-size) no-repeat,
+      var(--bg);
+
+    &:disabled {
+      --addon-fg: var(--fg);
+    }
+  }
+
+  /* MARK: datatable
+  ------------------ */
+
+  .datatable {
+    > table {
+      th {
+        font-weight: 400;
+        line-height: 11px;
+        padding: 3px 4px 2px;
+      }
+
+      td {
+        padding: 1px 4px;
+
+        > input[type="checkbox"]:first-child,
+        > input[type="radio"]:first-child {
+          margin-left: 0;
+        }
+      }
+
+      > thead:not(:first-child) > th {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: var(--ButtonShadow);
+      }
+    }
+  }
+
+  /* MARK: explorer
+  ----------------- */
+
+  .ui-explorer__header > :where(button,.button):first-child {
+    margin-inline-start: 1px;
+  }
+
+  .ui-explorer__header > :where(button,.button):last-child {
+    margin-inline-end: 1px;
+  }
+
+  ui-icon {
+    &.dropzone-item--dim {
+      /* opacity: 0.6 !important; */
+      filter:
+        grayscale(1)
+        contrast(0.4);
+    }
+  }
+
+  /* MARK: dialog
+  --------------- */
+
+  ui-dialog {
+    --dialog-pa: 2px;
+    --dialog-gap: 2px;
+    --activity-border: var(--InactiveBorder);
+    box-shadow:
+      inset 1px 1px 0 0 var(--activity-border),
+      inset -1px -1px 0 0 var(--activity-border),
+      var(--bsh);
+  }
+
+  ui-dialog[active] {
+    --activity-border: var(--ActiveBorder);
+  }
+
+  .ui-dialog__header {
+    gap: 0;
+    padding: 0;
+    padding-inline-end: 2px;
+    background-color: var(--bg);
+    color: var(--fg);
+
+    --fg: var(--InactiveTitleText);
+    --bg: var(--GradientInactiveTitle);
+    --gradient-1: var(--InactiveTitle);
+    --gradient-2: var(--GradientInactiveTitle);
+
+    ui-dialog[active] & {
+      --fg: var(--TitleText);
+      --bg: var(--GradientActiveTitle);
+      --gradient-1: var(--ActiveTitle);
+      --gradient-2: var(--GradientActiveTitle);
+    }
+  }
+
+  .ui-dialog__buttons--before {
+    align-self: stretch;
+    background-color: var(--gradient-1);
+  }
+
+  .ui-dialog__title {
+    padding: 4px 5px;
+    padding-inline-end: 0;
+    background-image:
+      linear-gradient(
+        to var(--end),
+        var(--gradient-1),
+        var(--gradient-2)
+      );
+  }
+
+  .ui-dialog__buttons button,
+  button.ui-dialog__button {
+    --button-focus-olo: -2px;
+    box-sizing: border-box;
+    &:active { border-image: var(--field-bdi); }
+
+    @media (pointer: coarse) {
+      & {
+        padding: 8px;
+        margin-block: 2px;
+      }
+    }
+  }
+
+  button.ui-dialog__button:last-of-type {
+    margin-inline-start: 2px;
+  }
+
+  /* MARK: dialog footer
+  ---------------------- */
+
+  .ui-dialog__footer:not(.ui-explorer__footer) {
+    --gap: 4px;
+
+    ui-dialog[role="alertdialog"] & {
+      justify-content: start;
+      padding: var(--unit);
+      padding-block-start: 4px;
+      position: relative;
+
+      > .ui-dialog__footer__content {
+        flex: 0 0 min-content;
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px)) 0;
+      }
+    }
+  }
+
+  .ui-dialog__footer button:not(.shrink) {
+    flex: 0 0 auto;
+    min-width: 75px;
+
+    &:has(span:only-child) {
+      justify-content: start;
+
+      > span {
+        position: relative;
+        left: round(down, 50%, 1px);
+        translate: calc(round(up, -50%, 1px) + var(--active-offset, 0px)) var(--active-offset, 0) !important;
+      }
+    }
+  }
+
+  /* MARK: demand
+  --------------- */
+
+  .ui-dialog-demand:not(.ui-dialog-form) {
+    inline-size: 300px;
+
+    .ui-dialog-demand__content {
+      padding: 8px;
+      padding-block-end: 4px;
+    }
+  }
+
+  .ui-dialog-about {
+    inline-size: auto;
+    max-inline-size: calc(60ch + 16px + 48px);
+  }
+
+  .ui-dialog-demand__image + .ui-dialog-demand__content {
+    padding-inline-start: 0;
+  }
+
+  /* MARK: dock
+  ------------- */
+
+  ui-dock > button {
+    background-image: none;
+
+    &[aria-pressed="true"] { font-weight: bold; }
+
+    &.ui-dock__button--minimized {
+      background: var(--button-toggled-bg);
+    }
+  }
+
+  /* MARK: rubberband
+  ------------------- */
+
+  .rubberband {
+    stroke: #fff;
+    fill: transparent;
+    stroke-width: 1px;
+    shape-rendering: crispedges;
+    stroke-dasharray: 1;
+    mix-blend-mode: difference;
+  }
+
+  /* MARK: tabs
+  ------------- */
+
+  --tabs-gap: 0px;
+  /* --tabs-overlap: 0px; */
+  --tabs__tab-pa-x: var(--unit-sm);
+  --tabs__tab-pa-y: 0px;
+  --tabs__tab-bdi: var(--tabs__tab-bdi-url) 2 / 2px;
+  --tabs__panel-bdi: var(--button-bdi);
+
+  --tabs-active-grow-y: 2px;
+  --tabs-active-grow-x: 2px;
+  --tabs-active-overlap: -2px;
+
+  .ui-tabs__tab {
+    will-change: padding;
+    background-clip: padding-box;
+  }
+
+  .ui-tabs__tab[aria-selected="true"] {
+    &::after {
+      content: "";
+      position: absolute;
+      background: var(--ButtonFace);
+    }
+
+    ui-tabs:is(:not([side]), [side="top"]) &::after {
+      height: 1px;
+      bottom: 0;
+      inset-inline: -2px;
+    }
+
+    ui-tabs[side="bottom"] &::after {
+      height: 1px;
+      top: 0;
+      inset-inline: -2px;
+    }
+
+    ui-tabs[side="right"] &::after {
+      width: 1px;
+      inset-inline-start: 0;
+      inset-block: -2px;
+    }
+
+    ui-tabs[side="left"] &::after {
+      width: 1px;
+      inset-inline-end: 0;
+      inset-block: -2px;
+    }
+  }
+
+  ui-tabs:is(:not([side]), [side="top"]) .ui-tabs__tab[aria-selected="true"]:first-of-type::after,
+  ui-tabs[side="bottom"] .ui-tabs__tab[aria-selected="true"]:first-of-type::after {
+    inset-inline-start: 0;
+  }
+
+  ui-tabs[side="left"] .ui-tabs__tab[aria-selected="true"]:first-of-type::after,
+  ui-tabs[side="right"] .ui-tabs__tab[aria-selected="true"]:first-of-type::after {
+    inset-block-start: 0;
+  }
+
+  ui-tabs:is(:not([side]), [side="top"]) .ui-tabs__tablist,
+  ui-tabs[side="bottom"] .ui-tabs__tablist {
+    padding-inline-start: 4px;
+    padding-inline-end: 6px;
+  }
+
+  ui-tabs[side="left"] .ui-tabs__tablist,
+  ui-tabs[side="right"] .ui-tabs__tablist {
+    padding-block-start: 4px;
+    padding-block-end: 6px;
+  }
+
+  .ui-tabs__close > ui-picto > svg {
+    translate: 0 1px;
+  }
+
+  /* MARK: knob
+  ------------- */
+
+  --knob__ring-space: 15%;
+  --knob__cap-space: 15%;
+  --knob__indicator-width: 4%;
+  --knob__indicator-offset-end: 5%;
+  /* --knob-empty-color: color-mix(in srgb, var(--ButtonShadow), transparent 50%); */
+  --knob-empty-color: transparent;
+  --knob__indicator-color: var(--ButtonText);
+  --knob__center-color: var(--ButtonText);
+  --_knob-hilight: 0 0 transparent;
+  /* --_knob-hilight: 1px 1px var(--ButtonHilight); */
+
+  /* [ringless] {
+    --_knob-hilight: 1px 1px var(--ButtonHilight);
+  } */
+
+  .ui-knob__cap-box {
+    background-color: var(--ButtonFace);
+    border: 1px solid var(--ButtonDkShadow);
+    box-shadow:
+      inset 0 -1px var(--ButtonShadow),
+      inset -1px -1px var(--ButtonShadow),
+      inset 1px 1px var(--ButtonHilight),
+      inset 2px 2px var(--ButtonLight),
+      var(--_knob-hilight);
+  }
+
+  /* .ui-knob__ring-box {
+    filter: drop-shadow(1px 0 #fff);
+  } */
+
+  /* .ui-knob__ring {
+    box-shadow:
+      inset 1px 1px 0 var(--ButtonDkShadow),
+      inset 0 1px 1px var(--ButtonShadow);
+  } */
+
+  /* .ui-knob__indicator {
+    box-shadow:
+      inset 1px 0 var(--ButtonText),
+      1px 0 var(--ButtonHilight);
+  } */
+
+  .ui-volume__indicator--left,
+  .ui-volume__indicator--right {
+    clip-path: none;
+  }
+
+  /* MARK: scrollbars
+  ------------------- */
+
+  --scrollbar-sprites-url: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="32" fill="rgb(0 0 0)"><g id="g"><path id="a" d="M7 6h1v1h1v1h1v1h1v1h-7v-1h1v-1h1v-1h1z"/><use transform="translate(15) rotate(180 8 8)" href="%23a"/><use transform="translate(30) rotate(-90 8 7)" href="%23a"/><use transform="translate(48) rotate(90 8 8)" href="%23a"/></g><use y="16" style="filter: drop-shadow(1px 1px 0 rgb(255 255 255));fill: rgb(128 128 128);" href="%23g"/></svg>');
+
+  --scrollbar-up-bg: var(--scrollbar-sprites-url) 0 0 no-repeat;
+  --scrollbar-down-bg: var(--scrollbar-sprites-url) -16px 0 no-repeat;
+  --scrollbar-left-bg: var(--scrollbar-sprites-url) -32px 0 no-repeat;
+  --scrollbar-right-bg: var(--scrollbar-sprites-url) -48px 0 no-repeat;
+
+  :not(.scrollbar-overlay) {
+
+    &::-webkit-scrollbar { background: var(--Scrollbar) var(--screentone-image); }
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+      inline-size: var(--addon-size);
+      block-size: var(--addon-size);
+    }
+
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-button {
+      color: var(--ButtonText);
+      background: var(--ButtonFace);
+      border: 2px solid;
+      border-image: var(--outset-bdi);
+    }
+
+    &::-webkit-scrollbar-corner { background: var(--ButtonFace); }
+    &::-webkit-scrollbar-track-piece:active { background: var(--ButtonDkShadow); }
+    &::-webkit-scrollbar-button { display: block; }
+
+    &::-webkit-scrollbar-button:vertical:decrement {
+      background: var(--ButtonFace) var(--scrollbar-up-bg);
+      background-origin: border-box;
+    }
+
+    &::-webkit-scrollbar-button:vertical:increment {
+      background: var(--ButtonFace) var(--scrollbar-down-bg);
+      background-origin: border-box;
+    }
+
+    &::-webkit-scrollbar-button:horizontal:decrement {
+      background: var(--ButtonFace) var(--scrollbar-left-bg);
+      background-origin: border-box;
+    }
+
+    &::-webkit-scrollbar-button:horizontal:increment {
+      background: var(--ButtonFace) var(--scrollbar-right-bg);
+      background-origin: border-box;
+    }
+
+    /* active
+    --------- */
+
+    &::-webkit-scrollbar-button:vertical:active,
+    &::-webkit-scrollbar-button:horizontal:active {
+      border: 1px solid var(--ButtonShadow);
+      background-position-y: 1px;
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement:active { background-position-x: 1px; }
+    &::-webkit-scrollbar-button:vertical:increment:active { background-position-x: -15px; }
+    &::-webkit-scrollbar-button:horizontal:decrement:active { background-position-x: -31px; }
+    &::-webkit-scrollbar-button:horizontal:increment:active { background-position-x: -47px; }
+
+    /* disabled
+    ----------- */
+
+    &::-webkit-scrollbar-button:horizontal:disabled { background-position-y: -16px; }
+    &::-webkit-scrollbar-button:vertical:disabled { background-position-y: -16px; }
+
+    &::-webkit-scrollbar-button:end:decrement,
+    &::-webkit-scrollbar-button:start:increment {
+      display: none;
+    }
+  }
+}

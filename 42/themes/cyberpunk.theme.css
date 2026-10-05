@@ -1,0 +1,721 @@
+/**
+ * Name: Cyberpunk
+ * Author: Zombectro
+ */
+
+/* TODO: see https://codepen.io/jh3y/pen/yyNWGNG */
+
+@font-face {
+  font-family: ControlFreak;
+  src:
+    url("./cyberpunk/fonts/control-freak/ControlFreak.woff2") format("woff2"),
+    url("./cyberpunk/fonts/control-freak/ControlFreak.woff") format("woff"),
+    url("./cyberpunk/fonts/control-freak/ControlFreak.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 125%;
+}
+
+@font-face {
+  font-family: PolenticalNeon;
+  src:
+    url("./cyberpunk/fonts/polentical-neon/PolenticalNeon.woff2") format("woff2"),
+    url("./cyberpunk/fonts/polentical-neon/PolenticalNeon.woff") format("woff"),
+    url("./cyberpunk/fonts/polentical-neon/PolenticalNeon.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 95%;
+}
+
+@font-face {
+  font-family: Induction;
+  src:
+    url("./cyberpunk/fonts/induction/Induction.woff2") format("woff2"),
+    url("./cyberpunk/fonts/induction/Induction.woff") format("woff"),
+    url("./cyberpunk/fonts/induction/Induction.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.theme--cyberpunk,
+:root:not(.themed) {
+  --theme: "cyberpunk";
+  --theme-light: false;
+  --theme-dark: true;
+
+  --group-button-gap: 1px;
+
+  /* filter: invert(1) hue-rotate(180deg); */
+
+  /* --unit: 2rem; */
+  /* --unit: 9px; */
+
+  --main-fg: var(--color-yellow);
+  --main-bg: #000;
+
+  --caret-color: #fff;
+  --highlight-bg: var(--main-fg);
+  --highlight-fg: var(--main-bg);
+
+  --inset-bds: dotted solid solid dotted;
+  --inset-shallow-bdw: 1px;
+  --inset-bdw: 1px 2px 2px 1px;
+  --outset-bds: solid dotted dotted solid;
+  --outset-shallow-bdw: 1px;
+  --outset-bdw: 2px 1px 1px 2px;
+
+  --field-bds: solid;
+  --field-bdw: 1px;
+  --field-bsh: 0 0 0 0px #000, 0 0 0 0px currentcolor;
+  --field-focus-bsh: 0 0 0 2px #000, 0 0 0 3px currentcolor;
+  --button-bds: solid;
+  --button-bdw: 1px;
+  --menu-bds: solid;
+  --menu-bdw: 1px;
+
+  --control-transition: box-shadow 0.2s linear;
+
+  /* --balloon-bsh: 3px 3px 0 hsl(from var(--fg) h s 30% / 0.5); */
+  /* --balloon-bsh: 3px 3px 0 hsl(from var(--fg) h s 20% / 1); */
+  --balloon-bsh: 2px 2px 0 var(--main-bg), 3px 3px 0 var(--fg);
+
+  --group-border-collpase: -2;
+
+  --font-sans: ControlFreak;
+  --font-sans-fs: 12px;
+
+  --heading-ff: PolenticalNeon, sans-serif;
+  --heading-lh: 1.1;
+
+  --button-ff: PolenticalNeon, sans-serif;
+  --button-fs: 12px;
+
+  --icon-fs: 10px;
+  --desktop__icon-bg: #000;
+
+  --control-focus-ol: none;
+
+  /* --control-focus-ol: 2px solid #fff;
+  --control-focus-olo: -1px; */
+
+  --panel-bg: var(--main-bg);
+  --field-bg: var(--main-bg);
+  --field-bdc: var(--main-fg);
+  --field-bdr: 0 6px;
+  --field-bcs: bevel;
+  --field-sel-bg: #fff;
+  --field-sel-fg: var(--main-bg);
+
+  --checkbox-bdr: 0 4px;
+  --radio-bdr: 5px;
+
+  --screentone-border-bg:
+    linear-gradient(var(--bg), var(--bg)) 0% / auto content-box padding-box,
+    repeating-conic-gradient(
+      var(--bg) 0% 25%,
+      var(--fg) 0% 50%
+    ) 1px 0px / 2px 2px;
+
+  --fieldset-bdc: transparent;
+  --fieldset-bg: var(--screentone-border-bg);
+  --separator-bdc: transparent;
+  --separator-bg: var(--screentone-border-bg);
+
+  legend {
+    font-family: var(--heading-ff);
+    font-weight: 400;
+    background: var(--bg);
+  }
+
+  --button-fg: var(--main-bg);
+  --button-gap: 5px;
+  --button-pa-x: 8px 12px;
+  --button-pa-y: 5px 3px;
+
+  --button__picto-ma-l: -4px;
+  --button__picto-ma-r: -7px;
+  --button__picto-ma-t: -4px;
+  --button__picto-ma-b: -3px;
+
+  --disabled-opacity: 0.4;
+  --field-disabled-tsh: none;
+  --field-disabled-bsh: none;
+  --button-disabled-tsh: none;
+  --button-disabled-bsh: none;
+
+  /* --button-toggled-bg: #fff;
+  --button-toggled-bdc: #fff; */
+  --button-active-fg: var(--main-fg);
+  --button-active-bg: var(--main-bg);
+  --button-active-bdc: currentcolor;
+  --button-toggled-bdc: currentcolor;
+
+  --menu-bsh: 1px 1px 0px var(--main-bg), 2px 2px 0px var(--main-fg);
+  /* --menu-bsh: 1px 1px 0px var(--fg), 2px 2px 0px var(--fg); */
+  /* --dialog-bsh: 2px 2px 0px var(--main-bg), 3px 3px 0px var(--fg); */
+
+  --dialog-gap: 6px;
+
+  --separator-bds: dotted;
+
+  --dotted:
+    repeating-linear-gradient(
+      90deg,
+      var(--bg),
+      var(--bg) 1px,
+      var(--main-accent-bg) 1px,
+      var(--main-accent-bg) 2px
+    );
+
+  --progress__value-bg: var(--dotted);
+
+  --range__track-inactive-bg: var(--dotted);
+
+  --range__thumb-bg: var(--dotted);
+  --range__thumb-bdc: #0000;
+  --range__thumb-w: 7px;
+  --range__thumb-h: 13px;
+  --range__thumb-bdr: 0;
+
+  --color-pa: 3px;
+  --swatch-bdr: 4px;
+  --swatch-bcs: notch bevel;
+
+  letter-spacing: 0.5px;
+
+  /* filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="glow"><feGaussianBlur in="SourceGraphic" stdDeviation="3" /><feComponentTransfer><feFuncA type="linear" slope="0.1" result="BLUR" /></feComponentTransfer><feBlend mode="lighten" in="SourceGraphic" in2="BLUR"/></filter></svg>#glow'); */
+
+  .ui-dialog-alert--error {
+    --main-fg: var(--color-red);
+    --bdc: var(--color-red);
+    --fg: var(--color-red);
+    --button-bg: var(--color-red);
+    --button-bdc: var(--color-red);
+    --inset-shallow-bdc: var(--color-red);
+  }
+
+  /* :is(.disabled,[disabled],:disabled):not(form, fieldset) {
+    box-shadow: none;
+  } */
+
+  /* ui-icon:focus .ui-icon__label {
+    color: #fff;
+  } */
+
+  /* ui-icon:not(:hover, :focus) img {
+    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"><feComponentTransfer in="SourceGraphic" result="contrast"><feFuncR type="discrete" tableValues="0 0.5 0 1"/><feFuncG type="discrete" tableValues="0 0.5 0 1"/><feFuncB type="discrete" tableValues="0 0.5 0 1"/><feFuncA type="discrete" tableValues="0 0.5 0 1"/></feComponentTransfer><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -1 -1 -1 1 0" in="contrast" result="black-isolated"/><feFlood flood-color="rgb(240 140 0)" result="shadow-color"/><feFlood flood-color="rgb(240 140 0)" result="hilight-color"/><feOffset dx="1" dy="1" in="black-isolated" result="offset"/><feComposite operator="in" in="hilight-color" in2="offset" result="hilight"/><feComposite operator="in" in="shadow-color" in2="black-isolated" result="shadow"/><feMerge><feMergeNode in="hilight"/><feMergeNode in="shadow"/></feMerge></filter></svg>#f');
+  } */
+
+  /* ui-icon img {
+    filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="f"> <feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0" result="gray" />feFlood flood-color="rgb(255, 0, 0)" result="color" /><feComposite in="color" in2="gray" operator="in" result="tinted" /><feComposite in="tinted" in2="SourceAlpha" operator="in" /> </filter></svg>#f');
+  } */
+
+  progress {
+    font-family: var(--button-ff);
+  }
+
+  /* MARK: focus
+  -------------- */
+
+  select,
+  textarea,
+  meter,
+  progress,
+  ui-pathpicker,
+  ui-reply,
+  ui-code,
+  ui-combobox,
+  input:not(
+    [type="button"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="range"],
+    [type="reset"],
+    [type="submit"]),
+  .field {
+    --_p: 10.2px;
+    --_n: -10.8px;
+    clip-path:
+      polygon(
+        var(--_n) var(--_n),
+        var(--_p) var(--_n),
+        var(--_p) 0,
+        calc(100% - var(--_p) + 0.3px) 0,
+        calc(100% - var(--_p) + 0.3px) var(--_n),
+        calc(100% + var(--_p)) var(--_n),
+        calc(100% + var(--_p)) var(--_p),
+        calc(100% + 0px) var(--_p),
+        calc(100% + 0px) calc(100% - var(--_p) + 0.1px),
+        calc(100% + var(--_p)) calc(100% - var(--_p) + 0.2px),
+        calc(100% + var(--_p)) calc(100% + var(--_p)),
+        calc(100% - var(--_p) + 0.3px) calc(100% + var(--_p)),
+        calc(100% - var(--_p) + 0.3px) 100%,
+        var(--_p) 100%,
+        var(--_p) calc(100% + var(--_p)),
+        var(--_n) calc(100% + var(--_p)),
+        var(--_n) calc(100% - var(--_p)),
+        0.2px calc(100% - var(--_p)),
+        0.2px var(--_p),
+        var(--_n) var(--_p)
+      );
+  }
+
+  /* MARK: button
+  --------------- */
+
+  .button,
+  input:is(
+    [type="button"],
+    [type="reset"],
+    [type="submit"]),
+  button {
+    font-weight: 700;
+    min-width: 0;
+    /* letter-spacing: 1px; */
+
+    &:not(.ui-dialog__button, .ui-menu__menuitem) {
+      clip-path:
+        polygon(
+          -20% -20%,
+          120% -20%,
+          120% calc(100% - 10px),
+          100% calc(100% - 10px),
+          calc(100% - 10px) 100%,
+          calc(100% - 10px) 120%,
+          -20% 120%
+        );
+    }
+  }
+
+  .ui-dialog__button {
+    --fg: var(--main-fg);
+    --bg: transparent;
+    --bdc: transparent;
+    --bsh: none;
+  }
+
+  fieldset:not([role="none"]) {
+    position: relative;
+
+    &::after {
+      content: "";
+      pointer-events: none;
+      display: block;
+      block-size: 14px;
+      inline-size: 14px;
+
+      background-image:
+        linear-gradient(
+          -45deg,
+          transparent 0%,
+          transparent calc(50% - 3px),
+          var(--main-fg) calc(50% - 2px),
+          var(--main-fg) calc(50% + 0.5px),
+          transparent 50%
+        );
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    clip-path:
+      polygon(
+        0% 0%,
+        100% 0%,
+        100% calc(100% - 15px),
+        calc(100% - 15px) 100%,
+        0% 100%
+      );
+  }
+
+  /* input[type="checkbox"], input[type="radio"] {
+
+  } */
+
+  --checkbox-anim-speed: 0.3s;
+
+  input[type="radio"] {
+    --size: 15px;
+
+    &::before {
+      border-radius: 1px;
+      corner-shape: notch;
+    }
+  }
+
+  input[type="checkbox"] {
+    border-radius: 0;
+    overflow: hidden;
+    --x: -100% -100%;
+    --y: 100% -100%;
+    --speed: 0.1s;
+    --size: 15px;
+
+    &:not(:indeterminate)::before {
+      clip-path: none !important;
+      background: linear-gradient(45deg, #0000 49%, currentcolor 50%, #0000 51%) !important;
+      translate: var(--x);
+      transition: translate var(--speed);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      clip-path: none !important;
+      background: linear-gradient(-45deg, #0000 49%, currentcolor 50%, #0000 51%) !important;
+      translate: var(--y);
+      transition: translate var(--speed);
+      transition-delay: var(--speed);
+    }
+
+    &:checked {
+      --x: 0% 0%;
+      --y: 0% 0%;
+    }
+  }
+
+  input[type="checkbox"][role="menuitemcheckbox"] {
+    --size: 12px;
+    border: 2px solid var(--bg);
+  }
+
+  ::-webkit-resizer {
+    /* background-image: linear-gradient(transparent); */
+    /* background-image:
+      linear-gradient(
+        -45deg,
+        transparent 0%,
+        transparent calc(50% - 3px),
+        var(--main-fg) calc(50% - 2px),
+        var(--main-fg) calc(50% + 0px),
+        transparent 50%
+      );
+    background-position: right bottom;
+    z-index: -1; */
+  }
+
+  /* MARK: dialog
+  --------------- */
+
+  /* ui-dialog:not([active]) {
+    filter: brightness(0.7);
+  } */
+
+  /* ui-dialog[active] .ui-dialog__header {
+    color: #fff;
+  } */
+
+  /* ui-workspace {
+    filter: drop-shadow(5px 5px 0 #0008);
+  } */
+
+  /* --dialog-backdrop-bg: hsl(from var(--main-fg) h s l / 0.5); */
+  --dialog-backdrop-bg: #0006;
+  /* --dialog-backdrop-bg:
+    repeating-conic-gradient(
+      var(--main-fg) 0% 25%,
+      #0000 0% 50%
+    ) 1px 0px / 2px 2px; */
+  --dialog-backdrop-filter: none;
+
+  /* #auto-resume-notice {
+    filter:
+      drop-shadow(0 -1px 0 var(--main-bg))
+      drop-shadow(-1px 0 0 var(--main-bg))
+      drop-shadow(1px 1px 0 var(--main-bg));
+  } */
+
+  ui-dialog {
+    background: none;
+    border: none;
+    box-shadow: none;
+
+    /* --fg: red; */
+
+    anchor-name: --dialog;
+
+    padding-bottom: 11px;
+    &:not([maximized]) { padding-right: 12px; }
+
+    filter:
+      /* drop-shadow(3px 3px 0 hsl(from var(--fg) h s 15%)) */
+      drop-shadow(0 -1px 0 var(--main-bg))
+      drop-shadow(-1px 0 0 var(--main-bg))
+      drop-shadow(1px 1px 0 var(--main-bg))
+      /*drop-shadow(0 0 5px hsl(from var(--fg) h s l / 0.2))*/;
+
+    &::before {
+      content: "#" attr(id) " -" attr(role);
+      font-size: 6px;
+      font-family: var(--font-mono-ff);
+      line-height: 1.3;
+      padding: 0 1rem;
+      position: absolute;
+      bottom: 0;
+      left: -1px;
+      background: var(--main-bg);
+      border: 1px solid var(--fg);
+
+      border-radius: 0 0 9px 9px;
+      corner-shape: bevel;
+      height: 10px;
+      overflow: visible;
+      min-width: 40%;
+      max-width: 75%;
+      clip-path: inset(2px 2px -100% 2px);
+    }
+
+    .ui-dialog__header::after {
+      content: "";
+      position: absolute;
+      background: var(--fg);
+      top: max(15px, 10%);
+      right: 5px;
+      width: 4px;
+      height: 40%;
+      border-radius: 0 5px 5px 0;
+      corner-shape: bevel;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      right: 8px;
+      bottom: 7px;
+      z-index: -1;
+      background: var(--main-bg);
+      border: 1px solid;
+      overflow: visible;
+    }
+
+    &[maximized]::before {
+      display: none;
+    }
+
+    &[maximized]::after {
+      right: 0;
+      border-radius: 0;
+      border-top: none;
+      border-inline: none;
+    }
+  }
+
+  .ui-dialog__title {
+    overflow: visible;
+  }
+
+  /* .ui-dialog__body {
+    padding-top: 4px;
+  } */
+
+  .ui-dialog__picto {
+    translate: -4px -0;
+    filter:
+      drop-shadow(0 -1px 0 var(--fg))
+      drop-shadow(-1px 0 0 var(--fg))
+      drop-shadow(1px 1px 0 var(--fg));
+  }
+
+  .ui-dialog__picto.hide {
+    display: inline-block !important;
+    /* background: red; */
+  }
+
+  .ui-dialog__title__text {
+    margin-top: 2px;
+    padding-inline-start: 3px;
+  }
+
+  /* MARK: tabs
+  ------------- */
+
+  /* --tabs__tab-bdc: inherit; */
+  --tabs-gap: -6px;
+  --tabs__tab-pa-y: 6px;
+  --tabs__tab-pa-x: 10px 11px;
+  /* --tabs-overlap: 2px; */
+  /* --tabs-overlap: 1px; */
+  /* --tabs__tab-bg: #000; */
+  /* --tabs__tab-bg: #f00; */
+
+  .ui-tabs__tablist {
+    margin-bottom: -2px;
+  }
+
+  .ui-tabs__tab[aria-selected="true"]::before {
+    bottom: -1px;
+    clip-path: none;
+    box-shadow: none;
+    border-bottom: 1px solid var(--main-bg);
+  }
+
+  /* MARK: rubberband
+  ------------------- */
+
+  .rubberband {
+    stroke: var(--main-fg);
+    fill: transparent;
+    stroke-width: 1px;
+    shape-rendering: crispedges;
+    stroke-dasharray: 4;
+  }
+
+  /* MARK: desktop
+  ---------------- */
+
+  #taskbar,
+  #notificationArea,
+  ui-command-palette {
+    border: none;
+    background: transparent;
+  }
+
+  ui-workspaces,
+  ui-workspace {
+    overflow: visible;
+  }
+
+  #wallpaper {
+    position: fixed;
+  }
+
+  #taskbar {
+    z-index: var(--z-dialog);
+  }
+
+  #clock {
+    /* position: absolute;
+    bottom: calc(100vh - 1.2lh); */
+    padding: 0;
+    margin: 0 !important;
+    min-width: 152px !important;
+    right: 0;
+    font-family: Induction, sans-serif;
+    font-size: 24px;
+    line-height: 0.5;
+    height: 1lh;
+    min-height: auto;
+    max-height: 1lh;
+    text-align: right;
+  }
+
+  #taskbar,
+  ui-command-palette {
+    filter:
+      drop-shadow(0 -1px 0 #000)
+      drop-shadow(-1px 0 0 #000)
+      drop-shadow(1px 0 0 #000)
+      drop-shadow(0 1px 0 #000)
+      drop-shadow(0 -1px 0 #000)
+      drop-shadow(-1px 0 0 #000)
+      drop-shadow(1px 0 0 #000)
+      drop-shadow(0 1px 0 #000);
+  }
+
+  ui-command-palette {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  @supports (corner-shape:bevel) {
+    ui-dialog {
+      &::after {
+        border-radius: 26px 7px 10px 0;
+        corner-shape: bevel;
+      }
+    }
+
+    .ui-dialog__picto.hide + .ui-dialog__title__text-container {
+      margin-left: 16px;
+    }
+
+    .ui-tabs__tab {
+      border-radius: 0 14px 0 0;
+      corner-shape: bevel;
+    }
+
+    ui-menu {
+      border-radius: 7px;
+      /* corner-shape: notch; */
+      corner-shape: bevel;
+    }
+
+    .tooltip,
+    ui-toast,
+    ui-notif,
+    ui-tooltip {
+      border-radius: 12px 0;
+      corner-shape: bevel;
+    }
+
+    .button,
+    input:is(
+      [type="button"],
+      [type="reset"],
+      [type="submit"]),
+    button {
+      &:not(.ui-dialog__button, .ui-menu__menuitem) {
+        clip-path: none;
+        /* border-radius: 0 0 8px; */
+        border-radius: 8px 0;
+        corner-shape: bevel bevel bevel bevel;
+      }
+    }
+
+    fieldset:not([role="none"]) {
+      clip-path: none;
+      &::after { display: none; }
+      border-radius: 0 0 10px;
+      corner-shape: bevel;
+
+      &:has(legend) {
+        border-radius: 0 7px 10px 0;
+        corner-shape: bevel notch bevel bevel;
+        /* corner-shape: bevel; */
+      }
+    }
+  }
+
+  /* @src https://stackoverflow.com/a/25709375/1289275 */
+  --line1-c: color-mix(in srgb, var(--main-fg), #aa22003d 90%);
+  --line2-c: color-mix(in srgb, var(--main-fg), #a601 90%);
+  --cross-c: color-mix(in srgb, var(--main-fg), #fff 10%);
+
+  --d-bg: var(--main-bg);
+
+  --g-size: 100px;
+  --_s-m-2: calc(var(--g-size) - 2px);
+  --sub-g-size: 5px;
+
+  --_sub-keys: 0% 0% / var(--sub-g-size) var(--sub-g-size) fixed;
+  --_g-keys: 0% 0% / var(--g-size) var(--g-size) fixed;
+
+  --desktop-bg:
+    linear-gradient(-90deg, var(--line2-c) 1px, transparent 1px) var(--_sub-keys),
+    linear-gradient(var(--line2-c) 1px, transparent 1px) var(--_sub-keys),
+    linear-gradient(-90deg, var(--line1-c) 1px, transparent 1px) var(--_g-keys),
+    linear-gradient(var(--line1-c) 1px, transparent 1px) var(--_g-keys),
+    linear-gradient(transparent 3px, var(--d-bg) 3px, var(--d-bg) var(--_s-m-2), transparent var(--_s-m-2)) var(--_g-keys),
+    linear-gradient(-90deg, transparent 3px, var(--d-bg) 3px, var(--d-bg) var(--_s-m-2), transparent var(--_s-m-2)) var(--_g-keys),
+    linear-gradient(-90deg, var(--cross-c) 1px, transparent 1px) var(--_g-keys),
+    linear-gradient(var(--cross-c) 1px, transparent 1px) var(--_g-keys),
+    var(--line1-c);
+
+  --balloon-bg: linear-gradient(#0005), var(--desktop-bg);
+  /* --balloon-tsh:
+    -1px -1px 0px #000,
+    -1px 0px 0px #000,
+    -1px 1px 0px #000,
+    0px -1px 0px #000,
+    0px 0px 0px #000,
+    0px 1px 0px #000,
+    1px -1px 0px #000,
+    1px 0px 0px #000,
+    1px 1px 0px #000; */
+}

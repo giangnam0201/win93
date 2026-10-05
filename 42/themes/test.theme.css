@@ -1,0 +1,59 @@
+.theme--test,
+:root:not(.themed) {
+  --theme: "test";
+
+  --font-sans-fs: 12px;
+  --main-unit: 10px;
+
+  --px: 3px;
+
+  --main-bg: #000;
+  --main-fg: var(--color-blue);
+  --main-bdc: var(--color-teal);
+  --main-bdr: 10px;
+
+  --panel-bg: color-mix(in srgb, var(--field-bg), #000 10%);
+
+  --inset-bdc: var(--color-cyan);
+
+  --main-accent-bg: var(--color-purple);
+  --checkbox-fg: var(--color-purple);
+
+  /* buttons
+  ========== */
+
+  --group-button-gap: 1px;
+
+  --button-bg: var(--color-violet);
+  --button-transition: transform 0.09s, box-shadow 0.09s;
+  --button-bsh: 0 3px 0 0 color-mix(in srgb, var(--color-violet), #000 35%);
+  --button-active-bsh: 0 1px 0 0 color-mix(in srgb, var(--color-violet), #000 35%);
+  --button-tf: translateY(-3px);
+  --button-active-tf: translateY(-1px);
+
+  /* fields
+  ========= */
+
+  --field-bg: color-mix(in srgb, var(--color-violet), #000 80%);
+  --field-bsh: inset 0 2px 5px rgb(0 0 0 / 1);
+
+  --fieldset-bdw: 2px;
+
+  --color-pa: 3px;
+  --progress-pa: 3px;
+  --meter-pa: 3px;
+
+  --checkbox-size: 1.5rem;
+
+  /* --tabs__tab-pa-x: 5px;
+  --tabs__tab-pa-y: 1px;
+  /~ --tabs-active-grow-y: 4px; ~/
+  --tabs__tab-bdc: red;
+  --tabs__tab-bdw: 1px;
+  --tabs-gap: -1px;
+
+  /~ --tabs-active-grow-y: 2px;
+  --tabs-active-grow-x: 2px; ~/
+
+  /~ --tabs-active-overlap: -2px; ~/ */
+}

@@ -1,0 +1,7 @@
+.theme--empty,
+:root:not(.themed) {
+  --theme: "empty";
+
+  /* --font-sans-fs: 86%; */
+  --font-sans-fs: 12px;
+}

@@ -161,15 +161,15 @@ async function startDesktop(options) {
     )
   }
 
-  requestIdleCallback(() => {
-    import("../desktop.js")
+  const schedule = globalThis.requestIdleCallback ?? ((fn) => setTimeout(fn, 0))
+  schedule(() => {
+    import("../desktop.js").catch((err) => bios.traceError(err))
   })
 }
 
 export async function boot(options) {
-  if (false && navigator.onLine) {
-    await fetchCache(options).catch((err) => bios.traceError(err))
-  }
+  // Register on the first boot too, so user-created files work in app iframes.
+  await client.connect().catch((err) => console.warn("Service worker unavailable", err))
 
   if (desktop) {
     desktop.loaded = async () => {

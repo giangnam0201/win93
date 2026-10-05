@@ -1,0 +1,10 @@
+.codex/
+.asset-cache/
+__pycache__/
+*.download
+*.restore
+file-index.json
+mirror-report.json
+# The large collection belongs in release archives, not Git history.
+c/
+42.tar.gz

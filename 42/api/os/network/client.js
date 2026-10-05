@@ -3,6 +3,7 @@ import { inAutomated } from "../../env/runtime/inAutomated.js"
 const { serviceWorker } = navigator
 
 export async function unregisterServiceWorker() {
+  if (!serviceWorker) return false
   return serviceWorker.getRegistrations().then(async (regs) => {
     const res = await Promise.all(regs.map((reg) => reg.unregister()))
     if (res.length > 0 && res.every(Boolean)) {
@@ -22,18 +23,18 @@ const skipServiceWorker = false
 
 class Client {
   get controller() {
-    return serviceWorker.controller
+    return serviceWorker?.controller
   }
 
   async connect(options) {
-    if (skipServiceWorker || inAutomated) return
+    if (skipServiceWorker || inAutomated || !serviceWorker) return
     if (typeof options === "string") options = { url: options }
     await this.register(options)
     if (options?.sync !== false) await this.sync()
   }
 
   async register(options) {
-    if (skipServiceWorker || inAutomated) return
+    if (skipServiceWorker || inAutomated || !serviceWorker) return
 
     const moduleURL = new URL(
       options?.url ?? "/42.sw.js", //
@@ -72,8 +73,13 @@ class Client {
       if (this.registration?.active) return // Hard refresh https://stackoverflow.com/a/62596701
 
       await new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          serviceWorker.removeEventListener("controllerchange", handler)
+          resolve()
+        }, 10000)
         const handler = () => {
           if (this.controller) {
+            clearTimeout(timer)
             serviceWorker.removeEventListener("controllerchange", handler)
             resolve()
           }
