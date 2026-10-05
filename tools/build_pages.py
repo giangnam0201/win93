@@ -69,18 +69,21 @@ def main():
             for asset in assets:
                 name = asset['name']
                 archive = temporary / name
-                for attempt in range(5):
+                for attempt in range(8):
                     try:
-                        request = urllib.request.Request(asset['url'], headers={'User-Agent': 'WINDOWS93-Pages-Build'})
+                        # GitHub/CDN may cache a failing or expired redirect.
+                        url = asset['url'] + f'?mirror={time.time_ns()}'
+                        request = urllib.request.Request(url, headers={'User-Agent': 'WINDOWS93-Pages-Build'})
                         with urllib.request.urlopen(request, timeout=120) as source, archive.open('wb') as destination:
                             shutil.copyfileobj(source, destination)
                         if archive.stat().st_size != asset['size']:
                             raise ValueError('Release archive size mismatch')
                         break
-                    except Exception:
-                        if attempt == 4:
+                    except Exception as error:
+                        print(f'Retrying {tag}/{name}: {error}', flush=True)
+                        if attempt == 7:
                             raise
-                        time.sleep(2 ** (attempt + 1))
+                        time.sleep(min(60, 2 ** (attempt + 1)))
                 with zipfile.ZipFile(archive) as bundle:
                     records = json.loads(bundle.read('_mirror-manifest.json'))
                     for record in records:
